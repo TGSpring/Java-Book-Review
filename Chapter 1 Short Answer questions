@@ -1,0 +1,10 @@
+Chapter 1 review questions:
+1. What is the purpose of the main method in Java program?
+  The purpose of the manin method in a java program is to serve as the entry point for execution. The 
+JVM starts running the program from the main method. It initializes the program by creating objects,
+setting up variables, and calling other methods as needed. Its signature is:
+"public static main void(String[] args)"
+public: makes the mehtod accessible to the JVM
+static: Aloows the mehtod to be called without creating an instance of the class.
+void: Indicates the mehtod doesn not return any value.
+String[] args: Endables passing command-line arguments to the program.
