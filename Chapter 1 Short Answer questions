@@ -63,4 +63,67 @@ In short compile-time errors prevent the program from running, while runtime err
   JVM executes the bytecode produced by the compiler.
   acts as an interpreter between the bytecode and the specific operating system
   Handles runtime activities like memory management, garbage collection, and exception handling.
-  
+
+  9. What is the difference between Syntax and runtime errors?
+     Syntax Errors:
+	•	What: Occur when the code violates the grammatical rules of the Java language.
+	•	When: Detected at compile time by the compiler.
+	•	Examples:
+	•	Missing a semicolon:
+
+System.out.println("Hello world")
+
+
+	•	Misspelled keywords:
+
+Publc static void main(String[] args) { }
+
+
+	•	Result: The program will not compile until the syntax error is fixed.
+
+Runtime Errors:
+	•	What: Occur during the execution of the program, even if it compiles successfully.
+	•	When: Detected at runtime by the JVM.
+	•	Examples:
+	•	Division by zero:
+
+int x = 10 / 0; // Throws ArithmeticException
+
+
+	•	Accessing a null object:
+
+String str = null;
+System.out.println(str.length()); // Throws NullPointerException
+
+
+	•	Result: The program crashes or produces unintended behavior during execution.
+
+Key Difference:
+	•	Syntax errors prevent the program from compiling.
+	•	Runtime errors cause issues while the program is running
+
+Question 10:
+
+What are the two primary types of Java programs, and how do they differ?
+  1.	Applications:
+	•	Standalone programs that run on a user’s computer.
+	•	Require a Java Virtual Machine (JVM) to execute.
+	•	Examples: Console-based programs or desktop applications.
+	•	Example code:
+
+public class MyApp {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+
+
+	2.	Applets (Legacy/Deprecated):
+	•	Small programs that were designed to run inside a web browser.
+	•	Required a Java-enabled browser or an applet viewer.
+	•	Applets are no longer widely used due to modern web technologies and security concerns
+
+Key Difference:
+	•	Applications run independently on a machine, whereas applets required a browser or viewer for execution.
+
+Since applets are now largely obsolete, modern Java development focuses mainly on applications
