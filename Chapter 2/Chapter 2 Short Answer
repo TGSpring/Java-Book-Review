@@ -1,0 +1,53 @@
+1. What is the difference between a while loop and a for loop?
+When might you use each one?
+    While Loop:
+       - A while loop continues to execute as long as its condition is true.
+       - It is ideal when the number of iterations is not known beforehand, such as when
+         waiting for user input or validating something dynamically.
+        
+       - Example: Reading data until the user enters "exit" or something for a specific value
+        in a unsorted list.
+
+    For Loop:
+       - A for loop is better when you know exactly how many times the loop 
+        needs to run or whe iterating over a sequence like an array or list.
+       - It has a concise syntax that combines initialization, condition-checking, and incrementing in one line.
+       - Example: Iterating through an array, printing a range of numbers, or summing values.
+
+    Comparison:
+        - Use while when you want a loop that continues until a specific condition is no longer true.
+        - Use for when you know the number of iteration in advance or are iterating through a known
+        structure.
+
+2. What are the differences between the break and continue statements in loops?
+    When might you use each?
+
+    - Break:
+        - When encountered inside a loop, it terminates the entire loop immediately, reguardless of the loop condition.
+        - The program continues after the loop.
+        - You might use break when a certain condition is met, and you no longer need to continue processing the rest of the loop.
+        - Example: searching for a value in a list and stopping once the value is found.
+
+    - Continue:
+        - When encountered inside a loop, it skips the rets of the current iteration and moves ot the next iteration of the loop.
+        - The loop itself continues as long as the loop condition is still true.
+        - You might use continue when you want to skip certain iterations without stopping the entire loop. Like skipping over negative numbers in a list when performing calculations.
+
+    - Example:
+
+        for (int i = 1; i <= 10; i++) {
+            if (i == 5) {
+                break; // Loop stops entirely when i == 5.
+            }
+            if (i % 2 == 0) {
+                continue; // Skips even numbers but keeps looping.
+            }
+            System.out.println(i);
+        }
+        //Output: 1, 3
+
+3. What is the difference between while and do-while loops? When would you use one over the other?
+
+    - While: Loop checks the condition BEFORE executing the body of the loop. If the condition is false initially, the loop will not run at all. This makes it useful for scenarios where you might not want the loop to execute unless a certain condition is true from the start. (Searching a list for value but stopping if the list is empty)
+    
+    - Do-While: checks the condition AFTER executing the body of the loop. This means it always runs at least once, even if the condition is false initially. It's good for scenarios where the loop's body must run at least once before the condition can be evaluated(Prompting user for input and validating it after the first prompt).
