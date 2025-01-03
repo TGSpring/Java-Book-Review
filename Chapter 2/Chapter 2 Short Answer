@@ -48,6 +48,119 @@ When might you use each one?
 
 3. What is the difference between while and do-while loops? When would you use one over the other?
 
-    - While: Loop checks the condition BEFORE executing the body of the loop. If the condition is false initially, the loop will not run at all. This makes it useful for scenarios where you might not want the loop to execute unless a certain condition is true from the start. (Searching a list for value but stopping if the list is empty)
+    - While: Loop checks the condition BEFORE executing the body of the loop.
+        If the condition is false initially, the loop will not run at all. This makes it 
+        useful for scenarios where you might not want the loop to execute unless a certain condition is 
+        true from the start. (Searching a list for value but stopping if the list is empty)
     
-    - Do-While: checks the condition AFTER executing the body of the loop. This means it always runs at least once, even if the condition is false initially. It's good for scenarios where the loop's body must run at least once before the condition can be evaluated(Prompting user for input and validating it after the first prompt).
+    - Do-While: checks the condition AFTER executing the body of the loop.
+        This means it always runs at least once, even if the condition is false initially. 
+        It's good for scenarios where the loop's body must run at least once before the condition can be 
+        evaluated(Prompting user for input and validating it after the first prompt).
+
+4. Explain what an infinite loop is and how ic can occur in a program.
+   How can you avoid infinite loops when writing code?
+
+    - An infinite loop occurs when a loop keeps running indefinitely because its termination 
+        is never satisfied. This can happen for several reasons:
+        
+        -Incorrect or missing updates to the loop variable. For example, forgetting to increment 
+        the counter in a while loop.
+
+        - Logical Errors in the condition, such as using an incorrect comparison operator or a
+        condition that can never be false.
+
+        - Recursive loops without a proper or reachable base case, causing endless function calls.
+
+    - You can avoid infinite loops by:
+        
+        -Thoroughly testing and validating loop conditions to ensure they can be met.
+
+        -Adding debugging checkpoints, such as printing the loop's variable during execution
+        to verify they change as expected.
+
+        -Using a tool or timeout mechanism for loops that rely on external conditions.
+
+5. What is the purpose of a loop control variable?
+   How is it typically used in a for loop?
+   
+   - A loop control variable serves to control the number of iterations a loop executes. In a for 
+        loop, it is typically initialized at a starting value, then updated(incremented or decremented)
+        after each iteration until the termination condition is met. The loop control variable ensures
+        the loop progresses and eventually ends when the condition evaluates to false, preventing infinite 
+        loops. It also often plays a role within the loop body, such as accessing elements in a collection 
+        or preforming calculations.
+
+
+6. What is the difference between the increment (++) and the decrement (--) operators? 
+        How can they be used in loops?
+
+        - Increment adds 1 to a value after it has been evaluated in its current iteration. 
+            Decrement does the same, but takes away a value of 1. They are mainly used in for loops
+            as a way of controlling how long a loop goes on for, or as mentioned earlier, for accessing data.
+            In other loops like a while or do while it is a similar approach, but where you would add/subtract 
+            the value would vary based on what you are doing.
+
+7. What happens if the update step (increment or decrement) in a for loop is omitted?
+        - If the update step in a for loop is omitted, the behavior depends on the loop's condition.
+            - Infinite loop: If the loops condition never becomes false, the loop will continue indefinitely.
+                for(int i = 0; i < 5;) {
+                    System.out.println(i);
+                }
+            In this case, i never changes, so the condition i < 5 is always true.
+
+        - Non-Functional loop: If the loops condition is already false when the loop starts,
+        the loop might never execute, leading to unintended behavior.
+    
+        - Manual Update: If the update step is omitted, you can manually modify the loop variable inside
+        the loop body.
+
+8. What is the value of the variable x after the following loop completes?
+                int x = 0;
+                for (int i =0; i < 5; i++) {
+                    x = x + i;
+                }
+        10.
+        x = 0 + 1 = 1
+        x = 1 + 2 = 3
+        x = 3 + 3 = 6
+        x = 6 + 4 = 10
+
+9. Consider the following code.
+                int x = 0;
+                for (int i = 0; i < 10; i++) {
+                    x = x + i;
+                }
+            System.out.println(x);
+        What is the value of x after this code runs?
+
+        x + 0 + 1 = 1
+        x + 1 + 2 = 3
+        x + 3 + 3 = 6
+        x + 6 + 4 = 10
+        x + 10 + 5 = 15
+        x + 15 + 6 = 21
+        x + 21 + 7 = 28
+        x + 28 + 8 = 36
+        x + 36 + 9 = 45
+
+10. What is the output of the following code?
+                int i = 1;
+                while (i <= 5) {
+                    System.out.println(i);
+                    i++;
+                }
+
+            1 2 3 4 5
+            The while loop starts with i = 1.
+            The condition i <= 5 is checked. Since i is 1 initially, it is true, and the loop proceeds.
+            It prints the value of i followed by a space, then increments i by 1(i++).
+            This process repeats for i = 1 2 3 4 5. When i = 6, the condition i <=5 is no longer true, and exits.
+
+11. Why are loops important in programming?
+                - Loops are essential in programming because they allow for repetitive tasks 
+                    to be performed efficiently. They are commonly used for operations like validating 
+                    input, iterating through and accessing data in collections (like arrays, lists, or data
+                    structures), automating repetitive actions. Loops help reduce code duplication, make programs
+                    more scalable, and enable complex operations that would be tedious or impractical
+                    to write manually for each case.
