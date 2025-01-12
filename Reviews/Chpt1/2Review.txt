@@ -1,0 +1,71 @@
+# Chapter 1: Introduction to Java Programming
+
+## Basic Structure of a Java Program
+Components of a program, including main method, System.out.println, and comments.
+
+**Question:** What is the purpose of the main method in a Java program?
+- The main method is the entry point for a Java program. It calls and runs all necessary functions and initializes variables.
+
+## Data Types and Variables
+Declaring and initializing variables (int, double, String, etc.).
+
+**Question:** What is the difference between int and double in Java?
+- int is a 32-bit signed integer, which can store whole numbers from -2^31 to 2^31-1.
+- double is a 64-bit floating-point number, which can store decimal numbers with higher precision.
+
+## Input and Output
+Using Scanner for user input.
+
+**Question:** How would you use a Scanner to take a double input from the user?
+- double input = scanner.nextDouble();
+
+## Errors and Debugging
+Syntax errors, runtime errors, and logic errors.
+
+**Question:** What is a logic error, and how does it differ from a syntax error?
+- A logic error is an error in the program's logic that produces incorrect results, such as incorrect calculations, infinite loops, or invalid input validation.
+- Syntax errors are mistakes in the code's structure, such as improper declaring of variables or functions, scoping, or misplacing a semicolon (;).
+
+# Chapter 2: Using Objects
+
+## Working with Libraries
+Using built-in Java libraries like Math and Random.
+
+**Question:** How do you use the Math.pow method, and what does it do?
+- Import the `Math` class and use `Math.pow(x, y)` where `x` is the base and `y` is the exponent.
+
+## Control Structures
+if statements, loops (for, while, do-while).
+
+**Question:** When would you use a do-while loop instead of a while loop?
+- When you need to do an iteration BEFORE a conditional. Great for validation.
+
+## Cumulative Algorithms
+Summing numbers, factorial calculations, etc.
+
+**Question:** What is a cumulative algorithm, and how does it work?
+- It keeps a sum or track of a certain value per iteration. For example, adding to a sum or counting the number of calculations done per iteration.
+
+## Nested Loops
+Drawing patterns and working with multiple iterations.
+
+**Question:** How do nested loops differ from a single loop?
+- A nested loop is a loop inside another loop. It is great for accessing/manipulating data, building, or going through data structures.
+
+## Generating Random Numbers
+Using the Random library to create random values.
+
+**Question:** How do you generate a random integer between two bounds?
+- Use `Random.nextInt((max - min) + 1) + min` to generate a random integer between `min` and `max`.
+
+## Logical Operations
+Prime number checks, parity (even/odd) calculations.
+
+**Question:** What operator would you use to check if a number is even or odd?
+- Use the modulus operator `%` to check if a number is even or odd. For example, `number % 2 == 0` checks if a number is even.
+
+## Mathematical Approximations
+Using loops and formulas to approximate values like π.
+
+**Question:** What is the purpose of the Leibniz formula for approximating π?
+- It calculates π using a given series and changes signs between each iteration.
