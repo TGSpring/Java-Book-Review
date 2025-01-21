@@ -7,9 +7,7 @@ Chapter 3 short answer questions.
    - Constants are immutable values that cannot be altered once they are set. They are usually declared with the `final` keyword and can have a global scope or be created within a specific scope. Constants are useful for refactoring, debugging, and validation because their values remain consistent throughout the program.
 
 2. Explain how method overloading works. Provide an example where overloading might be useful.
-   - Method overloading is when two or more methods in the same class have the same name but 
-   different parameters (different type, number, or both). 
-   This allows methods to perform similar but slightly different tasks based on the input parameters.
+   - Method overloading is when two or more methods in the same class have the same name but different parameters (different type, number, or both). This allows methods to perform similar but slightly different tasks based on the input parameters.
    - Example:
      ```java
      public class MathUtils {
@@ -29,5 +27,13 @@ Chapter 3 short answer questions.
          }
      }
      ```
-   - Overloading is useful when you want to provide multiple ways to perform a similar 
-   operation, such as adding different numbers of values or handling different data types.
+   - Overloading is useful when you want to provide multiple ways to perform a similar operation, such as adding different numbers of values or handling different data types.
+
+3. What happens to a parameter variable when the method completes?
+   - Any modifications to the parameter within the method do not affect the original variable outside the method. If it is to be returned or passed, it is only a copy of it.
+
+4. If a method accepts multiple parameters, how can you ensure they're passed in the correct order? What happens if they aren't?
+   - You declare the parameters in the same order in your calling function as you do in the method's declaration. If they get mismatched, you will have incorrect behavior, runtime errors, or even compilation errors, depending on the types and usage of the parameters.
+
+5. How would you decide whether a value in your program should be passed as a parameter or stored as a class-level constant?
+   - It would depend on that specific value's purpose in the program. If it is something that needs to be manipulated in some way, then it can be a parameter. If it is a value that remains constant and is used throughout the class, then it should be a class-level constant.
