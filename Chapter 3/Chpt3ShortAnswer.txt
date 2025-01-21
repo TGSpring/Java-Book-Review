@@ -1,0 +1,33 @@
+Tyler Spring
+1/20/2025
+Chapter 3 short answer questions.
+
+1. What is the difference between a parameter and a constant in a method? Why might you use one over the other?
+   - Parameters are variables passed to a function or method, used only within the scope of that function or method. Once the function or method completes, the parameter is destroyed. If there is a return type, only a copy of the variable is returned. The same applies to what is passed to the parameter of that function; it is only a copy of the variable.
+   - Constants are immutable values that cannot be altered once they are set. They are usually declared with the `final` keyword and can have a global scope or be created within a specific scope. Constants are useful for refactoring, debugging, and validation because their values remain consistent throughout the program.
+
+2. Explain how method overloading works. Provide an example where overloading might be useful.
+   - Method overloading is when two or more methods in the same class have the same name but 
+   different parameters (different type, number, or both). 
+   This allows methods to perform similar but slightly different tasks based on the input parameters.
+   - Example:
+     ```java
+     public class MathUtils {
+         // Overloaded method for adding two integers
+         public int add(int a, int b) {
+             return a + b;
+         }
+
+         // Overloaded method for adding three integers
+         public int add(int a, int b, int c) {
+             return a + b + c;
+         }
+
+         // Overloaded method for adding two doubles
+         public double add(double a, double b) {
+             return a + b;
+         }
+     }
+     ```
+   - Overloading is useful when you want to provide multiple ways to perform a similar 
+   operation, such as adding different numbers of values or handling different data types.
