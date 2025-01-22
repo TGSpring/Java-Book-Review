@@ -3,11 +3,15 @@ Tyler Spring
 Chapter 3 short answer questions.
 
 1. What is the difference between a parameter and a constant in a method? Why might you use one over the other?
-   - Parameters are variables passed to a function or method, used only within the scope of that function or method. Once the function or method completes, the parameter is destroyed. If there is a return type, only a copy of the variable is returned. The same applies to what is passed to the parameter of that function; it is only a copy of the variable.
-   - Constants are immutable values that cannot be altered once they are set. They are usually declared with the `final` keyword and can have a global scope or be created within a specific scope. Constants are useful for refactoring, debugging, and validation because their values remain consistent throughout the program.
+   - Parameters are variables passed to a function or method, used only within the scope of that function or method. Once the function or method completes, 
+   the parameter is destroyed. If there is a return type, only a copy of the variable is returned. The same applies to what is passed to the parameter 
+   of that function; it is only a copy of the variable.
+   - Constants are immutable values that cannot be altered once they are set. They are usually declared with the `final` keyword and can have a global scope
+    or be created within a specific scope. Constants are useful for refactoring, debugging, and validation because their values remain consistent throughout the program.
 
 2. Explain how method overloading works. Provide an example where overloading might be useful.
-   - Method overloading is when two or more methods in the same class have the same name but different parameters (different type, number, or both). This allows methods to perform similar but slightly different tasks based on the input parameters.
+   - Method overloading is when two or more methods in the same class have the same name but different parameters (different type, number, or both). 
+   This allows methods to perform similar but slightly different tasks based on the input parameters.
    - Example:
      ```java
      public class MathUtils {
@@ -33,7 +37,43 @@ Chapter 3 short answer questions.
    - Any modifications to the parameter within the method do not affect the original variable outside the method. If it is to be returned or passed, it is only a copy of it.
 
 4. If a method accepts multiple parameters, how can you ensure they're passed in the correct order? What happens if they aren't?
-   - You declare the parameters in the same order in your calling function as you do in the method's declaration. If they get mismatched, you will have incorrect behavior, runtime errors, or even compilation errors, depending on the types and usage of the parameters.
+   - You declare the parameters in the same order in your calling function as you do in the method's declaration. If they get mismatched, you will have incorrect behavior, 
+   runtime errors, or even compilation errors, depending on the types and usage of the parameters.
 
 5. How would you decide whether a value in your program should be passed as a parameter or stored as a class-level constant?
-   - It would depend on that specific value's purpose in the program. If it is something that needs to be manipulated in some way, then it can be a parameter. If it is a value that remains constant and is used throughout the class, then it should be a class-level constant.
+   - It would depend on that specific value's purpose in the program. If it is something that needs to be manipulated in some way, then it can be a parameter. 
+   If it is a value that remains constant and is used throughout the class, then it should be a class-level constant.
+
+6. Name 3 useful methods from the Math class and describe what they do. When might you 
+use each one?
+   - Round: rounds a floating-point number to the nearest integer.
+   - Pow: `Math.pow` raises a number to the power of another number. Useful for calculations with large numbers.
+   - Random: generates a random value between a range or either 0 to 1, or a predetermined range. Great for simulating 
+   random events or generating random test data.
+   for simulating.
+
+7. What does it mean for a method to return a value? Why is it important for some methods 
+to return values rather than just print them?
+   - Returning a value from a method is when a method that is called upon, runs its life cycle, 
+   then returns a value and terminates the method. What the value is depends on the program. It 
+   could be a calculation, a validation, an interaction. Its important to use methods to return values 
+   to help with code being clean, efficient, and non-redundant. 
+
+8. How does Math.pow() method work? Write a quick example of how you would calculate 2^5
+using this method.
+   - Math.pow(2, 5)
+   - 2 is the base value, 5 is the exponent.
+
+9. Describe the role of the Scanner class in interactive programs. How do you validate invalid 
+input using a Scanner?
+   - Scanner is used to take user input and store it into either a variable or another object.
+   - For validation you would take a users input, parse it into the correct variable type you are 
+   trying to validate, then use a do while loop in order to run a validation function on the input, 
+   once the correct input is validated, the loop will terminate.
+
+10. Explain what a string is in Java and how it differs from primitive types. What makes 
+String objects immutable.
+- A String is an array of chars. String is not a primitive type because it is a data structure.
+They are immutable because they are arrays which are fixed in size. If you were to add or remove 
+and element of said array, you would be creating a new String/Array. Not a new version of a pre-existing
+String.
