@@ -24,7 +24,7 @@ public class chp3_4 {
         double y1 = sc.nextDouble();
         double z1 = sc.nextDouble();
 
-        System.out.println("Enter the coordinates of the second point (x2, y2, z2): ");
+        System.out.println("Enter the coordinates of the second point (x2, y2, z2) : ");
         double x2 = sc.nextDouble();
         double y2 = sc.nextDouble();
         double z2 = sc.nextDouble();
