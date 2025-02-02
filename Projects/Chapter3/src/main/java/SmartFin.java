@@ -1,4 +1,3 @@
-
 /**
  * Tyler Spring
  * 1/31/2025
@@ -15,8 +14,11 @@
  * 7. Report generation.
  */
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class SmartFin {
+
+    private ArrayList<Loan> loans = new ArrayList<>();
 
     /**
      * validation for doubles
@@ -24,62 +26,34 @@ public class SmartFin {
      * 
      */
     public double validation(Scanner sc, String prompt, boolean isInt) {
-        double input = 0;
-        boolean isValid = false;
-
-        while (!isValid) {
+        while (true) {
             try {
                 System.out.print(prompt);
-                String inputStr = sc.next();
+                String inputStr = sc.next().trim();
 
                 if (isInt) {
                     if (!inputStr.matches("\\d+")) {
                         System.out.println("Please enter a valid positive integer.");
-                    }
-                    input = Integer.parseInt(inputStr);
-                    if (input <= 0) {
-                        System.out.println("Please enter a positive number.");
                         continue;
                     }
+                    return Integer.parseInt(inputStr);
                 } else {
                     if (!inputStr.matches("\\d+(\\.\\d+)?")) {
-                        System.out.println("Please enter a valid number.");
+                        System.out.println("Please enter a valid positive number.");
                         continue;
                     }
-                    input = Double.parseDouble(inputStr);
-                    if (input <= 0) {
-                        System.out.println("Please enter a positive number.");
-                        continue;
-                    }
+                    return Double.parseDouble(inputStr);
                 }
-                isValid = true;
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please try again.");
-                sc.nextLine();
             }
         }
-        return input;
-    }
-
-    /**
-     * Loan Calculator.
-     * prompts user for principal, rate, and term.
-     * Returns double representing monthly payment.
-     */
-    public double loanCalc(double principal, double rate, int term) {
-
-        rate = rate / 100.0 / 12;
-        int months = term * 12;
-
-        double monthlyPayment = (principal * rate * Math.pow(1 + rate, months))
-                / (Math.pow(1 + rate, months) - 1);
-
-        return monthlyPayment;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        SmartFin sf = new SmartFin();
+        LoanCalculator lc = new LoanCalculator();
+        SmartFin sf = new SmartFin(); // For validation method
 
         System.out.println("Welcome to SmartFin!");
         System.out.println("1. Loan Calculator");
@@ -117,8 +91,13 @@ public class SmartFin {
                 double principal = sf.validation(sc, "Enter the loan amount: ", false);
                 double rate = sf.validation(sc, "Enter the interest rate: ", false);
                 int term = (int) sf.validation(sc, "Enter the term in years: ", true);
-                double monthlyPayment = sf.loanCalc(principal, rate, term);
+
+                Loan loan = new Loan(principal, rate, term);
+                sf.loans.add(loan);
+
+                double monthlyPayment = lc.loanCalc(principal, rate, term);
                 System.out.printf("Your monthly payment is: $%.2f\n", monthlyPayment);
+                System.out.printf("Lowest payment recorded so far: $%.2f\n", lc.getLowestPayment(sf.loans));
                 break;
             case 2:
                 // Expense Tracker (placeholder for now)
@@ -154,5 +133,7 @@ public class SmartFin {
                 System.out.println("Invalid option. Please try again.");
                 break;
         }
+
+        sc.close();
     }
 }
