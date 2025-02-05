@@ -6,6 +6,7 @@
 		Implement a method that takes an array of different loans and returns the lowest monthly payment.
  */
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class LoanCalculator {
     private ArrayList<Double> loanPayments;
@@ -15,6 +16,11 @@ public class LoanCalculator {
     }
 
     public double loanCalc(double principal, double rate, double term) {
+        //Validation
+        if(principal <= 0 || rate <= 0 || term <= 0) {
+            throw new IllegalArgumentException("Values must be greater than 0");
+        }
+
         rate = rate / 100 / 12;
         int months = (int) term * 12;
         double monthlyPayment = (principal * rate) / (1 - Math.pow(1 + rate, -months));
@@ -29,24 +35,12 @@ public class LoanCalculator {
             return -1;
         }
 
-        // Calculate payments and store them in an array
-        double[] payments = new double[loans.size()];
-        for (int i = 0; i < loans.size(); i++) {
-            Loan loan = loans.get(i);
-            payments[i] = loanCalc(loan.getPrincipal(), loan.getRate(), loan.getTerm());
+        PriorityQueue<Double> minHeap = new PriorityQueue<>();
+        for (Loan loan : loans) {
+            double payment = loanCalc(loan.getPrincipal(), loan.getRate(), loan.getTerm());
+            minHeap.add(payment);
         }
-
-        // Insertion Sort
-        for (int i = 1; i < payments.length; i++) {
-            double key = payments[i];
-            int j = i - 1;
-            while (j >= 0 && payments[j] > key) {
-                payments[j + 1] = payments[j];
-                j = j - 1;
-            }
-            payments[j + 1] = key;
-        }
-
-        return payments[0]; // The first element is the lowest after sorting
+        return minHeap.peek(); //Smallest element is at the head of the queue.
+        
     }
 }

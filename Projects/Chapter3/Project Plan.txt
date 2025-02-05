@@ -1,47 +1,46 @@
+Smart Personal Finance Assistant Plan
 Tyler Spring
 1/31/2025
-Smart Personal Finance Assistant plan
 
-1. Loan calculator with error handling
-	- Modify the loan calculator to handle inputs (negatives, zeros, or non-numeric input).
-	- Allow user to enter multiple loan scenarios and store them in an array for later review.
-	CHALLENGE:
-		Implement a method that takes an array of different loans and returns the lowest monthly payment.
+1. Loan Calculator with Error Handling
+Modify the loan calculator to handle invalid inputs (negatives, zeros, or non-numeric values).
+Allow users to enter multiple loan scenarios and store them in an array for later review.
+Challenge: Implement a method that takes an array of different loans and returns the lowest monthly payment.
 
-2. Expense Tracker with Categorization & Sorting
-	- Allow users to categorize expenses under Rent, Food, Entertainment, Miscellaneous, etc.
- 	- Store expenses in an ArrayList (instead of an array for dynamic resizing).
-
-	- Provide options to:
- 		Sort expenses from highest to lowest.
-		Get the top 3 most expensive transactions.
+2. Expense Tracker with Categorization, Sorting & AI-Powered Categorization
+Allow users to categorize expenses under Rent, Food, Entertainment, Miscellaneous, etc.
+Store expenses in an ArrayList (instead of an array for dynamic resizing).
+Provide options to:
+Sort expenses from highest to lowest.
+Get the top 3 most expensive transactions.
+AI Integration:
+Implement a rule-based expense categorization system using keyword mappings (e.g., “McDonald's” → Food, “Netflix” → Entertainment).
+Future Expansion: Upgrade to a Naïve Bayes classifier to predict categories based on past spending patterns.
 Challenge: Implement a method that takes an expense category as a parameter and returns the total spent in that category.
 
 3. Savings Goal Estimator with Adjustable Contributions
-	- Instead of fixed savings, let the user adjust their monthly contributions dynamically and recalculate in real-time.
-	- Offer a projection for 6 months, 1 year, and 5 years based on compound interest.
-Challenge: Allow the user to input a monthly increase in their savings contribution and factor it into the projections.
+Instead of fixed savings, let users adjust their monthly contributions dynamically and recalculate in real time.
+Offer projections for 6 months, 1 year, and 5 years based on compound interest.
+Challenge: Allow users to input a monthly increase in their savings contribution and factor it into the projections.
 
 4. Budget Category Name Analyzer
-	- In addition to reversing budget category names,
-	- Convert them to uppercase for formatting.
- 	- Count vowels and consonants in each category name.
+Reverse and format budget category names in uppercase.
+Count vowels and consonants in each category name.
 
 5. Transaction Date Formatting & Validation
- 	- Ensure the day is within valid limits (1-31), month is valid, and year is not in the past.
- 	- If invalid, prompt the user until they enter a valid date.
+Validate that the day, month, and year are within valid limits.
+If invalid, prompt users until they enter a correct date.
 Challenge: Convert the formatted date into a Unix timestamp for potential database use.
 
 6. Encrypted Password Storage in a File
- 	- Encrypt the user’s password using Caesar cipher.
- 	- Store the encrypted password in a text file.
- 	- Allow the user to retrieve and decrypt their password when needed.
-Challenge: Ask the user if they want to add a unique salt value to their password before encrypting for additional security.
+Encrypt user passwords using a Caesar cipher and store them in a text file.
+Allow users to retrieve and decrypt passwords when needed.
+Challenge: Add an option to use a unique salt value before encryption for added security.
 
 7. BONUS: Report Generation
- 	- At the end of the session, generate a financial summary report that includes:
- 	- Loan details (highest and lowest monthly payment).
- 	- Expense breakdown by category.
- 	- Savings projections.
- 	- Transaction history with formatted dates.
-Write this report to a .txt file so users can save their results.
+At the end of the session, generate a financial summary report with:
+Loan details (including highest and lowest monthly payments).
+Expense breakdown by category.
+Savings projections.
+Transaction history with formatted dates.
+Write this report to a .txt file for users to save results.

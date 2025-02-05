@@ -1,3 +1,4 @@
+
 /**
  * Tyler Spring
  * 1/31/2025
@@ -55,85 +56,94 @@ public class SmartFin {
         LoanCalculator lc = new LoanCalculator();
         SmartFin sf = new SmartFin(); // For validation method
 
-        System.out.println("Welcome to SmartFin!");
-        System.out.println("1. Loan Calculator");
-        System.out.println("2. Expense Tracker");
-        System.out.println("3. Savings Goal Estimator");
-        System.out.println("4. Budget Category Name Analyzer");
-        System.out.println("5. Transaction Date Formatting & Validation");
-        System.out.println("6. Encrypted Password Storage");
-        System.out.println("7. Report Generation");
-        System.out.println("8. Exit");
+        boolean exit = false;
 
-        int choice = 0;
-        boolean isValidChoice = false;
+        while (!exit) {
+            System.out.println("Welcome to SmartFin!");
+            System.out.println("1. Loan Calculator");
+            System.out.println("2. Expense Tracker");
+            System.out.println("3. Savings Goal Estimator");
+            System.out.println("4. Budget Category Name Analyzer");
+            System.out.println("5. Transaction Date Formatting & Validation");
+            System.out.println("6. Encrypted Password Storage");
+            System.out.println("7. Report Generation");
+            System.out.println("8. Exit");
 
-        // Validate menu choice with switch statement.
-        while (!isValidChoice) {
-            try {
-                System.out.print("Enter your choice: ");
-                choice = sc.nextInt();
-                if (choice < 1 || choice > 8) {
-                    System.out.println("Invalid choice. Please try again.");
-                    continue;
+            int choice = 0;
+            boolean isValidChoice = false;
+
+            // Validate menu choice with switch statement.
+            while (!isValidChoice) {
+                try {
+                    System.out.print("Enter your choice: ");
+                    choice = sc.nextInt();
+                    if (choice < 1 || choice > 8) {
+                        System.out.println("Invalid choice. Please try again.");
+                        continue;
+                    }
+                    isValidChoice = true;
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please try again.");
+                    sc.nextLine();
                 }
-                isValidChoice = true;
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please try again.");
-                sc.nextLine();
+            }
+
+            // Handle input.
+            switch (choice) {
+                case 1:
+                    // Loan calculator
+                    double principal = sf.validation(sc, "Enter the loan amount: ", false);
+                    double rate = sf.validation(sc, "Enter the interest rate: ", false);
+                    int term = (int) sf.validation(sc, "Enter the term in years: ", true);
+
+                    Loan loan = new Loan(principal, rate, term);
+                    sf.loans.add(loan);
+
+                    double monthlyPayment = lc.loanCalc(principal, rate, term);
+                    System.out.printf("Your monthly payment is: $%.2f\n", monthlyPayment);
+                    System.out.printf("Lowest payment recorded so far: $%.2f\n", lc.getLowestPayment(sf.loans));
+                    break;
+                case 2:
+                    // Expense Tracker (placeholder for now)
+                    System.out.println("Expense Tracker feature coming soon...");
+                    break;
+
+                case 3:
+                    // Savings Goal Estimator (placeholder for now)
+                    System.out.println("Savings Goal Estimator feature coming soon...");
+                    break;
+
+                case 4:
+                    // Budget Category Analyzer (placeholder for now)
+                    System.out.println("Budget Category Analyzer feature coming soon...");
+                    break;
+
+                case 5:
+                    // Transaction Date Formatter (placeholder for now)
+                    System.out.println("Transaction Date Formatter feature coming soon...");
+                    break;
+
+                case 6:
+                    // Encrypted Password Storage (placeholder for now)
+                    System.out.println("Encrypted Password Storage feature coming soon...");
+                    break;
+
+                case 7:
+                    // Report Generation (placeholder for now)
+                    System.out.println("Report Generation feature coming soon...");
+                    break;
+
+                case 8:
+                    // Exit
+                    exit = true;
+                    System.out.println("Exiting the program.");
+                    break;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    break;
             }
         }
-
-        // Handle input.
-        switch (choice) {
-            case 1:
-                // Loan calculator
-                double principal = sf.validation(sc, "Enter the loan amount: ", false);
-                double rate = sf.validation(sc, "Enter the interest rate: ", false);
-                int term = (int) sf.validation(sc, "Enter the term in years: ", true);
-
-                Loan loan = new Loan(principal, rate, term);
-                sf.loans.add(loan);
-
-                double monthlyPayment = lc.loanCalc(principal, rate, term);
-                System.out.printf("Your monthly payment is: $%.2f\n", monthlyPayment);
-                System.out.printf("Lowest payment recorded so far: $%.2f\n", lc.getLowestPayment(sf.loans));
-                break;
-            case 2:
-                // Expense Tracker (placeholder for now)
-                System.out.println("Expense Tracker feature coming soon...");
-                break;
-
-            case 3:
-                // Savings Goal Estimator (placeholder for now)
-                System.out.println("Savings Goal Estimator feature coming soon...");
-                break;
-
-            case 4:
-                // Budget Category Analyzer (placeholder for now)
-                System.out.println("Budget Category Analyzer feature coming soon...");
-                break;
-
-            case 5:
-                // Transaction Date Formatter (placeholder for now)
-                System.out.println("Transaction Date Formatter feature coming soon...");
-                break;
-
-            case 6:
-                // Encrypted Password Storage (placeholder for now)
-                System.out.println("Encrypted Password Storage feature coming soon...");
-                break;
-
-            case 7:
-                // Report Generation (placeholder for now)
-                System.out.println("Report Generation feature coming soon...");
-                break;
-
-            default:
-                System.out.println("Invalid option. Please try again.");
-                break;
-        }
-
         sc.close();
     }
 }
