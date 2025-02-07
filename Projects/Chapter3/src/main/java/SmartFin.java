@@ -1,4 +1,3 @@
-
 /**
  * Tyler Spring
  * 1/31/2025
@@ -16,6 +15,8 @@
  */
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class SmartFin {
 
@@ -104,8 +105,34 @@ public class SmartFin {
                     System.out.printf("Lowest payment recorded so far: $%.2f\n", lc.getLowestPayment(sf.loans));
                     break;
                 case 2:
-                    // Expense Tracker (placeholder for now)
-                    System.out.println("Expense Tracker feature coming soon...");
+                    ExpenseTracker et = new ExpenseTracker();
+                    Map<String, String> keywordMappings = new HashMap<>();
+                    keywordMappings.put("mcdonald's", "Food");
+                    keywordMappings.put("netflix", "Entertainment");
+                    keywordMappings.put("uber", "Transport");
+
+                    et.addExpense(new Expense(15.0, "Netflix subscription", ""));
+                    et.addExpense(new Expense(1200.0, "Monthly Rent", "Rent"));
+                    et.addExpense(new Expense(50.0, "Lunch at McDonald's", ""));
+
+                    et.autoCategorizeExpenses(keywordMappings);
+
+                    System.out.println("\nExpenses sorted by amount (highest to lowest):");
+                    System.out.println("------------------------------------------------");
+                    for (Expense expense : et.getExpensesSortedByAmountDesc()) {
+                        System.out.printf("Amount: $%.2f, Description: %s, Category: %s, Date: %s\n",
+                                expense.getAmount(), expense.getDescription(), expense.getCategory(), expense.getDate());
+                    }
+
+                    System.out.println("\nTop 3 most expensive expenses:");
+                    System.out.println("-------------------------------");
+                    for (Expense expense : et.getTopNExpenses(3)) {
+                        System.out.printf("Amount: $%.2f, Description: %s, Category: %s, Date: %s\n",
+                                expense.getAmount(), expense.getDescription(), expense.getCategory(), expense.getDate());
+                    }
+
+                    System.out.printf("\nTotal spent on Food: $%.2f\n", et.getTotalSpentByCategory("Food"));
+
                     break;
 
                 case 3:

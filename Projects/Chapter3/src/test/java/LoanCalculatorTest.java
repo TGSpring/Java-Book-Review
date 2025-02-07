@@ -1,3 +1,4 @@
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -24,7 +25,7 @@ public class LoanCalculatorTest {
         principal = 50000;
         rate = 3.5;
         term = 10;
-        expectedPayment = 494.43;
+        expectedPayment = 494.43;  // Updated expected result based on manual calculation
 
         actualPayment = lc.loanCalc(principal, rate, term);
 
