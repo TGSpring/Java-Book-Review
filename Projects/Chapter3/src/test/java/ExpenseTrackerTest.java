@@ -30,7 +30,7 @@ public class ExpenseTrackerTest {
     }
 
     @Test
-    public void testAutoCategorizeExpenses() {
+    public void testAutoCategorizeExpenses() throws Exception {
         Expense expense1 = new Expense(15.0, "Netflix subscription", "", LocalDate.now());
         Expense expense2 = new Expense(50.0, "Lunch at McDonald's", "", LocalDate.now());
         expenseTracker.addExpense(expense1);

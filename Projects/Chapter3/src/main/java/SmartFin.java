@@ -1,3 +1,4 @@
+
 /**
  * Tyler Spring
  * 1/31/2025
@@ -115,20 +116,26 @@ public class SmartFin {
                     et.addExpense(new Expense(1200.0, "Monthly Rent", "Rent"));
                     et.addExpense(new Expense(50.0, "Lunch at McDonald's", ""));
 
-                    et.autoCategorizeExpenses(keywordMappings);
+                    try {
+                        et.autoCategorizeExpenses(keywordMappings);
+                    } catch (Exception e) {
+                        System.out.println("An error occurred while categorizing expenses: " + e.getMessage());
+                    }
 
                     System.out.println("\nExpenses sorted by amount (highest to lowest):");
                     System.out.println("------------------------------------------------");
                     for (Expense expense : et.getExpensesSortedByAmountDesc()) {
                         System.out.printf("Amount: $%.2f, Description: %s, Category: %s, Date: %s\n",
-                                expense.getAmount(), expense.getDescription(), expense.getCategory(), expense.getDate());
+                                expense.getAmount(), expense.getDescription(), expense.getCategory(),
+                                expense.getDate());
                     }
 
                     System.out.println("\nTop 3 most expensive expenses:");
                     System.out.println("-------------------------------");
                     for (Expense expense : et.getTopNExpenses(3)) {
                         System.out.printf("Amount: $%.2f, Description: %s, Category: %s, Date: %s\n",
-                                expense.getAmount(), expense.getDescription(), expense.getCategory(), expense.getDate());
+                                expense.getAmount(), expense.getDescription(), expense.getCategory(),
+                                expense.getDate());
                     }
 
                     System.out.printf("\nTotal spent on Food: $%.2f\n", et.getTotalSpentByCategory("Food"));
