@@ -22,7 +22,7 @@ public class PredictCatTest {
         //    Second attribute "category" as a nominal attribute.
         ArrayList<Attribute> attributes = new ArrayList<>();
         attributes.add(new Attribute("description", (ArrayList<String>) null));
-        ArrayList<String> classValues = new ArrayList<>(Arrays.asList("Food", "Entrainment", "Transport"));
+        ArrayList<String> classValues = new ArrayList<>(Arrays.asList("Food", "Entertainment", "Transport"));
         attributes.add(new Attribute("category", classValues));
         
         // 2. Create the header for our training dataset.
@@ -36,10 +36,10 @@ public class PredictCatTest {
         vals1[1] = classValues.indexOf("Food");
         trainingData.add(new DenseInstance(1.0, vals1));
         
-        // Instance 2: description "rock concert", category "Entrainment".
+        // Instance 2: description "rock concert", category "Entertainment".
         double[] vals2 = new double[trainingData.numAttributes()];
         vals2[0] = trainingData.attribute(0).addStringValue("rock concert");
-        vals2[1] = classValues.indexOf("Entrainment");
+        vals2[1] = classValues.indexOf("Entertainment");
         trainingData.add(new DenseInstance(1.0, vals2));
         
         // Instance 3: description "bus ticket", category "Transport".

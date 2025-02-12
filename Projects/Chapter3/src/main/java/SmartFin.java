@@ -22,6 +22,7 @@ import java.util.HashMap;
 public class SmartFin {
 
     private ArrayList<Loan> loans = new ArrayList<>();
+    private SavingsGoalEst savingsGoalEst;
 
     /**
      * validation for doubles
@@ -143,8 +144,13 @@ public class SmartFin {
                     break;
 
                 case 3:
-                    // Savings Goal Estimator (placeholder for now)
-                    System.out.println("Savings Goal Estimator feature coming soon...");
+                    double goal = sf.validation(sc, "Enter your savings goal: ", false);
+                    double currentSavings = sf.validation(sc, "Enter your current savings: ", false);
+                    double monthlyContribution = sf.validation(sc, "Enter your monthly contribution: ", false);
+                    double monthlyIncrease = sf.validation(sc, "Enter your monthly increase in contribution: ", false);
+
+                    sf.savingsGoalEst = new SavingsGoalEst(goal, currentSavings, monthlyContribution, monthlyIncrease);
+                    sf.savingsGoalEst.printProjections();
                     break;
 
                 case 4:
