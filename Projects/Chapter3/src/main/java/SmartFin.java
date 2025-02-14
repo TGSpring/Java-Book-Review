@@ -1,3 +1,4 @@
+
 /**
  * Tyler Spring
  * 1/31/2025
@@ -54,12 +55,13 @@ public class SmartFin {
     }
 
     /**
-     * Analyzes a budget category name by reversing it, converting to uppercase 
+     * Analyzes a budget category name by reversing it, converting to uppercase
      * and counting the vowels and consonants.
      */
 
     public void analyzeCategoryName(String categoryName) {
-        // Reverses string manually, yes I could have used StringBuilder, but this is a better learning experience.
+        // Reverses string manually, yes I could have used StringBuilder, but this is a
+        // better learning experience.
         if (categoryName == null || categoryName.isEmpty()) {
             System.out.println("Category name cannot be null or empty.");
             return;
@@ -89,6 +91,7 @@ public class SmartFin {
         Scanner sc = new Scanner(System.in);
         LoanCalculator lc = new LoanCalculator();
         SmartFin sf = new SmartFin(); // For validation method
+        DateFormatter df = new DateFormatter(); // For date formatting.
 
         boolean exit = false;
 
@@ -185,15 +188,15 @@ public class SmartFin {
                     break;
 
                 case 4:
-                    //Budget Category Analyzer 
+                    // Budget Category Analyzer
                     System.out.print("Enter a budget category name: ");
                     String categoryName = sc.next();
                     sf.analyzeCategoryName(categoryName);
                     break;
 
                 case 5:
-                    // Transaction Date Formatter (placeholder for now)
-                    System.out.println("Transaction Date Formatter feature coming soon...");
+                    long unixTimestamp = df.validateAndFormatDate(sc);
+                    System.out.println("Unix Timestamp: " + unixTimestamp);
                     break;
 
                 case 6:
