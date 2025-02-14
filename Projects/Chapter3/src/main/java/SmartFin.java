@@ -1,4 +1,3 @@
-
 /**
  * Tyler Spring
  * 1/31/2025
@@ -52,6 +51,38 @@ public class SmartFin {
                 System.out.println("Invalid input. Please try again.");
             }
         }
+    }
+
+    /**
+     * Analyzes a budget category name by reversing it, converting to uppercase 
+     * and counting the vowels and consonants.
+     */
+
+    public void analyzeCategoryName(String categoryName) {
+        // Reverses string manually, yes I could have used StringBuilder, but this is a better learning experience.
+        if (categoryName == null || categoryName.isEmpty()) {
+            System.out.println("Category name cannot be null or empty.");
+            return;
+        }
+
+        String rev = "";
+        for (int i = categoryName.length() - 1; i >= 0; i--) {
+            rev += categoryName.charAt(i);
+        }
+
+        rev = rev.toUpperCase();
+
+        int vowels = 0, consonants = 0;
+
+        for (char c : rev.toCharArray()) {
+            if ("AEIOU".indexOf(c) != -1) {
+                vowels++;
+            } else if (Character.isLetter(c)) {
+                consonants++;
+            }
+        }
+
+        System.out.printf("Reversed and UpperCase: %s\nVowels: %d\nConsonants: %d\n", rev, vowels, consonants);
     }
 
     public static void main(String[] args) {
@@ -154,8 +185,10 @@ public class SmartFin {
                     break;
 
                 case 4:
-                    // Budget Category Analyzer (placeholder for now)
-                    System.out.println("Budget Category Analyzer feature coming soon...");
+                    //Budget Category Analyzer 
+                    System.out.print("Enter a budget category name: ");
+                    String categoryName = sc.next();
+                    sf.analyzeCategoryName(categoryName);
                     break;
 
                 case 5:

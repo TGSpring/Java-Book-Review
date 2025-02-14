@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class SmartFinTest {
@@ -74,5 +76,24 @@ public class SmartFinTest {
         // Verify the output (you may need to capture the output stream to verify the printed projections)
         // For simplicity, we assume the projections are correct if no exceptions are thrown
         assertTrue(true);
+    }
+
+    @Test
+    public void testAnalyzeCategoryName() {
+        String input = "4\nEntertainment\n8\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        sc = new Scanner(System.in);
+    
+        // Capture the output
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+    
+        // Simulate the menu selection and input for Budget Category Name Analyzer
+        sf.main(new String[]{});
+    
+        // Verify the output
+        String expectedOutput = "Reversed and UpperCase: TNEMNIATRETNE\nVowels: 5\nConsonants: 8\n";
+        assertTrue(outContent.toString().contains(expectedOutput));
     }
 }
