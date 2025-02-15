@@ -17,7 +17,7 @@ public class DateFormatter {
 
         while (date == null) {
             System.out.print("Enter a date (MM/dd/yyyy): ");
-            String dateStr = sc.nextLine();
+            String dateStr = sc.nextLine().trim();
 
             try {
                 date = dateFormat.parse(dateStr);

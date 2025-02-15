@@ -195,13 +195,14 @@ public class SmartFin {
                     break;
 
                 case 5:
+                    sc.nextLine();
                     long unixTimestamp = df.validateAndFormatDate(sc);
                     System.out.println("Unix Timestamp: " + unixTimestamp);
                     break;
 
                 case 6:
-                    // Encrypted Password Storage (placeholder for now)
-                    System.out.println("Encrypted Password Storage feature coming soon...");
+                    PWMGUI passwordUI = new PWMGUI(sc);
+                    passwordUI.showPasswordMenu();
                     break;
 
                 case 7:

@@ -1,73 +1,54 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 public class ExpenseTracker {
 
-    private ArrayList<Expense> expenses;
-    private predictCat cat;
+    private List<Expense> expenses;  // Ensure this is initialized
 
+    // Constructor initializes the expenses list
     public ExpenseTracker() {
-        expenses = new ArrayList<>();
-        try {
-            this.cat = new predictCat();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to initialize predictCat", e);
-        }
-
+        this.expenses = new ArrayList<>();  // Initialize the list here
     }
 
-    // Add an expense to the list
-    public void addExpense(Expense e) {
-        expenses.add(e);
+    // Adds a new expense to the tracker
+    public void addExpense(Expense expense) {
+        expenses.add(expense);
     }
 
-    public void autoCategorizeExpenses(Map<String, String> keywordMappings) throws Exception {
+    // Auto categorize expenses based on keyword mappings
+    public void autoCategorizeExpenses(Map<String, String> keywordMappings) {
         for (Expense expense : expenses) {
-            if (expense.getCategory() == null || expense.getCategory().isEmpty()) {
-
-                String description = expense.getDescription().toLowerCase();
-                boolean mapped = false;
-                for (Map.Entry<String, String> entry : keywordMappings.entrySet()) {
-                    if (description.contains(entry.getKey().toLowerCase())) {
-                        expense.setCategory(entry.getValue());
-                        mapped = true;
-                        break;
-                    }
+            boolean categorized = false;
+            for (Map.Entry<String, String> entry : keywordMappings.entrySet()) {
+                if (expense.getDescription().toLowerCase().contains(entry.getKey().toLowerCase())) {
+                    expense.setCategory(entry.getValue());
+                    categorized = true;
+                    break;
                 }
-                if (!mapped) {
-                    String category = cat.predictCat(expense.getDescription());
-                    expense.setCategory(category);
-                }
+            }
+            if (!categorized) {
+                expense.setCategory("Uncategorized");
             }
         }
     }
 
-    // Sort expenses from highest to lowest amount
-
+    // Get expenses sorted by amount in descending order
     public List<Expense> getExpensesSortedByAmountDesc() {
-        List<Expense> sortedList = new ArrayList<>(expenses);
-        Collections.sort(sortedList, Comparator.comparingDouble(Expense::getAmount).reversed());
-        return sortedList;
+        expenses.sort((e1, e2) -> Double.compare(e2.getAmount(), e1.getAmount()));
+        return expenses;
     }
 
-    // Get the top N most expensive expenses
+    // Get the top N expenses by amount
     public List<Expense> getTopNExpenses(int n) {
-        List<Expense> sortedList = getExpensesSortedByAmountDesc();
-        return sortedList.subList(0, Math.min(n, sortedList.size()));
+        return getExpensesSortedByAmountDesc().subList(0, n);
     }
 
-    // Get total spent by a given category.
+    // Get total spent by category
     public double getTotalSpentByCategory(String category) {
-        double total = 0;
-        for (Expense expense : expenses) {
-            if (expense.getCategory() != null && expense.getCategory().equalsIgnoreCase(category)) {
-                total += expense.getAmount();
-            }
-        }
-        return total;
+        return expenses.stream()
+                       .filter(expense -> expense.getCategory().equalsIgnoreCase(category))
+                       .mapToDouble(Expense::getAmount)
+                       .sum();
     }
-
 }
