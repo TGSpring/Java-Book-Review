@@ -15,6 +15,8 @@
  * 7. Report generation.
  */
 import java.util.Scanner;
+
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
@@ -92,6 +94,7 @@ public class SmartFin {
         LoanCalculator lc = new LoanCalculator();
         SmartFin sf = new SmartFin(); // For validation method
         DateFormatter df = new DateFormatter(); // For date formatting.
+        ExpenseTracker et = new ExpenseTracker();
 
         boolean exit = false;
 
@@ -141,7 +144,6 @@ public class SmartFin {
                     System.out.printf("Lowest payment recorded so far: $%.2f\n", lc.getLowestPayment(sf.loans));
                     break;
                 case 2:
-                    ExpenseTracker et = new ExpenseTracker();
                     Map<String, String> keywordMappings = new HashMap<>();
                     keywordMappings.put("mcdonald's", "Food");
                     keywordMappings.put("netflix", "Entertainment");
@@ -206,8 +208,8 @@ public class SmartFin {
                     break;
 
                 case 7:
-                    // Report Generation (placeholder for now)
-                    System.out.println("Report Generation feature coming soon...");
+                   ReportGen rg = new ReportGen(lc, et, sf.savingsGoalEst);
+                   rg.generateReport("SmartFinReport.txt");
                     break;
 
                 case 8:

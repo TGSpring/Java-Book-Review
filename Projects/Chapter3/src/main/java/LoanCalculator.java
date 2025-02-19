@@ -1,3 +1,4 @@
+
 /*
  * Loan calculator with error handling
 	- Modify the loan calculator to handle inputs (negatives, zeros, or non-numeric input).
@@ -9,15 +10,15 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class LoanCalculator {
-    private ArrayList<Double> loanPayments;
+    private ArrayList<Loan> loans;
 
     public LoanCalculator() {
-        this.loanPayments = new ArrayList<>();
+        this.loans = new ArrayList<>();
     }
 
     public double loanCalc(double principal, double rate, double term) {
-        //Validation
-        if(principal <= 0 || rate <= 0 || term <= 0) {
+        // Validation
+        if (principal <= 0 || rate <= 0 || term <= 0) {
             throw new IllegalArgumentException("Values must be greater than 0");
         }
 
@@ -25,22 +26,33 @@ public class LoanCalculator {
         int months = (int) term * 12;
         double monthlyPayment = (principal * rate) / (1 - Math.pow(1 + rate, -months));
 
-        loanPayments.add(monthlyPayment);
-        return monthlyPayment;
+        Loan loan = new Loan(principal, rate, term);
+        loans.add(loan);
+
+        return calculateMonthlyPayment(loan);
     }
 
-    public double getLowestPayment(ArrayList<Loan> loans) {
-        if (loans.isEmpty()) {
+    public double calculateMonthlyPayment(Loan loan) {
+        double rate = loan.getRate() / 100 / 12;
+        int months = (int) loan.getTerm() * 12;
+        return (loan.getPrincipal() * rate) / (1 - Math.pow(1 + rate, -months));
+    }
+
+    public double getLowestPayment(ArrayList<Loan> loansList) {
+        if (loansList.isEmpty()) {
             System.out.println("No loan payments stored yet");
             return -1;
         }
-
-        PriorityQueue<Double> minHeap = new PriorityQueue<>();
-        for (Loan loan : loans) {
-            double payment = loanCalc(loan.getPrincipal(), loan.getRate(), loan.getTerm());
-            minHeap.add(payment);
+        double lowestPayment = Double.MAX_VALUE;
+        for (Loan loan : loansList) {
+            double payment = calculateMonthlyPayment(loan);
+            lowestPayment = Math.min(lowestPayment, payment);
         }
-        return minHeap.peek(); //Smallest element is at the head of the queue.
-        
+        return lowestPayment;
+
+    }
+
+    public ArrayList<Loan> getLoans() {
+        return loans;
     }
 }
