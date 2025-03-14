@@ -1,0 +1,50 @@
+Leap Year Checker
+
+Write a method isLeapYear(int year) that returns true if the year is a leap year and false otherwise.
+A leap year is divisible by 4, but if divisible by 100, it must also be divisible by 400.
+Grade Calculator
+
+Write a method getGrade(int score) that returns:
+"A" if score >= 90
+"B" if score >= 80
+"C" if score >= 70
+"D" if score >= 60
+"F" otherwise
+Cumulative Algorithms (Loops + Running Sums/Products)
+Digit Sum
+
+Write a method sumDigits(int num) that takes an integer and returns the sum of its digits.
+Example: sumDigits(251) → 2 + 5 + 1 = 8
+Factorial with a Loop
+
+Write a method factorial(int n) that returns n! using a loop.
+Example: factorial(5) = 5 * 4 * 3 * 2 * 1 = 120
+Text Processing
+Count Vowels
+
+Write a method countVowels(String str) that returns the number of vowels (a, e, i, o, u) in a string.
+Example: countVowels("hello") → 2
+Reverse a String (Without StringBuilder)
+
+Write a method reverseString(String str) that returns the string in reverse order using a loop.
+Example: reverseString("java") → "avaj"
+Methods with Conditional Execution
+FizzBuzz (Slight Variation)
+
+Write a method fizzBuzzVariant(int n) that prints:
+"Fizz" if n is divisible by 3
+"Buzz" if n is divisible by 5
+"FizzBuzz" if divisible by both
+"None" otherwise
+Password Strength Checker
+
+Write a method checkPassword(String password) that returns "Strong" if:
+It contains at least one digit, one uppercase letter, and is at least 8 characters long.
+Otherwise, return "Weak".
+BMI Case Study & Logic Applications
+Height Converter
+
+Write a method convertHeight(double feet, double inches) that converts height to meters (1 inch = 0.0254m, 1 foot = 12 inches).
+BMI Calculator with Categories
+
+Write a method bmiCategory(double weight, double heightMeters) that calculates BMI and returns "Underweight", "Normal weight", "Overweight", or "Obese" based on standard BMI categories.

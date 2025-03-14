@@ -1,0 +1,46 @@
+Tyler Spring
+3/14/2025
+Chapter 4 short answer questions
+
+
+1. What is the purpose of an if/else statement in Java?
+	Create decision based programs based on conditionals.
+
+2. How does the else if statement help avoid unnecessary checks in conditional logic?
+	It helps avoid unnecessary checks by ensuring that once a condition is met, the rest are skipped. This makes the program more efficient 
+than using multiple independent if statements. 
+
+3. What is a cumulative algorithm, and how does it work?
+	A cumulative algorithm calculates an expression during each iteration to keep track of a running
+total, such as a sum or product.
+
+4. How would you modify a loop that calculates a cumulative sum to instead calculate a cumulative product?
+	Instead of +=, just use *=.  Ensure the initial value is set
+to 1, not 0, to prevent multiplication by zero.
+
+5. How can you check if a given string contains only numeric characters in Java?
+	Using a regular expression (regex) with .matches. For numbers it is str.matches("[0-9]+");
+
+6. What does the .substring() method do, and how would you use it to extract the first three characters of a string?
+	Substring extracts characters from a given string within a specified range. To extract the first three characters, use
+.substring(0,3), since substring excludes the last index.
+
+7. What is conditional execution inside a method, and why is it useful?
+	Used with if else or nested if statements. Good for using different blocks of code based on previous
+conditionals.
+
+8. public static String checkAge(int age) {
+	if(age >= 18) {
+		return "Adult";
+	} else {
+		return "Minor";
+	}
+	
+}
+
+9. What formula is used to calculate BMI, and what are the general BMI categories?
+	The BMI formula is weight / (height * height), but ^2 should not be used as it represents bitwise XOR in Java.
+	underweight, normalweight, overweight, obese.
+
+10. Why is using a method to calculate BMI better than writing the logic directly in main()?
+	modular design, cleaner easier to maintain code, effective use of OOP, divide and conquer.
