@@ -18,8 +18,9 @@ public class chpt4_1 {
         System.out.println(isLeapYear(1998));
     }
 
-    //Returns true if the year is divisible by 4 and either not divisible by 100 or divisible by 400.
+    // Returns true if the year is divisible by 4 and either not divisible by 100 or
+    // divisible by 400.
     public static boolean isLeapYear(int year) {
-       return (year % 4 == 0) && ((year % 100 !=0 ) || (year % 400 == 0));
+        return (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
     }
 }
