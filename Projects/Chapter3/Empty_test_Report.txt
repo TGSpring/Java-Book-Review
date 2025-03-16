@@ -1,0 +1,17 @@
+SmartFin Financial Summary Report
+=================================
+
+Loan Summary: 
+No loan records available.
+
+Expense Breakdown:
+ No expenses recorded.
+
+Savings Projections:
+Savings Projections:
+Savings in 6 months: $0.00
+Savings in 1  year: $0.00
+Savings in 5 years: $0.00
+
+Transaction History:
+No transactions recorded.

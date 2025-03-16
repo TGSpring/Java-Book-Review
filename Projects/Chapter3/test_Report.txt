@@ -1,0 +1,22 @@
+SmartFin Financial Summary Report
+=================================
+
+Loan Summary: 
+Principal: $1.00 | Rate: 2.00% | Term: 3.0 years | Monthly Payment: $0.03
+
+Highest Monthly Payment: $0.03
+Lowest Monthly Payment: $0.03
+
+Expense Breakdown:
+ Category-wise Spending:
+Pets: $1000.00
+
+Savings Projections:
+Savings Projections:
+Savings in 6 months: $770.00
+Savings in 1  year: $3320.00
+Savings in 5 years: $88520.00
+
+Transaction History:
+Transaction History:
+Date: 02/21/2025 | Category: Pets | Amount: $1000.00 | Description: Testing

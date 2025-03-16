@@ -22,10 +22,6 @@ public class LoanCalculator {
             throw new IllegalArgumentException("Values must be greater than 0");
         }
 
-        rate = rate / 100 / 12;
-        int months = (int) term * 12;
-        double monthlyPayment = (principal * rate) / (1 - Math.pow(1 + rate, -months));
-
         Loan loan = new Loan(principal, rate, term);
         loans.add(loan);
 

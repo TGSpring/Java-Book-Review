@@ -7,6 +7,10 @@ public class SavingsGoalEst {
     private double monthlyIncrease;
 
 
+    public SavingsGoalEst() {
+        
+    }
+
     public SavingsGoalEst(double savingsGoal, double currentSavings, double monthlyContribution, double monthlyIncrease) {
         this.savingsGoal = savingsGoal;
         this.currentSavings = currentSavings;

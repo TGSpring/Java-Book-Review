@@ -1,0 +1,35 @@
+THIS IS HERE ONLY TO SERVE AS A REF TO ME AND OTHERS IF YOU NEED IT 
+
+Here’s a step-by-step process you can use:
+
+1. **Identify the Input Size (n):**  
+   Determine what “n” represents for your method (in your case, the length of the string).
+
+2. **Break Down the Method into Operations:**  
+   - For each loop, ask: How many times does it run relative to n? (For example, a single for loop running from 0 to n−1 yields O(n).)
+   - For each operation inside a loop, note if it's constant time (O(1)) or more complex.
+   - For method calls (like `matches()`), look up or approximate their cost. (Simple regex checks typically run in O(n) for patterns like `.*[A-Z].*`.)
+
+3. **Combine Independent Operations:**  
+   When you have sequential operations (one after the other), add their complexities. However, in Big‑O notation, constants are dropped. For example, three independent O(n) operations are still O(n) overall.
+
+4. **Check for Nested Loops:**  
+   If the operations are nested (a loop inside another loop), multiply their complexities (e.g., two nested loops would be O(n²)).
+
+5. **Evaluate Extra Space:**  
+   Look at any additional data structures created. If you only use a few variables (constant space), that’s O(1). If you create an array or list proportional to n, that’s O(n).
+
+6. **Summarize Your Findings:**  
+   Write down your reasoning: “The method performs X operations per element of the input, and does three independent passes over the data. Therefore, the overall time complexity is O(n), while the method uses only constant extra space and has a space complexity of O(1).”
+
+By following these steps, you'll be able to methodically analyze each part of your code and come up with both formulas or informal explanations for its time and space complexities.
+
+For example, for your `checkPassword` method:
+- **Input Size:** n (the length of the string)
+- **Operations:**  
+  - A check for emptiness and length is O(1).  
+  - Each `matches()` call is roughly O(n) (assuming simple linear regex matching).  
+- **Total Time:** Since there are 3 regex calls in sequence, the total time is around 3 * O(n), which simplifies to O(n).  
+- **Extra Space:** No extra data structures, just a few variables → O(1).
+
+This process can be applied to most algorithms to help you figure out their complexities. Happy analyzing!
