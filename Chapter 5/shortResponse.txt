@@ -1,0 +1,37 @@
+1. When should you use a while loop instead of a for loop?
+    Validation or when you do not have a predetermined amount of time you want a loop to iterate.
+
+2. What is the main difference between a while loop and a do-while loop in terms of execution?
+    Do-while loop is a postcondition loop. The condition is checked after executing once. Good for 
+    displaying to the user before getting input.
+
+3. What problem do fencepost algorithms solve when printing sequences, and how do they work?
+    Avoiding trailing separators, mainly formatting a comma. Good for when writing to a CSV file. Usually has a
+    pre-defined variable like int first = 1; Then the loop starts at 2, but prints with a leading comma.
+
+4. How would you modify a loop that prints numbers 1 to 10 with commas between them to avoid a trailing comma?
+    Pretty much how I just described, Start with creating and printing the 1 variable before the loop, then have 
+    the print statement print with a leading comma.
+
+5. What are the possible values of a boolean variable in Java, and how can it be used to control loops?
+    True or false. Good for a conditional to trigger when a loop should stop.
+
+6. How can combining multiple boolean expressions with && or || improve control over program flow?.
+    Checking multiple conditionals against each other for further validation. && only works if two
+    conditions are True, || only requires one to be True.
+
+7. What is a common technique to validate user input using a while loop?
+    Scanner object then user hasNext(insert data type here). Validates that their is a value entered 
+    before it is even tested against the predetermined condition.
+
+8. Why is Scanner.hasNextInt() useful when validating user input, and how does it prevent exceptions?
+    Similar to last answer. hasNextInt validates that the user has entered a valid integer.
+
+9. What happens when an assertion fails during runtime, and when should assertions be enabled?
+    The program aborts and the message the programmer provided to the assert is shown. They should
+    be used to validate data before calculations are preformed.
+
+10. Why is using assertions helpful during debugging but not recommended for 
+    handling user input or production errors?
+    An assert for validating user input would cause the program to crash and make validation much more 
+    cumbersome as opposed to a simple while loop checking against it and re-prompting the user.
