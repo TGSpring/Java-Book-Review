@@ -1,0 +1,42 @@
+1. While Loop Logic Challenge
+You need to prompt the user to enter a number divisible by 7. Keep prompting until they enter a valid one, then print "Valid entry: <number>".
+Write the full code using Scanner and a while loop with input validation.
+
+2. Fencepost Algorithm with Custom Separator
+Print the numbers 10 to 1, separated by " | " using no trailing separator. Use a fencepost algorithm and no reverse loop (i.e., don’t loop from 10 down to 1 directly).
+
+3. Boolean Control Flow
+You’re writing a login system. A boolean isAuthenticated starts as false. The user has 3 attempts to enter the correct password "secret".
+Use a while loop with a counter and boolean to simulate this system and print "Access granted" or "Access denied" accordingly.
+
+4. Assertion Guard
+Write a method public static double safeDivide(double a, double b) that uses an assertion to ensure b != 0. If b is 0, the program should abort. Otherwise, return a / b.
+
+5. do-while Menu System
+Write a do-while loop that presents the user with a menu:
+
+1. Say Hello
+2. Say Goodbye
+3. Exit
+The loop continues until the user enters 3. Validate input and print the appropriate message each time.
+
+6. Complex Boolean Logic
+Write a method that takes two integers and prints "Valid pair" if:
+
+Both numbers are positive and divisible by 3, OR
+
+One of the numbers is exactly 100.
+
+Use boolean expressions effectively.
+
+7. Input Validation with hasNextInt()
+Prompt the user to enter an even number. Validate that the input is an integer using hasNextInt() and that it’s even. Keep prompting until they get it right.
+
+8. Assertion and Loop Integration
+You have an int[] scores array. Write a loop to print all scores, but first assert that the array’s length is at least 5. If the array is smaller, the program should fail immediately.
+
+9. Fencepost Algorithm with User Input
+Prompt the user to enter 5 words. Print them all on one line, separated by spaces, using a fencepost algorithm to avoid extra space at the end.
+
+10. Boolean Flags with Loop Termination
+You’re simulating a dice game. Generate random numbers (1–6) until you roll a 6. Use a boolean flag rolledSix to control the loop, then print how many rolls it took.
