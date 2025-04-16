@@ -1,0 +1,61 @@
+Tyler Spring
+4/16/2025
+Short Response questions from Chapter 6 of Java reading.
+
+1. File Process / File Class
+Q1:
+How does Java's File class interact with the underlying operating system when handling 
+relative vs. absolute paths, and what implications does this have for writing portable code?
+
+    - The file class acts as a path of abstraction to the underlying OS. It does NOT read or Write
+    content itself. When you use a relative path, it resolves it from the project's directory. With an 
+    absolute path, Java uses the full system-dependent path, much more precise, but not portable across
+    different environments.
+    - Using relative paths makes your code more portable and deployable. Using absolute paths may cause 
+    failures or errors, unless the file structure is consistent across all systems. For production 
+    quality or shared tools, relative paths combined with directory checking logic is best.
+
+Q2:
+Explain why the use of the File class alone is insufficient for reading file content. 
+What role does it actually play in the file I/O process, and how would you integrate it 
+with other classes for robust file processing?
+
+    - The File class represents the metadata and structure of a file. It doesn't actually 
+    open or read the file's contents. It's ideal for checking existence, type, size, or 
+    path info, making it perfect for pre-validation before preforming file I/O. Actual reading
+    of the file content is handled by classes like Scanner, bufferedReader, or FileReader. This 
+    separation of concerns aligns with good OOP design. File is responsible for describing the file,
+    not interacting with its data.
+
+2. Scanner (File Input)
+Q1:
+Why is it important to understand that Scanner operates on a token-based model when reading files? 
+Describe a real-world scenario where this behavior might lead to incorrect parsing if misunderstood.
+
+    - Scanner reads input token by token, treating the file as a linear stream of data. It has a suite 
+    of hasNext() methods that makes it a natural tool for validating input before attempting to parse it.
+    This helps prevent InputMismatchException when unexpected tokens appear.
+    Instead of blindly assuming input format, Scanner allows for defensive programming by checking token type 
+    before consumption. This is especially useful in file processing where the data may not be 
+    clean or consistently formatted.
+
+Q2:
+Suppose you pass a Scanner object to a method for processing. How would reference semantics impact 
+changes made to the cursor position inside that method? What are the pros and potential pitfalls of 
+this approach?
+
+    - Passing a Scanner as a parameter allows for modular, reusable logic when processing files. Since scanner
+    is an object, it's passed by reference, meaning the method operates on the same input stream and 
+    continues reading from the current cursor position. This is powerful for breaking file processing 
+    into smaller methods, but you need to be careful because the cursor doesn't reset after a method returns.
+    Any tokens consumed are permanently gone unless you explicitly reopen the file or use buffering strategies.
+    Managing the cursor position is key to avoiding skipped or misread data.
+
+3. Outputting (PrintStream)
+Q1:
+In what ways can PrintStream output behavior differ when writing to a file vs. standard output? 
+How can these differences affect debugging or real-time log monitoring?
+
+Q2:
+What precautions should be taken when writing to files using PrintStream in terms of 
+buffering, resource leaks, and data overwrites? How would you address them in production-quality code?
