@@ -56,6 +56,44 @@ Q1:
 In what ways can PrintStream output behavior differ when writing to a file vs. standard output? 
 How can these differences affect debugging or real-time log monitoring?
 
+    - PrintStream not only writes to files, it creates the file if it doesn't exist, which is different from 
+    Scanner, where the file must already exist or and exception is thrown. Also, unlike reading input, writing with PrintStream
+    still requires handling a checked exception, because JVM can't guarantee write access to the file path you
+    specify. So even though writing feels like System.out, you're still dealing with the real file I/O under the hood.
+
 Q2:
 What precautions should be taken when writing to files using PrintStream in terms of 
 buffering, resource leaks, and data overwrites? How would you address them in production-quality code?
+
+    - The book doesn't go deep here, but I would say a few best practices stand out.
+    First, always close your output stream. Either manually or using a try with resources block to
+    prevent data lose or file locks. Second, validate that the file path is correct and that you are not
+    unintentionally overwriting important data, this includes checking write permissions and using logic
+    to avoid the wrong directory.
+    In a production level code, you could implement a buffered or temporary file writing system. Especially
+    when dealing with a large data streams or mission critical logs. This guards against corruption or 
+    partial writes if something crashes mid process.
+
+
+4
+Q1:
+Java doesn't provide built-in methods for peeking ahead in a file without consuming input. Suppose you're processing 
+a large log file and need to look at the next token before deciding to process the current one.
+How could you simulate "peeking ahead" using only the Scanner class without losing track of the file's cursor?
+
+    - Use .hasNext() and store ina temp variable if needed for logic/output. Since Scanner consumes tokens 
+    as it reads them, you can simulate a "peek" by reading the next token and storing it temporarily in 
+    a variable. If you need to delay processing until later, you can either use a temp variable to store the 
+    token and reprocess it after your decision making. Or wrap the Scanner in a custom class that 
+    maintains a one-token buffer. This approach works because Java doesn't let you move the input cursor 
+    backwards, so temporary caching is your tool.
+
+Q2: You're reading a file line-by-line using Scanner.nextLine() inside a nested loop, and you notice that a few lines 
+are being skipped unexpectedly. What might be causing this behavior, and how would you refactor your code to prevent 
+unintentional line-skipping when mixing .next() and .nextLine() calls?
+
+    - Mixing .next() and .nextLine() might be the issue. Maybe use .hasNextLine() or track file size/loop count.
+    The issue usually comes from mixing next() and nextLine(). If you call next() and then nextLine(), the latter
+    might read only the remainder of the current line. This causes what looks like skipped lines. Stick to either 
+    line based or token based processing per loop. If you must mix, call nextLine() after next() to consume the rest
+    of the line intentionally, or structure your loops to handle both kinds of reads clearly.
