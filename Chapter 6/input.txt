@@ -1,0 +1,7 @@
+Bob 8
+Alice 10
+Charlie 7
+Diana 9
+Edward 5
+Fiona 13
+George 7
