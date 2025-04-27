@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class Chp6_4 {
+public class Chpt6_4 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner reader = new Scanner(new File("stringer.txt"));
         // Method returns String, easier to do call in print method.
