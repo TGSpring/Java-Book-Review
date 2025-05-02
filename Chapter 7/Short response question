@@ -1,0 +1,88 @@
+Tyler Spring
+5/2/2025
+Chapter 7 Short Response
+
+The following questions are from my Java reading/studies. I will be answering 10 in total. 2 per section.
+
+7.1 Array Basics:
+
+2.  What expression should be used to access the first element of an array of integers called numbers?
+    What expression should be used to access the last element of numbers, assuming it contains 10 elements?
+    What expression can be used to access its last element, regardless of its length?
+
+        - numbers[0] accesses first element of the array.
+          numbers[9] accesses the last element of the array when the length is 10.
+          numbers[numbers.length - 1], accesses the last element of the array no matter the length. Remember that an arrays length is a field, not a method. It does not require ().
+
+3.  Write a piece of code that declares an array called data with elements 7, -1, 13, 24, 6. Use only one statement to initialize the array. 
+- int[] data = {7, -1, 13, 24, 6};
+
+7.2 Array-Traversal Algorithms
+
+12. What is a traversal? Give an example of a problem that can be solved by traversing an array.
+   - A Traversal is a method of iterating over each element of a data structure, in this case an array, to perform a specific operation.
+    For instance, to compute the sum of all elements in an array, you start with a sum initialized to 0 and then traverse the array, adding
+    each element to the sum. This example shows how traversal allows you to systematically process every element to achieve the desired outcome.
+
+13. What elements does the array list contain after the following code is executed?
+    int[] list = {2, 18, 6, -4, 5, 1};
+    for (int = i = 0; i < list.length; i++) {
+    list[i] = list[i] + (list[i] / list [0]);
+    }
+
+          - list[0]: 2 + (2/2) = 2 + 1 = 3
+            list[1]: 18 + (18/2) = 18 + 9 = 27
+            list[2]: 6 + (6/2) = 6 + 3 = 9
+            list[3]: -4 + (-4/2) = -4 + (-2) = -6
+            list[4]: 5 + (5/2) = 5 + 2 = 7
+            list[5]: 1 + (1/2) = 1 + 0 = 1
+
+7.3 Reference Semantics
+
+18. Why does a method to swap two array elements work correctly when a method to swap to integer values does not?
+
+    - Value types, for integer values. This is when a systems values are stored directly and copying is achieved by creating independent copies of the values.
+      Reference Semantics is a system in which references to values are stored and copying is achieved by copying these references. When you swap integers you are doing values, when you are doing array elements you are doing references. When you are swapping integers you're swapping copies of the values, primitives are passed by value, so the changes don't affect the original variables. When you swap array elements, you are working with a reference to the array, modifying its elements directly changes the original array.
+
+19. Explain what aliasing is in Java. How does having two references point to the same object affect what happens when the object is modified? Provide an example.
+
+    - Aliasing in Java occurs when two or more variables point to the same object in memory. In other words, if you assign one object reference to another, both references act as aliases for that single object. As a result, if you modify the object using one reference, the change will be visible through the other reference as well.
+      For example, suppose you have an integer array called list2, and then create another reference list3 by assigning list3 = list2. Both list2 and list3 now refer to the same array in memory. Any update made to an element via list2 is immediately viewable when accessing that same element through list3.
+
+7.4 Advanced Array Techniques
+
+22. What are the values of the elements in the array numbers after the following code is executed?
+    int[] numbers = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
+    for (int i = 0; i < 9; i++) {
+
+    numbers[i] = numbers[i + 1];
+    }
+
+    - 20, 30, 40, 50, 60, 70, 80, 90, 100, 100
+
+23. Consider a class Book with two instance variables: title (a String) and author (a String). Write a short description of how you would declare, instantiate, and initialize an array of Book objects with at least three entries. Then describe how you would traverse the array to print each book's title and author.
+
+
+    //Create book class with constructor
+    - public class Book {
+      String title = "";
+      String author = "";
+      
+      public Book (String title, String author) {
+        this.title = title;
+        this.author = author;
+      }
+    }
+
+    //Declare and initialize array of Book objects.
+    Book[] books = new Book[3];
+
+    books [0] = new Book(title, name);
+    books [1] = new Book(title, name);
+    books [2] = new Book(title, name);
+    
+
+    //Traverse array to print details
+    for (Book b : books) {
+      System.out.println("Title:  + b.title + ", Author: " + b.author); 
+    }
