@@ -86,3 +86,66 @@ The following questions are from my Java reading/studies. I will be answering 10
     for (Book b : books) {
       System.out.println("Title:  + b.title + ", Author: " + b.author); 
     }
+
+
+7.5 Multidimensional Arrays
+
+31. What elements does the array numbers contain after the following code is executed?
+
+    int [][] numbers = new int [3][4];
+    for (int r = 0; r < numbers.length; r++){
+      for (int c = 0; c < number[0].length; c++) {
+        numbers[r][c] = r + c;
+      }
+    }
+
+    Here is a trace of the 2D array:
+    Row 0 (r = 0)
+    c = 0: numbers[0][0] = 0 + 0 = 0
+    c = 1: numbers[0][1] = 0 + 1 = 1
+    c = 2: numbers[0][2] = 0 + 2 = 2
+    c = 3: numbers[0][3] = 0 + 3 = 3
+
+
+    Row 1 (r = 1)
+    c = 0: numbers[1][0] = 1 + 0 = 1
+    c = 1: numbers[1][1] = 1 + 1 = 2
+    c = 2: numbers[1][2] = 1 + 2 = 3
+    c = 3: numbers[1][3] = 1 + 3 = 4
+
+    Row 2 (r = 2)
+    c = 0: numbers[2][0] = 2 + 0 = 2
+    c = 1: numbers[2][1] = 2 + 1 = 3
+    c = 2: numbers[2][2] = 2 + 0 = 4
+    c = 3: numbers[2][3] = 2 + 3 = 5
+
+    Final array contains: 
+
+    {{0, 1, 2, 3}, {1, 2, 3, 4}, {2, 3, 4, 5}}
+    
+    Each element's value is calculated by adding its row index (r) and column index (c).
+
+36. Write a piece of code that constructs a jagged two-dimensional array of integers with five rows and an increasing number of columns in each row, such that the first row has one column, the second row has two, the third has three, and so on. The array elements should have increasing values in the top-to-bottom, left to right order (also called row-major order). In other words, the array's contents should be the following:
+
+1
+2, 3
+4, 5, 6
+7, 8, 9, 10,
+11, 12, 13, 14, 15
+
+Use nested for loops to build the array.
+
+        //Start by declaring a jagged array.
+        int[][] jag = new int[5][];
+        int counter = 1;
+
+        //For each row(using outer loop) create a new 1D array whose length is one more than the row index(since the first row should have one element, the second should two,)
+
+        for(int r = 0; r <jag.length; r++){
+          jag[r] = new int[r + 1];
+
+          for (int c = 0; c < jag[r].length; c++) {
+            jag[r][c] = counter;
+            counter++;
+          }
+        }
