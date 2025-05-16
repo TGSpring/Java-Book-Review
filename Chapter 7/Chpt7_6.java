@@ -3,7 +3,7 @@
  * 5/7/2025
  * Chapter 7 Question 14
  * Write a method called contains that accepts two arrays of integers a1 and a2 as parameters and returns a boolean value indicating whether or not
- *  the sequence of elements in a2 appears in a1 (true for yes, false for no). 
+ * the sequence of elements in a2 appears in a1 (true for yes, false for no). 
  * The sequence must appear consecutively and in the same order.
  * For example:
  * int[] list1 = {1, 6, 2, 1, 4, 1, 2, 1, 8};
