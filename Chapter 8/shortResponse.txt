@@ -1,0 +1,43 @@
+Tyler Spring
+5/18/2025
+Chapter 8 Short Response Questions
+
+Section 8.1
+1. Describe the difference between object oriented programming and procedural programming.
+    - OOP is the reasoning about a program as a set of objects rather than as a set of actions. 
+    A set of action is what procedural is like, the technique of breaking complex tasks into 
+    smaller subtasks. A good analogy of the two is procedural is verb noun and OOP is noun verb.
+    Procedural programming is focused on functions and the order of execution, often manipulating data 
+    externally. OOP focuses on modeling real-world entities with state and behavior, promoting
+    encapsulation and reuse. 
+
+2. What is an object? How is an object different from a class?
+    - An object is defined as a programming entity that contains state (data) and behavior (methods). 
+    Classes can be thought of as a blueprint for objects. They have elements such as the state stored in 
+    each object, the behavior each object can perform, and how to construct objects of that type.
+
+Section 8.2
+6. Explain the differences between a field and a parameter. What is the difference in their syntax?
+What is the difference in their scope and the ways in which they may be used?
+    - A field is defined variable inside an object that makes up part of its internal state. They can be
+    thought of as special variables inside of the class. Also referred as instance variables, data members,
+    or attributes. The syntax is the same for declaring a variable however they have to be declared inside 
+    {} of the determined class. Parameter is what is passed to a method to be used in some way. Whether it 
+    is to perform a calculation, modify data, or output. A parameters syntax is defined in the header of a 
+    method in between (), similar to variables with its type and name.
+
+8. What is the difference between an accessor and mutator? What naming conventions are used with accessors and 
+mutators?
+    - A mutator is an instance method that changes the state of an objects internal state. It modifies or "mutates"
+    the value of the field. The easiest way to identify them is by their accessors, which usually are what is called 
+    "setters". A good example would be like "setFieldName(newValue)". An accessor is similar, but it does not change the state, 
+    it just provides information about the state. It is a method that retrieves or "accesses" the value of a field without modifying it. 
+    Similarly to setter, accessor is typically used with a "getter". An example would get like "getFieldName(). 
+
+Section 8.3
+
+17. What is a constructor? How is it different from other methods?
+    - A constructor is a special method that initializes the state of an object when it is created. It looks similar 
+    to a method, but doesn't have a return type. Not even void. It must have the same name as the class and is called
+    automatically when an object is created with new. If no constructor is defined, Java provides a default one with no 
+    parameters. But if you define any constructor, Java no longer provides the default one.
