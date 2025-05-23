@@ -41,3 +41,37 @@ Section 8.3
     to a method, but doesn't have a return type. Not even void. It must have the same name as the class and is called
     automatically when an object is created with new. If no constructor is defined, Java provides a default one with no 
     parameters. But if you define any constructor, Java no longer provides the default one.
+
+20. What is the meaning of the keyword "this"? Describe 3 ways that the keyword can be used.
+    - The book describes "this" as, a keyword that allows you to refer to an implicit parameter inside a class. 
+    Implicit parameter meaning a special reference that is set each time an instance method is called. You really would only
+    be using this with the fields of a class. When the compiler is reading x in these cases, what it really means is this.x. 
+    A good use case for using this is referring to objects made from the same class. It helps in assigning the proper parameters 
+    to their respected objects. They can also be used with what is called shadow variables. Shadowing occurs when a filed is obscured by
+    another variable with the same name, a field with the same name as a parameter. Try to avoid doing this, the compiler will not like it,
+    and it will be a headache to debug. Using multiple constructors or "chaining" is another good use case for "this". Works great 
+    for avoiding code duplication.
+
+Section 8.4
+
+22. What is abstraction? How do objects provide abstraction?
+    - Abstraction is the process of focusing on an objects's essential properties and behaviors while hiding the complex inner workings.
+    Objects provide abstraction by encapsulating data or fields and behavior or methods within a class. Users of an object interact only with 
+    its public methods and properties, without needing to understanding the detailed implementation behind them. This separation of interface from 
+    implementation not only simplifies usage, but also promotes modularity and maintainability in code.
+
+28. How does encapsulation allow you to change the internal implementation of a class?
+    - Encapsulation allows you to change the internal implementation of a class without affecting its users by hiding the internal details behind a public interface.
+    This can be done by declaring fields and helper methods as private. This keeps the internal state of the object hidden from the outside world. Only code within the class
+    can directly access these private members. Providing public accessor and mutator methods or getters and setters, these methods serve as the class's interface. They Control
+    how other parts of the program interact with the internal state. Because external code only uses these methods, you can alter the internal implementation  without
+    changing how the external code uses the class.
+
+Section 8.5 (Aside: Normally I would do 2 questions per section, however this is a case study with really only one applicable question.)
+
+29. What is cohesion? How can you tell whether a class is cohesive?
+    - Cohesion is defined as the extent to which the code for a class represents a single abstraction. The book makes a case study with a stock class. In simpler terms,
+    cohesion measures how closely related the responsibilities and elements of a class are. A highly cohesive class focuses on one well-defined responsibility. You should 
+    check that all fields and methods work together towards a single purpose. If you notice unrelated methods, that is a sign the class isn't cohesive. The book argues that 
+    the main stock class should not handle everything from the UI and prompting messages. It then goes to explain how you need to aim to reduce unnecessary dependencies that 
+    can cause coupling. 
