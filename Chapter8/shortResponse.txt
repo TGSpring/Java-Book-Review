@@ -5,7 +5,7 @@ Chapter 8 Short Response Questions
 Section 8.1
 1. Describe the difference between object oriented programming and procedural programming.
     - OOP is the reasoning about a program as a set of objects rather than as a set of actions. 
-    A set of action is what procedural is like, the technique of breaking complex tasks into 
+    A set of actions is what procedural is like, the technique of breaking complex tasks into 
     smaller subtasks. A good analogy of the two is procedural is verb noun and OOP is noun verb.
     Procedural programming is focused on functions and the order of execution, often manipulating data 
     externally. OOP focuses on modeling real-world entities with state and behavior, promoting
@@ -17,6 +17,7 @@ Section 8.1
     each object, the behavior each object can perform, and how to construct objects of that type.
 
 Section 8.2
+
 6. Explain the differences between a field and a parameter. What is the difference in their syntax?
 What is the difference in their scope and the ways in which they may be used?
     - A field is defined variable inside an object that makes up part of its internal state. They can be
