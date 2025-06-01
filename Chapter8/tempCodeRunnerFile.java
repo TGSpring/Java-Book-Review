@@ -1,1 +1,0 @@
-java Chapter8.PointMain
