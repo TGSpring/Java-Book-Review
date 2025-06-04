@@ -11,6 +11,8 @@
  *  javac Chapter8\*.java
  *  java Chapter8.StockMain
  * 
+ * Question 10: Line 67
+ * 
  * I know that this is not efficient, but I did not think messing with the JSON configs for this problem set was a good use of time.
  */
 
@@ -59,5 +61,17 @@ public class Stock {
 
         totalShares += shares;
         totalCost += shares * pricePerShare;
+    }
+
+    /*
+     * Question 10
+     * Add the following mutator method to the Stock class.
+     * public void clear()
+     * Reset this Stock's number of shares purchased and total cost to 0.
+     */
+    public void clear() {
+        totalShares = 0;
+        totalCost = 0;
+
     }
 }

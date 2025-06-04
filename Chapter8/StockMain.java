@@ -43,6 +43,8 @@ public class StockMain {
             System.out.println(symbol1 + " and " + symbol2 + " are equally profitable.");
         }
 
+        stock1.clear();
+
     }
 
     // Make purchases of stock and return the profit.
@@ -68,4 +70,5 @@ public class StockMain {
         System.out.println("Net profit/loss: $" + profit);
         return profit;
     }
+
 }
