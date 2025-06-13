@@ -1,0 +1,59 @@
+Tyler Spring
+6/13/2025
+Chapter 9 Short Response questions
+As I get farther into this book, the questions are becoming larger/complex. They require more set up/context. 
+I will keep progressing, but if anyone is reading this, it will take a noticeable amount of time longer.
+I am aiming to pick 2 problems per section, however this will vary based on what is covered/how much context is needed.
+
+Section 9.1 Inheritance Basics.
+
+1. What is code reuse? How does inheritance help achieve code reuse?
+    - The book defines this as, "the practice of writing a program code once and using it in many contexts". The best way to think of this is
+    Don't Repeat Yourself(DRY). Inheritance helps us achieve code reuse by extending itself to subclasses. In doing so, we do not need to
+    create redundant code that is already existing in the "parent" class, the one extending itself. This also helps with code maintenance,
+    when a change is made in said parent class, it can propagate to subclasses.
+
+2. What is the difference between overloading and overriding a method?
+    - The book defines overriding as, "To implement a new version of a method to replace code that would otherwise
+    have been inherited from a superclass". A common example is an Animal class with a speak() method. When you create a 
+    Dog subclass, you override speak() so that it prints "bark" instead of what the Animal class would print.
+    - Overloading involves creating multiple versions of a method with the same name within the same class, but with different 
+    parameter lists. Unlike overriding, overloading does not involve inheritance. Instead of having separate classes with different implementations
+    of the method, you have multiple methods that handle various cases directly within a single class.
+
+Section 9.2 Interacting with the superclass
+
+5. Explain the difference between the "this" keyword and the super "keyword". When should each be used?
+    - The this keyword refers to the current instance of a class. It's used to access the object's instance variables, methods, or constructors. 
+    Useful when there's a naming conflict or for constructor chaining.
+    - The super keyword is used to refer to members of the immediate parent class. It's particularly useful when you need to invoke an overridden method or access
+    a superclass constructor.
+    Use this to work with the current object's members, use super to access or invoke functionality from the parent class.
+
+6. Consider the following class:
+
+    //Represents a university student.
+    public class Student {
+        private String name;
+        private int age;
+
+        public Student(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+    }
+
+    Also consider the following partial implementation of a subclass of Student to represent undergraduate students at a university.
+        public class undergraduateStudent extends Student {
+            private int year;
+            ...
+        }
+
+    can the code in the undergraduateStudent class access the name and age fields it inherits from Student? Can it call the setAge method?
+
+        - No, the name and age fields in Student are declared private, so even though they are inherited, it can not access them.
+        - Yes, it can call setAge because it is declared public, this applies to any other public or protected methods inherited from student.
