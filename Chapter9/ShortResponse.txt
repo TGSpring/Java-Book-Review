@@ -159,3 +159,62 @@ Why or why not?
     subclass of Rectangle, you must override almost every method to ensure that both dimensions remain equal. You'd need to add extra validation to prevent the user 
     from setting width and height independently, which complicates the design and makes the code harder to maintain. In such cases, it is preferable to design a Square 
     class separately, either by using composition or by creating an entirely independent class, rather than forcing it into the Rectangle inheritance hierarchy.
+
+
+Section 9.5 Interfaces
+
+22. What is the difference between implementing an interface and extending a class?
+    - Extending a class means inheriting fields and methods from a single parent class, using "extends". This creates the "is-a" relationship 
+    and allows code reuse, but Java only allows single inheritance, one superclass.
+    - Implementing an interface means agreeing to provide concrete implementations for all the abstract methods declared in the interface, using implements.
+    This allows a class to promise certain behaviors, and a class implement multiple interfaces, overcoming the single inheritance limitation.
+    - The differences between extending a class gives you inherited code and state, implementing an interfaces only requires you to provide method bodies, 
+    with no inherited state.
+
+24. What's wrong with the code for the following interface? What should be changed to make a valid interface for objects that have colors?
+    
+    public interface Colored {
+        private Color color;
+        public Color getColor() {
+            return color;
+        }
+    }
+
+    - You should not have fields like private Color color in an interface. You should not have method bodies, you only need to be declaring method signatures:
+        public interface Colored {
+            Color getColor();
+        }
+
+    This tells any implementing class that it must provide a getColor() method, but the interface itself does not store or define how color is handled.
+    SIDENOTE: since i am also learning C++, you can think of this like how C++ has a header file or uses forward declaration. This just tells the compiler what 
+    methods/functions exist, not their implementation. Java interface declares method signatures, what methods a class must have, but not their implementation.
+
+Section 9.6 Case Study: Financial Class hierarchy
+
+27. What is an abstract class? How is an abstract class like a normal class, and how does it differ? How is it like an interface?
+
+    - The book defines an abstract class as a java class that cannot be instantiated, but that instead serves as a superclass to 
+    hold common code and declare abstract behavior. What is different about this from an interface is that an abstract class can also declare 
+    fields and implement methods with bodies. You cannot create instances of an abstract class directly, it can declare abstract methods 
+    that must be implemented by subclasses. Both are able to declare abstract methods that subclasses must provide, but an abstract class can have 
+    fields and concrete methods, while an interface only declares method signatures.
+
+28. Consider the following abstract class and its subclass. What state and behavior do you know for sure will be present in the subclass? How do you know?
+
+    public abstract class Ordered {
+        private String[] data;
+        public void getElement(int i) {
+            return data[i];
+        }
+        public abstract void arrange();
+    }
+    
+    public class OrderedByLength extends Ordered {
+
+    }
+
+    - The subclass OrderedByLength is going to have an array of strings called data as part of its state, this is because it inherits 
+    this from the abstract superclass Ordered. It will also inherit the getElement(int i) method, which allows you to access elements from that array. 
+    However, since arrange() is abstract in the superclass, OrderedByLength must provide its own implementation of this method. The subclass can't directly
+    access the private data field, but it can use any public or protected methods from the superclass to interact with it. So, the state data and the getElement
+    method are always present, and the subclass is required to define how the data is arranged by implementing arrange();
