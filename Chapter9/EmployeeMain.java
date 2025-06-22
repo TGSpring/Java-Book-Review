@@ -1,5 +1,6 @@
 public class EmployeeMain {
     public static void main(String[] args) {
+      //Chapter 9 Question 1
       System.out.println("Marketer: ");
       Marketer employee1 = new Marketer();
       employee1.applyForVacation();
@@ -14,6 +15,7 @@ public class EmployeeMain {
       employee2.showHours();
       employee2.showSalary();
 
+      //Chapter 9 Question 2
       System.out.println("Janitor");
       Janitor janitor = new Janitor();
       janitor.applyForVacation();

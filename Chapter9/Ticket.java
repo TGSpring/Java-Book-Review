@@ -1,8 +1,9 @@
 /*
  * Tyler Spring
  * 6/20/2025
+ * Chapter 9 Question 5
  * For the next four problems, consider the task of representing types of tickets to campus events. Each ticket has a unique number and price. There are three types of tickets:
- * walk-up tickets, and student advance tickets. 
+ * walk-up tickets, advance tickets, and student advance tickets. 
  * - Walk-up tickets are purchased the day of the event and cost $50.
  * - Advance tickets purchased 10 or more days before the event cost $30, and advance tickets purchased fewer than 10 days before the event cost $40.
  * - Student advance tickets are sold at half price of normal advance tickets: When they are purchased 10 or more days early they cost $15, and when they are purchased fewer 
@@ -15,7 +16,7 @@
  * - The ability to println a ticket object as a String. An example would be "Number: 17, Price: 50.0".
  */
 
-public class Ticket {
+public abstract class Ticket {
     // Field for ticketNumber
     private int ticketNumber;
 
@@ -24,9 +25,16 @@ public class Ticket {
         this.ticketNumber = ticketNumber;
     }
 
-    public static void main(String[] args) {
-        Ticket test = new Ticket(1234);
-        test.getPrice();
-        test.toString();
+    public abstract double getPrice();
+
+    // Using protected getter for StudentAdvanceTicket.
+    protected int getTicketNumber() {
+        return ticketNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Number: " + ticketNumber + ", Price: " + getPrice();
+    }
+
 }
