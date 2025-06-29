@@ -1,0 +1,20 @@
+Tyler Spring
+6/29/2025
+Chapter 10 Short Response Questions
+----- I will be lessening the amount of these as well as the amount of programming problems I do in order to add in a project per chapter now. --------
+
+Section 10.1: ArrayLists
+
+Question 1: What is an ArrayList? In what cases should you use an ArrayList rather than an array?
+    - An ArrayList is a Java class that stores elements in a resizable array and provides easy methods to add, remove, or access items. Use an ArrayList when you 
+    need a collection that can grow or shrink dynamically, such as a list of calendar events. Use an array when the number of elements is fixed and you want the most
+    efficient use of memory and speed, like storing the days of the week.
+
+
+Section 10.2: The Comparable Interface 
+
+Question 19: Describe how to arrange an ArrayList into sorted order. What must be true about the type of elements in the list in order to sort it?
+    - To sort an ArrayList, you can use Collections.sort(list) or list.sort(). For sorting to work, the elements must either implement the Comparable interface, 
+    using compareTo method that defines natural ordering or you must provide a Comparator, a separate comparison function to the sort method. Built-in types like String 
+    and Integer already implement Comparable, so they can be sorted directly. For custom types, like a Point class, you must either make your class implement Comparable
+    and define compareTo(), or provide a Comparator when sorting.
