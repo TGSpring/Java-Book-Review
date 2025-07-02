@@ -1,0 +1,23 @@
+Tyler Spring
+7/2/2025
+Chapter 10 Project 4 Overlapping.
+###
+I asked coPilot to review over this project with me by asking questions.
+###
+
+
+1. Why is the last one added the TopMost?
+    - The rectangles are ordered from bottom to top, first to last. When you draw windows in a GUI, you typically draw the bottom ones 
+    first and the topmost last, so the last one in the list appears on top, like a stack.
+
+2. How would you move a rectangle to the bottom instead of the top?
+    - Iterate forward, change the .add to index 0. Insert with rects.add(0, topRect);
+
+3. How would you handle overlapping rectangles if you wanted to select all rectangles containing a point?
+    - Instead of breaking after finding the first rectangle, you keep looking through the list. For each rectangle that contains the point, you could 
+    collect them in a new list or perform an action like highlighting.
+
+4. What are the trade-offs of using an ArrayList for this versus another data structure?
+    - ArrayList gives you fast random access and is easy to use for z-ordering, but inserting/removing in the middle can be slow for very larges lists,
+    due to elements needing to be shifted. LinkedList would make insertions/removals faster, but random access with getting by index is much slower.
+    For most GUI window managers, the number of windows is small, so an ArrayList is fine.
