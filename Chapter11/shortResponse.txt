@@ -1,0 +1,41 @@
+Tyler Spring
+7/6/2025
+Chapter 11 Short Response
+
+
+Section 11.1: Lists
+
+1. When should you use a LinkedList instead of an ArrayList?
+    - A LinkedList is a collection that stores a list of elements in small object containers called nodes, which are linked together. With 
+    this in mind a good example the book provides is traversing a list of strings and removing certain elements. While both can do this, as the list 
+    grows larger, ArrayList begins to suffer from having to shift all the elements each time an element is removed. With LinkedList, rather than shifting
+    it adds elements front and creates a new node much faster. Use a LinkedList when you need to frequently add or remove elements at the beginning 
+    or middle of the list, or when you'll be traversing and modifying the list often. Use an ArrayList when you need fast random access by index.
+
+3. What is an Iterator? Why are iterators often used with LinkedLists?
+    - An iterator is defined as an object that allows the efficient retrieval of the elements of a list in sequential order. You use an iterator 
+    to move from on element to the next, rather than going back to the beginning of the list each call and re-traverse the list. It can do this through 
+    its own methods next and hasNext, like the Scanner class. This way the iterator keeps track of position in the current list. Iterators are often used with 
+    LinkedList because they can efficiently move from one node to the next without needing to access elements by index, which is slow in a linked list.
+    Also iterators allow you to safely remove elements from the list while iterating.
+
+
+Section 11.2: Sets
+
+10. A List has every method that a Set has, and more. So why would you use a Set rather than a List?
+    - To simply put it, a Set is defined as a collection that cannot contain duplicates. They also do not support all the operations that a list does, like any operation 
+    that requires an index. What the do offer is fast searching and effortless elimination of duplicates. Use a Set when you want to ensure all elements are unique and you don't 
+    need to access elements by position. Sets are ideal for membership tests and removing duplicates from a collection.
+
+11. When should you use a TreeSet, and when should you use a HashSet?
+    - A TreeSet uses an internal Binary Search Tree to store its elements in sorted order. This means that whenever you add, remove, or search for elements, the set keeps everything ordered and you can easily print the set in order. A HashSet stores elements in a way that does not guarantee any particular order. It's main advantage is very fast 
+    lookup, add, and remove operations, but the order of elements is unpredictable. Use a TreeSet when you need your set to always be sorted. Use a HashSet when you care most about speed and do not need the elements to be in any order.
+
+12. A Set doesn't have the get and set methods that an ArrayList has. How do you examine every element of a Set?
+    - A for each loop or an iterator with a while loop that covers the entire set. This is because Sets are unordered collections, so you can't access elements by position. Instead, you must visit each elements using a for-each loop or an iterator.
+
+
+Section 11.3: Maps
+
+17. A Map doesn't have the get and set methods that an ArrayList has. It doesn't even have an iterator method like a Set does, nor can you use a for-each loop on it directly. How do you examine every key (or every value) of a Map?
+    - A Map is defined as a collection that associates objects called keys with objects called values. Maps work works with two parameters, keys and values. They are paired together using a put method, like an add method. To examine every key in the Map you can use methods called keySet and values. These return a Set of all keys in the map and a collection of all values in the map. Sometimes called collection views of a map. You can use a for-each loop to go through the set of keys (for (K key : map.keySet())) or the collection of values (for (V value : map.values())). If you want to examine both keys and values together, you can use map.entrySet() and loop through each entry.
