@@ -24,7 +24,8 @@ public class isUni {
         map.put("Amanda", "Camp");
         map.put("Hal", "Perkins");
 
-        map.put("Bruce", "Reges");
+        // Used to edge case for false.
+        // map.put("Bruce", "Reges");
 
         System.out.println(isUnique(map));
     }
