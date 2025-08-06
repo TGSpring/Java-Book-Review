@@ -1,0 +1,44 @@
+Tyler Spring
+8/6/2025
+Chapter 12 Short Response Questions
+
+Section 12.1
+
+Question 1. What is recursion? How does a recursive method differ from a standard iterative method?
+    - The book defines recursion as, "a programming technique in which you describe actions to be repeated using a method that calls itself". 
+    It also provides an example of people waiting in line and trying to figure out what place they are. Rather than one person counting every person in front of them,
+    a single person asks the person in front of them what place they are. This problem "recurs" until the front of the line is reached. Where as an iterative approach
+    would have the one person counting every person.
+
+Section 12.2
+
+Question 8. What is a call stack, and how does it relate to recursion?
+    - The book defines a call stack as "the internal structure that keeps track of the sequence of methods that have been called." 
+    You can think of the call stack as working like a stack data structure, with last in first out. Each time a method is called, a new 
+    frame is pushed onto the stack, when a method finishes, its frame is popped off. In recursion, each recursive call adds another frame to the stack, 
+    so if a method calls itself three times, there will be three instances of that method on the stack. When the base case is reached, the stack
+    unwinds as each call completes and returns. This is why the call stack is essential for tracking the flow of recursive methods.
+
+Section 12.3
+
+Question 18. Sometimes the parameters that a client would like to pass to a method don't match the parameters that are best for writing
+a recursive solution to the problem. What should a programmer do to resolve this issue?
+    - When the parameters a client provides aren't ideal for recursion, a programmer should write a public method that accepts the client's 
+    parameters and then calls a private helper method with any extra parameters needed for the recursive solution. This way, the public method 
+    acts as a simple entry point, while the helper method handles the recursion with the appropriate parameters such as an index or accumulator.
+    This technique helps avoid issues like infinite recursion and makes teh code easier for clients to use.
+
+Section 12.4
+
+Question 20. What is a fractal image? How odes recursive programming help draw fractals?
+    - Recursive programming helps draw fractals because each part of the fractal can be drawn by calling the same method on a smaller scale.
+    This matches the self-similar structure of fractals, making recursion a natural fit for generating them.
+
+Section 12.5
+
+Question 23. What is a decision tree? How are decision trees important for backtracking?
+    - Backtracking is defined as, a general algorithm for finding solutions to a problem by exploring possible candidate solutions and abandoning
+    "backtracking" once a given candidate is deemed unsuitable. Later in the section is explains that for every backtracking problem involves 
+    a solution space of possible answers that you want to explore. We try to view the problem as a sequence of choices, which allows us to think of
+    the solution  space as a decision tree. In backtracking, a decision tree helps organize the process of trying different possibilities. Each 
+    branch represents a choice, and backtracking means returning to a previous branch to try a different path when a solution isn't found.
