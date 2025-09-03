@@ -1,0 +1,24 @@
+Tyler Spring
+9/3/2024
+Chapter 13 short response questions
+
+Section 13.1 
+
+Question 1: Describe two ways to search an unsorted array of String objects using the Java class libraries:
+        - Way 1 is do a manual linear search using compareTo. Since String implements Comparable<String>, you can 
+        loop through the array and check. You use compareTo form the Java library. It works on unsorted arrays because 
+        you're just scanning everything.
+        - Way 2 is to use the utility classes of Arrays and Collections. Even though the array is unsorted, you can still 
+        turn it into a library-supported structure and search. With Arrays.asList(arr).contains(target), wraps the array in a List 
+        and uses .equals() internally. Or Arrays.asList(arr).indexOf(target) to get the index.
+        - .equals() is best for when you just want to know are they equal, .compareTo() is best when you care about ordering or want 
+        to stay within the Comparable framework.
+
+Question 3: Should you use a sequential or binary search on an array of Point objects, and why?
+        - A sequential search works on any array whether it is sorted or not. It just walks through the elements one by one
+        and checks if any match. A binary search requires the array to be sorted and jumps to the middle, checks, eliminates 
+        half of the possibilities each step. It also needs a way to compare objects, like Comparable or a Comparator.
+        - A Point class usually does not implement a Comparable, so Java does not know how to order two points. That means you 
+        can't just sort them and use binarySearch unless you first define a comparison rule.
+        - If the array is unsorted, or if you have not defined a natural ordering for the Point objects, you have to use 
+        sequential search. If you define an ordering and sort the array, then you can use binary search for faster lookups.
