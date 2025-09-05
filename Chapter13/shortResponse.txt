@@ -22,3 +22,84 @@ Question 3: Should you use a sequential or binary search on an array of Point ob
         can't just sort them and use binarySearch unless you first define a comparison rule.
         - If the array is unsorted, or if you have not defined a natural ordering for the Point objects, you have to use 
         sequential search. If you define an ordering and sort the array, then you can use binary search for faster lookups.
+
+Section 13.2 
+
+Question 14: Determine the complexity classes of the algorithms that could be used to perform the following task:
+                - Finding the average of the numbers in an array of integers.
+                        To compute an averages, you need the sum of all the elements.
+                        That requires visiting every element once.
+                        No shortcut exists.
+                        After summing, you divide by n, which is O(1).
+                                Complexity: O(n), linear scan, must touch every element.
+
+                - Finding the closet distance between any pair of points in an array of points.
+                        Every pair of points needs a distance calculation.
+                        Number of pairs in n items = (n 2) = (n(n-1)/2).
+                        That grows like n^2.
+                                Complexity: O(n^2), pairwise comparisons always lead to quadratic growth.
+
+                - Finding the maximum value in an array of real numbers.
+                        Worst case: max is the last element.
+                        Must compare each element at least once.
+                        That's one pass, O(n).
+                                Complexity: O(n), Can't stop early, max might be at the end.
+
+                - Counting the median length of the Strings in an array.
+                        To find the median, you need order.
+                        Easiest way: sort by length. Sorting comparison-based arrays = O(n log n).
+                        After sorting, grabbing the middle = O(1).
+                                Complexity: O(n log n), median usually implies sorting. Sorting dominates cost.
+                
+                - Raising an integer to a power - for example, A^B.
+                        Naive multiply A by itself B times -> O(B).
+                        Better: exponentiation by squaring.
+                        If B is even, A^B = (A^(B/2))^2.
+                        If B is odd, A^B = A * A^(B - 1).
+                        This halves B at each step -> logarithmic.
+                                Complexity: O(log B), divide exponent in half each step instead of subtracting 1.
+                
+                - Examining an array of Points to see how trios of points are colinear -- that is, 
+                how many groups of three points could be connected by a straight line.
+                        You need to check every trio of points.
+                        Number of trios = (n 3) = (n(n - 1)(n - 2)) / 6.
+                        This grows like n^3.
+                                Complexity: O(n^3), when problem says triplets, think of cubic time.
+
+                - Counting the number of lines in a file.
+                        Must check each line once.
+                        For n lines, that's n steps.
+                        No shortcut: can't skip lines without missing counts.
+                                Complexity: O(n), One unit of work per line -> linear time.
+
+                - Determining whether a given integer representing a year stores a leap year. Divisible by 4, but not 
+                divisible by 100 unless also divisible by 400.
+                        Rules: Divisible by 4, but not 100 unless divisible by 400.
+                        That's just 3 modulus operations.
+                        Always the same number of steps, no matter the year's size.
+                                Complexity: O(1), Fixed number of operations = constant time.
+
+                /////// THIS IS A NOTE FOR ME TO REMEMBER: I STRUGGLE WITH COMPLEXITIES IGNORE.. OR READ IF YOU WANT ////////
+                        1. Average of an array O(n)
+                                You can't average without seeing every number.
+
+                        2. Closet pair of points O(n^2)
+                                Pairs = quadratic. Every point shakes hands with every point.
+
+                        3. Maximum in array O(n)
+                                Max might be at the end, so you check them all.
+
+                        4. Median string length O(n log n)
+                                Median needs sorting. Sorting is the price of order.
+
+                        5. Exponentiation (A^B) -> O(log B)
+                                Cut the exponent in half each step: log speedup.
+
+                        6. Colinear Triplets O(n^3)
+                                Triplets = cubic. Choose three, check all.
+
+                        7. Count file lines O(n)
+                                One step per line. Read to count.
+
+                        8. Leap year check O(1)
+                                Fixed math rules, constant time.
