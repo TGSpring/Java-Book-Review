@@ -51,9 +51,12 @@ public class Chpt13_Project1 {
         // NOTES:
         // One line per output for readability.
 
+        mergeSort(sortArr);
+
         for (String s : sortArr) {
             System.out.println(s);
         }
+
     }
 
     // ----------------------------
@@ -88,7 +91,7 @@ public class Chpt13_Project1 {
     }
 
     // ----------------------------
-    // MERGE HELPER (to be implemented)
+    // MERGE HELPER
     // ----------------------------
     // NOTES:
     // - A temporary array is needed to hold elements while merging.
@@ -97,4 +100,65 @@ public class Chpt13_Project1 {
     // - Track indexes i for the left half and j for the right half.
     // When i > mid, left half is exhausted; when j > high, right half is exhausted.
     // Copy remaining elements from the non-empty half.
+
+    private static void merge(String[] array, int low, int mid, int high) {
+        String[] temp = new String[high - low + 1];
+
+        int i = low; // pointer for left half.
+        int j = mid + 1; // pointer for right half.
+        int k = 0; // pointer for temp.
+
+        while (i <= mid && j <= high) {
+            if (array[i].compareToIgnoreCase(array[j]) <= 0) {
+                temp[k] = array[i];
+                i++;
+            } else {
+                temp[k] = array[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Left half copying leftovers.
+        while (i <= mid) {
+            temp[k] = array[i];
+            i++;
+            k++;
+        }
+
+        // Right half copying leftovers.
+        while (j <= high) {
+            temp[k] = array[j];
+            j++;
+            k++;
+        }
+
+        // Copying back into the original array.
+        for (int m = 0; m < temp.length; m++) {
+            array[low + m] = temp[m];
+        }
+    }
 }
+
+/*
+ * Time Complexity:
+ * - Each merge sort call splits the array in half.
+ * - Number of levels in the recursion tree is equal to log2(n), for an array of
+ * size n.
+ * - Merging.
+ * - Each level of recursion merges all n elements at once.
+ * - So per level, work = O(n).
+ * - Total work.
+ * - Levels * work per level = O(n * log n).
+ * - Time complexity is O(n log n).
+ * 
+ * Space Complexity:
+ * - Each merge call creates a temp array of size (high - low + 1).
+ * - Because the recursion is not in-place, the total extra memory used at any
+ * one time is roughly
+ * proportional to n, the size of the array being merged at the top level.
+ * - Recursion adds log n levels of function calls, each with a few variables.
+ * This is small compared to n -> still
+ * O(n) total extra space.
+ * - Space complexity is O(n).
+ */
