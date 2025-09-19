@@ -1,3 +1,4 @@
+
 /**
  * Tyler Spring
  * 9/17/2025
@@ -21,64 +22,167 @@
  * order. Write code to retrieve word's canonical form and a Comparator that
  * compares words by using their canonical forms.
  */
-public class Chpt13_Project4 {
-    public static void main(String[] args) {
 
-        /**
-         * NOTES FOR IMPLEMENTATION
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public class Chpt13_Project4 {
+
+    /*
+     * Comparator to sort words by their canonical form.
+     * The canonical form of a word is its letters sorted alphabetically.
+     * Collections.sort(words, new CanonComparator()) will group anagrams together.
+     * 
+     * compare(a, b) returns:
+     * - negative if a comes before b.
+     * - positive if a comes after b.
+     * - zero if they are equal.
+     */
+    static class CanonComparator implements Comparator<String> {
+        public int compare(String a, String b) {
+            return canonForm(a).compareTo(canonForm(b));
+        }
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        System.out.println("=== Canonical Form Tests ===");
+        for (String testWord : new String[] { "program", "computer", "share", "sheer" }) {
+            System.out.println(testWord + " -> " + canonForm(testWord));
+        }
+        System.out.println("============================\n");
+
+        /*
+         * // TESTING STEP 2
+         * Map<String, List<String>> groups = new HashMap<>();
+         * Scanner in = new Scanner(new File("dictionary.txt"));
          * 
-         * Step 1: Canonical Form of a Word.
-         * - Definition: Rearrange the letters of a word in sorted order.
-         * - If two words have the same canonical form, they are anagrams.
+         * // Building map.
+         * while (in.hasNextLine()) {
+         * String word = in.nextLine().trim();
+         * if (word.isEmpty())
+         * continue;
+         * String canon = canonForm(word);
+         * groups.computeIfAbsent(canon, k -> new ArrayList<>()).add(word);
+         * }
          * 
-         * function canWords(wor):
-         * letters = convert word to char array
-         * sort letters alphabetical
-         * return string made from sorted letters
-         * 
-         * HINTS
-         * - use word.toCharArray() to get characters
-         * - use Arrays.sort(charArray) to sort them
-         * - Convert back with new String(charArray)
-         * 
-         * 
-         * 
-         * Step 2: Comparator for Sorting by Canonical Form.
-         * - A Comparator<String> compares two words by their canonical forms.
-         * - This allows you to sort the dictionary so that anagrams appear next to each
-         * other.
-         * 
-         * function compare(word1, word2):
-         * return canonicalForm(word1) compared to canonicalForm(word2)
-         * 
-         * Step 3: Read Dictionary and Sort.
-         * - Read the file line by line into a List<String> or ArrayList<String>.
-         * - Sort the list using your canonical comparator.
-         * 
-         * words = read all lines from file
-         * sort(words, canonicalComparator)
-         * 
-         * Step 4: Group Anagrams.
-         * - Since sorting puts anagrams together, you can just iterate through the
-         * sorted list and group consecutive
-         * words with the same canonical form.
-         * - A Map<String, List<String>> works well here.
-         * Key = canonical form.
-         * Value = list of words with canonical form.
-         * 
-         * for each word in words:
-         * canon = canonicalForm(word)
-         * if canon not in map:
-         * map[canon] = new list
-         * map[canon].add(word)
-         * 
-         * Step 5: Print output.
-         * - Print all the lists in the map that have more than one word(actual
-         * anagrams).
-         * 
-         * for each list in map.values():
-         * if list.size() > 1:
-         * print list
+         * for (List<String> anagrams : groups.values()) {
+         * if (anagrams.size() > 1) {
+         * System.out.println(anagrams);
+         * }
+         * }
          */
+
+        /*
+         * Read the dictionary file into a List<String>.
+         * - Each line is trimmed to remove extra spaces.
+         * - Empty lines are skipped.
+         * - Using List<String> allows sorting with a Comparator.
+         */
+        List<String> words = new ArrayList<>();
+        Scanner in = new Scanner(new File("dictionary.txt"));
+        while (in.hasNextLine()) {
+            String word = in.nextLine().trim();
+            if (!word.isEmpty()) {
+                words.add(word);
+            }
+        }
+
+        /*
+         * Sort the list of words using CanonComparator.
+         * After sorting, all words with the same canonical form (anagrams)
+         * appear consecutively in the list.
+         * This allows grouping anagrams without using a HashMap.
+         */
+        Collections.sort(words, new CanonComparator());
+
+        // Print sorted dictionary.
+        for (String w : words) {
+            System.out.println(w + " -> " + canonForm(w));
+        }
+
+        /*
+         * Group consecutive words with the same canonical form.
+         * - currentGroup stores words that are anagrams.
+         * - prevCanon tracks the canonical form of the previous word.
+         * - Whenever the canonical form changes, we print the group if it has >1 word.
+         */
+        List<String> currentGroup = new ArrayList<>();
+        String prevCanon = "";
+
+        for (String word : words) {
+            String canon = canonForm(word);
+            if (canon.equals(prevCanon)) {
+                currentGroup.add(word);
+            } else {
+                if (currentGroup.size() > 1) {
+                    System.out.println(currentGroup);
+                }
+                currentGroup = new ArrayList<>();
+                currentGroup.add(word);
+                prevCanon = canon;
+            }
+        }
+
+        if (currentGroup.size() > 1) {
+            System.out.println(currentGroup);
+        }
+
+    }
+
+    /**
+     * Returns the canonical form of a word: letters sorted alphabetically.
+     * - Removes non-alphabetical characters.
+     * - Converts to lowercase.
+     * - Sorts the letters.
+     * 
+     * Complexity: O(k log k) for a word of length k (sorting the characters).
+     */
+    public static String canonForm(String word) {
+        // Note to self, make sure to use word = word. notation ...
+        // Strings are immutable, so we must reassign after replace, trim, and
+        // toLowerCase.
+
+        word = word.replace("[^a-zA-Z]", "");
+        word = word.trim().toLowerCase();
+        char[] letters = word.toCharArray();
+        Arrays.sort(letters); // To sort alphabetical.
+        return new String(letters);
     }
 }
+
+/**
+ * NOTES FOR IMPLEMENTATION
+ * 
+ * 1. Canonical Form:
+ * - Sort letters of each word alphabetically.
+ * - Words with the same canonical form are anagrams.
+ * 
+ * 2. Comparator:
+ * - Compare words by their canonical forms.
+ * - Allows Collections.sort() to group anagrams together.
+ * 
+ * 3. Read and Sort:
+ * - Read all dictionary words into a List<String>.
+ * - Trim whitespace and skip empty lines.
+ * - Sort list with CanonComparator.
+ * 
+ * 4. Group Anagrams:
+ * - Iterate sorted list, grouping consecutive words with the same canonical
+ * form.
+ * - Print groups with more than one word.
+ * 
+ * Complexity:
+ * - Canonical form per word: O(k log k) for word length k.
+ * - Sorting n words: O(n * k log k)
+ * - Grouping: O(n)
+ * - Total: O(n * k log k)
+ */
