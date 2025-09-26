@@ -1,0 +1,28 @@
+Tyler Spring
+9/26/2025
+Chapter 14 short response questions
+
+Section 14.1
+
+Question 2: What is a real-world example of data that could be modeled using a stack? A queue?
+    - For a stack think of a stack of plates. The one at the bottom of the stack is first in, however you would not move every other plate on top of it 
+    just to grab the first one, so a stack is first in last out. A queue can be waiting to be seated at a restaurant. The first person to be placed in a queue 
+    is the first one to be seated, you would not seat the last person to join the queue before someone who has been waiting longer. So queues are first in first out.
+    When trying to decide between which to use, ask yourself, do I need to access the most recent item, a stack, or the oldest item, a queue.
+
+Question 5/6(theyre basically the same): If you create a new empty stack and push the values 1, 2, and 3 in that order, and call pop on the stack once, what value will be returned?
+What about a queue?
+    - For a stack with those values and calling pop you would get a value of 3 since it was last to be added. For a queue with those values and calling remove you would get a value of 1,
+    because it was the first to be entered into the queue.
+
+
+Section 14.2
+
+Question 11: Stacks and queues do not have index-based methods such as get from ArrayList. How can you access elements in the middle of the stack or queue?
+    - You would have to use a while loop to remove elements until you reach the middle, storing them temporarily in a similar structure, then put them back to preserve order.
+
+Question 12: Stacks and queues have less functionality than other similar collections like lists and maps. Why are they still useful despite lacking functionality? What possible 
+advantages are there of using a less powerful collection?
+    - The strengths of stacks and queues are in the how they store and "sort" data. In situations where the ordering of the data is important or does not need to be changed. Why would you use 
+    and arrayList and take up more memory and add more room for error when a stack or queue does the ordering you need faster and with less moving parts? They are less error-prone because they 
+    restrict how you access data, which can prevent bugs. They're also often faster for their intended use cases, since you don't need to shift elements around like in a list.
