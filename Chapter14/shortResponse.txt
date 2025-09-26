@@ -10,7 +10,7 @@ Question 2: What is a real-world example of data that could be modeled using a s
     is the first one to be seated, you would not seat the last person to join the queue before someone who has been waiting longer. So queues are first in first out.
     When trying to decide between which to use, ask yourself, do I need to access the most recent item, a stack, or the oldest item, a queue.
 
-Question 5/6(theyre basically the same): If you create a new empty stack and push the values 1, 2, and 3 in that order, and call pop on the stack once, what value will be returned?
+Question 5/6(they're basically the same): If you create a new empty stack and push the values 1, 2, and 3 in that order, and call pop on the stack once, what value will be returned?
 What about a queue?
     - For a stack with those values and calling pop you would get a value of 3 since it was last to be added. For a queue with those values and calling remove you would get a value of 1,
     because it was the first to be entered into the queue.
@@ -26,3 +26,43 @@ advantages are there of using a less powerful collection?
     - The strengths of stacks and queues are in the how they store and "sort" data. In situations where the ordering of the data is important or does not need to be changed. Why would you use 
     and arrayList and take up more memory and add more room for error when a stack or queue does the ordering you need faster and with less moving parts? They are less error-prone because they 
     restrict how you access data, which can prevent bugs. They're also often faster for their intended use cases, since you don't need to shift elements around like in a list.
+
+Section 14.3
+
+Question 20: The following piece of code incorrectly attempts to compute the sum of all positive values in a queue of integers.
+What is wrong with the code, and how would you fix it?
+
+            int sum = 0;
+            while (!q.isEmpty()) {
+                if(q.remove() > 0) {
+                    sum += q.remove();
+                }
+            }
+
+        - Their are two .remove() calls being made per iteration. This will skip every other value regardless of whether it is positive or not. 
+        To fix this you would just:
+
+                    int sum = 0;
+                    while(!q.isEmpty()) {
+                        int n = q.remove();
+                        if(n > 0) {
+                            sum+= n;
+                        }
+                    }
+
+        - If you wanted to preserve order you could use a temp queue.
+
+
+Question 21: The following piece of code incorrectly attempts to remove all even values from a stack of integers. What is wrong with the code,
+and how would you fix it?
+
+            while (!s.isEmpty()) {
+                int n = s.pop();
+                if(n % 2 != 0) {
+                    s.push(n);      // put back in stack if odd.
+                }
+            }
+
+        - When you pop an odd number, you immediately push it back on top of the stack, the next iteration pops that same number again, and since it is still odd it goes right back.
+        This creates an infinite loop for the first odd number found. To fix this you need a temporary stack. Each odd value that is popped will be pushed onto the temp stack. Once the 
+        original stack is empty, you can transfer the odd values back from the temporary stack to preserve order. This way you only keep odds numbers, and you do not get stuck in an infinite loop.
