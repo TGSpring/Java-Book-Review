@@ -1,32 +1,67 @@
-# Java Review: Building Java Programs
+# Java Book Review
 
-## Purpose
-This repository is dedicated to systematically reviewing and reinforcing concepts from the book *Building Java Programs: A Back to Basics Approach* by Stuart Reges. The goal of this effort is to:
-
-1. **Refresh Java Knowledge**: Revisit foundational concepts to strengthen understanding of Java programming and ensure readiness for advanced topics.
-2. **Hands-On Practice**: Work through short-answer questions and programming exercises to solidify learning through practical application.
-3. **Build a Learning Habit**: Develop a consistent routine of studying and applying programming knowledge daily.
-
-## Approach
-- **Section-by-Section Review**: Each session focuses on a specific section of the book, summarizing key ideas and clarifying complex topics.
-- **Interactive Exercises**: Short-answer questions and programming problems from the end of each chapter are solved and analyzed to reinforce comprehension.
-- **Detailed Explanations**: Concepts like `.class` files, `main()` method structure, and error handling are explored with depth and examples.
-
-## Why This Matters
-Revisiting the fundamentals ensures a strong foundation for building more advanced skills in Java programming and software development. This structured review helps to:
-- Retain core concepts that are critical for technical interviews and real-world applications.
-- Improve problem-solving abilities by breaking down questions and finding optimized solutions.
-- Maintain consistency in learning and professional growth.
-
-## Progress Tracking
-Each completed chapter or exercise will be documented in the repository, with solutions and explanations provided for future reference. Current progress:
-- **Chapter 1**: Complete (Short-answer questions underway)
-
-## Next Steps
-The plan is to continue with:
-- Solving end-of-chapter questions for Chapter 1.
-- Progressing to Chapter 2 after mastering Chapter 1 concepts and problems.
+**Author:** Tyler Spring  
+**Purpose:** A comprehensive, hands-on review of *Building Java Programs* through exercises, projects, and notes. Designed as a personal reference, practice repository, and eventually a searchable AI-powered learning resource.
 
 ---
 
-This README serves as a reminder of the importance of continuous learning and provides a roadmap for tackling Java programming challenges effectively.
+## Overview
+
+This repository documents my journey through *Building Java Programs*, covering Chapters 1–15. It includes:
+
+- **Implemented exercises & projects:** Code written directly from the textbook problems, adhering strictly to problem constraints.  
+- **Test files:** Each project includes a corresponding test file to validate functionality.  
+- **Chapter notes & summaries:** Reflections, key concepts, and insights to reinforce understanding.  
+- **Future AI integration:** Eventually, the repo will serve as a searchable reference with AI assistance for queries on Java concepts and project solutions.
+
+---
+
+## Repository Structure
+
+Java-Book-Review/  
+│  
+├─ Chapter01/… # Introductory exercises  
+├─ Chapter02/… # Variables, expressions, and console input/output  
+├─ ...  
+├─ Chapter14/… # Collections and Stack/Queue exercises  
+├─ Chapter15/… # ArrayIntList exercises & tests  
+│  
+├─ Projects/… # Consolidated project implementations across chapters  
+├─ Reviews/… # Notes, summaries, and concept reflections  
+└─ README.md  
+
+---
+
+## Highlights & Learning Goals
+
+- Strict adherence to textbook constraints for each problem.  
+- Emphasis on **understanding over copying**, with detailed notes for each project.  
+- Incremental code complexity: simple exercises → object-oriented programming → collections → custom data structures.  
+- Experimentation with **test-driven learning** (writing test files alongside implementations).  
+- Preparing for **portfolio-quality projects** and interview-ready code examples.  
+
+---
+
+## Current Progress
+
+- **Chapters 1–15 implemented**  
+- **Projects tested and validated**  
+- **Notes and reflections maintained** for each chapter  
+- **Chapter 15 ArrayIntList** added and verified with test output `[10, 20, 30]`  
+
+---
+
+## Future Plans
+
+1. **AI-powered documentation & search portal** – Implement a system to query exercises, code examples, and notes.  
+2. **Portfolio-quality polishing** – Refactor, add Doxygen-style comments, and prepare visual diagrams for complex classes and projects.  
+3. **LinkedIn showcase updates** – Share learning milestones, project outcomes, and coding insights publicly.  
+
+---
+
+## How to Use
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/TGSpring/Java-Book-Review.git
