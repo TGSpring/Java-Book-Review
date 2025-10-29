@@ -1,7 +1,7 @@
 
 // Class ArrayIntList can be used to store a list of integers.
-
 public class ArrayIntList {
+
     private int[] elementData; // list of integers
     private int size; // current number of elements in the list
 
@@ -60,17 +60,17 @@ public class ArrayIntList {
     }
 
     /**
-     * Find and return the last index at which the specified integer appears, or -1
-     * if absent.
-     * 
+     * #### PROBLEM 1 ###### Find and return the last index at which the
+     * specified integer appears, or -1 if absent.
+     *
      * If the value occurs multiple times, the index of the last occurrence is
      * returned.
-     * 
+     *
      * @param value the integer value to search for.
      * @return the index of the last matching element, or -1 if the value is not
-     *         found.
+     * found.
      * @implNote Runs in O(n) time in the worst case by scanning the list end to
-     *           front.
+     * front.
      */
     public int lastIndexOf(int value) {
         for (int i = size - 1; i >= 0; i--) {
@@ -79,6 +79,57 @@ public class ArrayIntList {
             }
         }
         return -1;
+    }
+
+    /**
+     * ###### PROBLEM 2 ######
+     *
+     * Return the index of the last occurrence of the specified value in this
+     * list.
+     *
+     * If the value occurs more than once, the highest index is returned.
+     *
+     * @param value the integer value to search for.
+     * @return the index of the last matching element, or -1 if the value is not
+     * found
+     * @implNote Runs in O(n) time in the worst case by scanning the underlying
+     * array from the end toward the front.
+     */
+    public int indexOfSubList(ArrayIntList other) {
+        if (other == null) {
+            return -1;
+        }
+
+        int n = this.size();
+        int m = other.size();
+
+        //Empty sublist.
+        if (m == 0) {
+            return 0;
+        }
+        //Empty main and sublist.
+        if (m > n) {
+            return -1;
+        }
+
+        //i is the candidate start index in the main list.
+        //j is the offset inside the sublist.
+        //i + j points at the element in the main list that should match sub.get(i).
+        for (int i = 0; i <= n - m; i++) {
+            boolean match = true;
+            for (int j = 0; j < m; j++) {
+                //Comparing element at  i + j with other's j.
+                if (this.elementData[i + j] != other.get(j)) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                return i;
+            }
+        }
+        return -1;
+
     }
 
     // post: returns true if list is empty, false otherwise
