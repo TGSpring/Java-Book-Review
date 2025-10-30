@@ -1,0 +1,85 @@
+THIS IS A REVIEW I ASKED CHAT TO DO AFTER IT READ THE WHOLE CODE BASE
+THIS IS FOR ME AND MY REINFORCEMENT
+TAKE IT AS YOU WILL I DONT CARE
+
+- Java is a strongly typed langauge so every variable must have a declared type.
+
+    int count = 5;
+    double rate = 2.75;
+    String name = "Tyler";
+    boolean done = false;
+
+- Expressions combine values and operators to produce new values.
+
+    int x = 5 + 2 * 3; // 11
+
+    Remember order of operations applies.
+
+- Conditionals are used for decision making:
+
+    if (x > 10) {
+        System.out.println("big number"); 
+    } else {
+        System.out.println("smaller number");
+    }
+
+- Loops are used for repetition.
+
+    for = count based, while = condition based.
+
+    for (int i = 0; i < 5; i++) {
+        System.out.println(i)
+    }
+
+- Methods are reuseable blocks of code. They can take inputs/parameters and return outputs.
+
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    calling:
+        int sum = add(3, 4);
+
+QUIZ:
+
+Q1. What will this print?
+    int a = 3; 
+    int b = 7;
+    System.out.println(a + b * 2)
+
+    ANSWER = 17.
+
+Q2. What's the difference between == and = in Java?
+
+    ANSWER: == is boolean expression = is an assignment.
+
+Q3. What will be the output?
+
+    int n = 10;
+    if (n < 5) {
+        System.out.println("A");
+    } else if (n < 10) {
+        System.out.println("B");
+    } else {
+        System.out.println("C");
+    }
+
+    ANSWER: C
+
+Q4. What does this loop print?
+
+    for (int i = 1; i <= 5; i++) {
+    System.out.print(i + " ");
+    }
+
+    ANSWER: 1, 2, 3, 4, 5
+
+Q5. What does this method return when called with mystery(3)?
+
+        public static int mystery(int x) {
+        int y = x * 2;
+        y = y + 1;
+        return y;
+    }
+
+    ANSWER: 7

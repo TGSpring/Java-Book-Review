@@ -1,5 +1,4 @@
 
-// Class ArrayIntList can be used to store a list of integers.
 public class ArrayIntList {
 
     private int[] elementData; // list of integers
@@ -130,6 +129,64 @@ public class ArrayIntList {
         }
         return -1;
 
+    }
+
+    /**
+     * ###### PROBLEM 3 ######
+     *
+     * Replaces all occurrences of a specified integer value in the list with
+     * another value.
+     *
+     * For example, if a variable called list stores [11, -7, 3, 42, 3, 0, 14,
+     * 3], calling list.replaceAll(3, 999) will change the list to [11, -7, 999,
+     * 42, 999, 0, 14, 999].
+     *
+     * @param oldVal the integer value to be replaced
+     * @param newVal the integer value to replace oldVal with
+     * @implNote Runs in O(n) time by scanning the list once from front to back.
+     * Modifies the list in place; does not return a new list.
+     */
+    public void replaceAll(int oldVal, int newVal) {
+        for (int i = 0; i < size; i++) {
+            if (this.elementData[i] == oldVal) {
+                set(i, newVal);
+            }
+        }
+    }
+
+    /*
+     * ####### PROBLEM 10 ######### 
+     * Returns the length of the longest consecutive non-decreasing sequence 
+     * of integers in the list. 
+     *
+     * For example, if the list stores [1, 3, 5, 2, 9, 7, -3, 0, 42, 308, 17], 
+     * the longest sorted sequence is [ -3, 0, 42, 308 ] with length 4.
+     *
+     * @return the length of the longest non-decreasing consecutive sequence.
+     *         Returns 0 if the list is empty.
+     * @implNote Runs in O(n) time by scanning the list once from front to back.
+     *          Does not modify the underlying list.
+     */
+    public int longestSortedSequence() {
+        if (isEmpty()) {
+            return 0;
+        }
+
+        int maxLength = 1;
+        int curLength = 1;
+
+        for (int i = 1; i < size; i++) {
+            if (elementData[i] >= elementData[i - 1]) {
+                curLength++;
+            } else {
+                curLength = 1;
+            }
+            if (curLength > maxLength) {
+                maxLength = curLength;
+            }
+        }
+
+        return maxLength;
     }
 
     // post: returns true if list is empty, false otherwise

@@ -1,0 +1,74 @@
+THIS IS A REVIEW I ASKED CHAT TO DO AFTER IT READ THE WHOLE CODE BASE
+THIS IS FOR ME AND MY REINFORCEMENT
+TAKE IT AS YOU WILL I DONT CARE
+
+Tier 3: Nested Loops & 2D Arrays
+
+Q1. Predict the output:
+
+    for (int i = 1; i <= 3; i++) {  
+        for (int j = 1; j <= i; j++) {  
+        System.out.print(j + " ");
+    }
+    System.out.println();
+}
+
+ANSWER: 1 
+        1 2 
+        1 2 3
+
+Q2. What prints?
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+        System.out.print(i + j + " ");
+    }
+    System.out.println();
+}
+
+ANSWER: 0 1 2
+        1 2 3
+        2 3 4
+        
+Q3. What does the 2D array print?
+
+    int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+for (int i = 0; i < 3; i++) {
+    for (int j = 2; j >= 0; j--) {
+        System.out.print(matrix[i][j] + " ");
+    }
+    System.out.println();
+}
+
+ANSWER: 3 2 1
+        6 5 4
+        9 8 7
+
+
+Q4. Predict output:
+
+    for (int i = 1; i <= 4; i++) {
+    for (int j = 4; j >= i; j--) {
+        System.out.print("*");
+    }
+    System.out.println();
+}
+
+ANSWER: ****
+        ***
+        **
+        *
+
+Q5. Spot the bug / explain:
+
+    int[][] arr = new int[2][3];
+    arr[0][3] = 5;
+
+ANSWER: Out of bounds, columns only go up to 2 for index.
+        
+

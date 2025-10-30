@@ -1,0 +1,116 @@
+THIS IS A REVIEW I ASKED CHAT TO DO AFTER IT READ THE WHOLE CODE BASE
+THIS IS FOR ME AND MY REINFORCEMENT
+TAKE IT AS YOU WILL I DONT CARE
+
+QUIZ
+
+Q1. What does this print?
+
+    int[] nums = {3, 6, 9};
+    for (int i = 0; i < nums.length; i++) {
+        nums[i] = nums[i] + 1;
+    }
+System.out.println(nums[1]);
+
+ANSWER: 7
+
+Q2. What's wrong with, if anything, with this code?
+
+    int[] list = new int[5];
+    list[5] = 10;
+
+ANSWER: Improper assignment. You gave it a size of 5 then tried to assign 10 to an index that does not exist, it only goes to 4.
+
+Q3. What's printed here?
+
+    int[] data = {2, 4, 6, 8};
+    for (int i = data.length - 1; i >= 0; i -= 2) {
+        System.out.print(data[i] + " ");
+    }
+
+    ANSWER: 8, 4
+
+
+Q4. Predict the output and explain why?
+
+    int[] arr = {10, 20, 30, 40};
+    int total = 0;
+    for (int i = 0; i < arr.length; i++) {
+        total += arr[i];
+        if (arr[i] == 20) {
+            break;
+        }
+    }
+    System.out.println(total);
+
+    ANSWER: 30, the loop breaks at the next value of 20.
+
+
+Q5. Spot the bug:
+
+    int[] a = {1, 2, 3};
+    int[] b = a;
+    b[1] = 99;
+    System.out.println(a[1]);
+
+    ANSWER: Java doesn't copy arrays by default, it copies the reference, memory address.
+            So:
+                a and b both point to the same array in memory.
+                Changing b[1] changes that same shared array.
+                Therefore a[1] becomes 99.
+
+            Only clone() or manual copying makes a new array, otherwise, assignment shares the object.
+
+
+DOING A SECOND QUIZ I DIDNT LIKE HOW I DID THE FIRST TIME.
+
+QUIZ 2
+
+Q1. What prints?
+        int[] arr = {1, 2, 3, 4};
+    for (int i = 0; i < arr.length; i += 2) {
+        arr[i] = arr[i] * 2;
+    }
+    System.out.println(arr[2]);
+
+ANSWER: 6
+
+Q2: Spot the error(if any):
+    int[] nums = new int[3];
+    nums[3] = 5;
+
+ANSWER: Length is 3 but index only goes to 2.
+
+Q3: What prints?
+    int[] data = {5, 10, 15, 20};
+    for (int i = data.length - 2; i >= 0; i -= 2) {
+    System.out.print(data[i] + " ");
+    }
+
+    ANSWER: 15 5
+
+Q4. What does this output?
+
+    int[] arr = {2, 4, 6, 8};
+    int sum = 0;
+    for (int i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    if (arr[i] > 5) {
+        break;
+        }
+    }
+    System.out.println(sum);
+
+    ANSWER: 6, sum of 2 plus 4.
+
+Q5. What prints and why?
+    int[] a = {1, 2, 3};
+    int[] b = a;
+    b[0] = 99;
+    System.out.println(a[0]);
+
+    ANSWER: 99
+
+    
+
+

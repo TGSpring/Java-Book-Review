@@ -64,4 +64,8 @@ Java-Book-Review/
 1. Clone the repository:
 
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/TGSpring/Java-Book-Review.git
+=======
+git clone https://github.com/TGSpring/Java-Book-Review.git
+>>>>>>> e7171bb (progress on chapter 15 and added some basic reviews. Will continue both.)
