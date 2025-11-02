@@ -189,6 +189,31 @@ public class ArrayIntList {
         return maxLength;
     }
 
+
+    /*
+     * ############# PROBLEM 19 ##################
+     * 
+     * Replaces each adjacent pair of elements in the list with a single element
+     * equal to their sum. If the list has an odd number of elements, the last
+     * element remains unchanged.
+     * 
+     * @implNote Runs in O(n) time by scanning the list once from front to back.
+     *      Modifies the list in place using O(1) additional space. 
+     */
+    public void compress() {
+        int newIndex = 0;
+        for (int i = 0; i < size - 1; i += 2) {
+            elementData[newIndex] = elementData[i] + elementData[i + 1];
+            newIndex++;
+        }
+
+        if (size % 2 != 0) {
+            elementData[newIndex] = elementData[size - 1];
+            newIndex++;
+        }
+        size = newIndex;
+    }
+
     // post: returns true if list is empty, false otherwise
     public boolean isEmpty() {
         return size == 0;

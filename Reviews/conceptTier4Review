@@ -1,0 +1,40 @@
+THIS IS A REVIEW I ASKED CHAT TO DO AFTER IT READ THE WHOLE CODE BASE
+THIS IS FOR ME AND MY REINFORCEMENT
+TAKE IT AS YOU WILL I DONT CARE
+
+Tier 4 Algorithms
+
+Q1: Longest Increasing Subsequence
+    Given an array: [3, 10, 2, 1, 20]
+    What's the length of the longest increasing subsequence? How would you reason it out step by step?
+
+        - 2. 3 and 10. You would just have a for loop go over it and a conditional inside that checks if index i + 1 
+        is bigger than the value of index i. If not, it is not increasing, if true, increment a length var.
+
+Q2: Array Pair Sum
+    Given an array [1, 4, 5, 2]  and a target sum 6, which pairs of indices produce this sum?
+    Think systematically.
+
+        - indices (0, 2) and (1, 3) work. You could do a nested for loop and have i iterate over the array with j and save the pairs
+        as the summat to 6. Or you could rework a sorting method like bubble or even selection, but probably overkill here.
+
+Q3: Detect Duplicate
+    You have [1, 3, 4, 2, 3]. How can you detect a duplicate without sorting the array? Walk through your logic.
+
+        - It seems I answered this somewhat with Q2. Nested loops, if i matches any j + 1 indices then save them to a var. Now I
+        am guessing Q2 should be a sorting type answer.
+
+Q4: Reverse Words in String 
+    Given "hello world here", how would you reverse the words(not letters) programmatically? What's the output?
+
+        - Firstly output is just "here world hello". To reverse, assuming it is one string, you could make a loop to read over it 
+        backwards, use a delimited for the spaces and append them to a new string? Then add spaces? Unless you want to read 
+        every char then make a new string that way.
+
+Q5: Max SubArray Sum (Kadane's Algorithm)
+    Given [-2, 1, -3, 4, -1, 2, 1, -5, 4], what is the maximum sum of a contiguous subarray? How do you figure it out 
+    step by step?
+
+        - Keep track of currentSum, the sum of the subarray at the current index, maxSum is the largest.
+        At each element, decide whether to add it to the current subarray or start a new subarray. Update maxSum if currentSum 
+        is bigger than maxSum.
