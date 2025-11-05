@@ -46,8 +46,7 @@ Java-Book-Review/
 
 - **Chapters 1–15 implemented**  
 - **Projects tested and validated**  
-- **Notes and reflections maintained** for each chapter  
-- **Chapter 15 ArrayIntList** added and verified with test output `[10, 20, 30]`  
+- **Notes and reflections maintained** for each chapter
 
 ---
 
