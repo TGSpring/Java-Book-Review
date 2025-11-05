@@ -61,4 +61,36 @@ public class MyArrayList<E> {
             throw new IndexOutOfBoundsException("Index: " + index);
         }
     }
+
+    // I know I can use StringBuilder, but that is not the best way to learn these structures.
+    @Override
+    public String toString() {
+        if (size == 0) {
+            return "[]";
+        } else {
+            String result = "[" + elementData[0];
+            for (int i = 1; i < size; i++) {
+                result += ", " + elementData[i];
+            }
+            result += "]";
+            return result;
+        }
+    }
+
+    // addAll implementation.
+    public void addAll(int index, MyArrayList<E> list) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("index: " + index);
+        }
+        // Shift everything to the right by the length of the incoming list.
+        ensureCapacity(size + list.size());
+        for (int i = size - 1; i >= index; i--) {
+            elementData[i + list.size()] = elementData[i];
+        }
+        for (int i = 0; i < list.size(); i++) {
+            elementData[index + i] = list.get(i);
+        }
+        // Update size.
+        size += list.size();
+    }
 }
