@@ -93,4 +93,51 @@ public class MyArrayList<E> {
         // Update size.
         size += list.size();
     }
+
+    // containsAll implementation
+    // Returns true if every element in list exists somewhere in this list.
+    // Returns false if at least one element in list is missing.
+    public boolean containsAll(MyArrayList<E> list) {
+        for (int i = 0; i < list.size(); i++) {
+            E element = list.get(i);
+            boolean flag = false;
+            for (int j = 0; j < size; j++) {
+                if (elementData[j].equals(element)) {
+                    flag = true; //Found element stop scanning.
+                    break;
+                }
+            }
+            if (!flag) {
+                return false; // this element is missing.
+
+            }
+        }
+        return true;    // all elements found.
+
+    }
+
+    // equals implementation.
+    // returns true if other object is a instanceOf MyArrayList.
+    // returns true if list have same size.
+    // returns true if elements are equal in order.
+    // Using Override due to object class having its own equals method.
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true; // Same reference.
+
+        }
+        if (!(o instanceof MyArrayList<?> other)) {
+            return false;  // wrong type. This avoids casting later, do not do casting if you can help it.
+        }
+        if (this.size != other.size()) {
+            return false; // different sizes not equal.
+        }
+        for (int i = 0; i < size; i++) {
+            if (!elementData[i].equals(other.get(i))) {
+                return false; // mismatch found not equal.
+            }
+        }
+        return true;
+    }
 }

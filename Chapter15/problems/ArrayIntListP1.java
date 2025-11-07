@@ -1,3 +1,4 @@
+
 /*
  * Tyler Spring
  * 10/26/25
@@ -6,9 +7,10 @@
  * For example, if the list stores [1, 18, 2, 7, 18, 39, 18, 40], then the last index of 18 is 6 and the last index of 3 is -1
  */
 public class ArrayIntListP1 {
+
     public static void main(String[] args) {
         ArrayIntList test1 = new ArrayIntList();
-        int[] vals = { 1, 18, 2, 7, 18, 39, 18, 40 };
+        int[] vals = {1, 18, 2, 7, 18, 39, 18, 40};
 
         for (int v : vals) {
             test1.add(v);

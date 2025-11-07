@@ -1,3 +1,4 @@
+
 /*
  * Tyler Spring
  * 10/29/25
@@ -7,7 +8,6 @@
  * For example, if variables called list1 and list2 store [11, -7, 3, 42, 0, 14] and [3, 42, 0], respectively, 
  * the call of list1.indexOfSubList(list2) should return 2.
  */
-
 public class ArrayIntListP2 {
 
     public static void main(String[] args) {

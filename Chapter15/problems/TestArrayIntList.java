@@ -1,5 +1,6 @@
 
 public class TestArrayIntList {
+
     public static void main(String[] args) {
         ArrayIntList list = new ArrayIntList();
 
