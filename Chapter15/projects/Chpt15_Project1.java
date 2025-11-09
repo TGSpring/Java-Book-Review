@@ -84,7 +84,62 @@ public class Chpt15_Project1<E> {
         System.out.println("List 1 equals List 4? " + eList1.equals(eList4));
         System.out.println("List 1 equals a String? " + eList1.equals("ABCD")); // This is to test same type.
         System.out.println("List 2 equals List 5? " + eList2.equals(eList5) + "\n");
+
+        // Testing lastIndexOf.
+        MyArrayList<String> lastList1 = new MyArrayList<>();
+        lastList1.add("A");
+        lastList1.add("B");
+        lastList1.add("A");
+        lastList1.add("C");
+        lastList1.add("A");
+
+        System.out.println("Last index of A: " + lastList1.lastIndexOf("A"));
+        System.out.println("Last index of A: " + lastList1.lastIndexOf("B"));
+        System.out.println("Last index of A: " + lastList1.lastIndexOf("Z") + "\n");
+
+        // Testing remove.
+        MyArrayList<String> list = new MyArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
+
+        System.out.println("Original list: " + list);
+
+        // Remove middle element
+        System.out.println("Removing 'C': " + list.remove("C"));
+        System.out.println("List after removing 'C': " + list);
+
+        // Remove first element
+        System.out.println("Removing 'A': " + list.remove("A"));
+        System.out.println("List after removing 'A': " + list);
+
+        // Remove last element
+        System.out.println("Removing 'E': " + list.remove("E"));
+        System.out.println("List after removing 'E': " + list);
+
+        // Remove element that doesn't exist
+        System.out.println("Removing 'Z': " + list.remove("Z"));
+        System.out.println("List after attempting to remove 'Z': " + list + "\n");
+
+        // Testing removeAll
+        MyArrayList<String> rAList = new MyArrayList<>();
+        rAList.add("2");
+        rAList.add("5");
+        rAList.add("3");
+        rAList.add("2");
+        rAList.add("1");
+
+        MyArrayList<String> rAList2 = new MyArrayList<>();
+        rAList2.add("2");
+        rAList2.add("5");
+
+        rAList.removeAll(rAList2);
+        System.out.println("Calling removeAll " + rAList + "\n");
+
     }
+
 }
 /*
  * I WILL BE DOING COMPLEXITY ANALYSIS IN THIS FILE RATHER THAN THE GENERIC ONE JUST FOR CLUTTER SAKE.
@@ -138,4 +193,60 @@ public class Chpt15_Project1<E> {
  *      - Uses only a few local variables i and other.
  *      - No additional arrays or data structures are created.
  *      - Space Complexity = O(1) constant.
+ * 
+ * 
+ * - lastIndexOf
+ * TIME
+ *      - Worst case: The element is not present or at the start of the list, loop runs through all n elements.
+ *              O(n).
+ *      - Best case: The element is at the last position, loop returns immediately.
+ *              O(1).
+ *      - Average case: On average, element appears in the middle, loop runs n/2 times.
+ *              O(n).
+ * 
+ * SPACE
+ *      - Only few variables are used, i.
+ *      - No extra arrays or objects created.
+ *      - Space Complexity = O(1).
+ * 
+ * - remove
+ * TIME
+ *          Finding element
+ *      - In the worst case, o is not in the list or is at the last index, so you scan all size elements.
+ *              O(n), n = size of the list.
+ * 
+ *          Shifting elements
+ *      - In the worst case, you remove the first element, so you shift all remaining size - 1 elements.
+ *              O(n).
+ * 
+ *      Worst case: O(n) + O(n) = O(n), still linear, constants ignored.
+ *      Best case: removing the last element, no shifting, O(n) still for scanning.
+ * 
+ * SPACE
+ *      - Only use few extra variables i, j.
+ *      - No new arrays are allocated.
+ *      - Space complexity = O(1), constant.
+ * 
+ *  - removeAll
+ * TIME
+ *      - Iterates over list.
+ *      - m = list.size().
+ *      - outer loop runs m times.
+ * 
+ *      - this.remove(elementToRemove) searches for the element in your list, size = n.
+ *      In worst case:
+ *           - remove does a linear scan through the list to find the element = O(n).
+ *           - After finding it, it shifts all elements after it left by 1 = O(n).
+ *           - So each remove call is  O(n).
+ *      - If the element occurs k times in this list, the inner while loop calls remove k times.
+ *          - Total cost for one element = O(n * k).
+ * 
+ *      - If list has m elements and each element occurs up to k_i times in your list of size n:
+ *              O(i=1∑m​ki​⋅n)≤O(m⋅n2) (i am not learning how to format that for this, just figure it out.)
+ * 
+ *      - Worst case is every element in list occurs everywhere in your list.
+ *      - Then removeAll - O(m * n^2).
+ * 
+ * SPACE
+ *      - Only few variables i, elementToRemove, = O(1).
  */

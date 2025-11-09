@@ -140,4 +140,54 @@ public class MyArrayList<E> {
         }
         return true;
     }
+
+    /*  lastIndexOf implementation.
+        Finds and returns the last index at which the 
+        specified integer appears, or -1 if absent.
+        If value occurs multiple times, the index of the last 
+        occurrence is returned.
+        Iterates backwards to find true "last" occurrence.
+        Using .equals for object types.
+     */
+    public int lastIndexOf(Object o) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (elementData[i].equals(o)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /*
+     * remove implementation
+     * Removes value at the given index, shifting values left.
+     */
+    public boolean remove(Object o) {
+        for (int i = 0; i < size; i++) {
+            if ((o == null && elementData[i] == null) || (o != null && o.equals(elementData[i]))) {
+                // Shift elements.
+                for (int j = i; j < size - 1; j++) {
+                    elementData[j] = elementData[j + 1];
+                }
+                elementData[size - 1] = null; // clearing last slot.
+                size--;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*
+     * removeAll implementation.
+     */
+    public void removeAll(MyArrayList<E> list) {
+        for (int i = 0; i < list.size(); i++) {
+            E elementToRemove = list.get(i);
+
+            while (this.remove(elementToRemove)) {
+                // While this seems like odd syntax, it is a iteration, conditional, and call in one declaration.
+            }
+        }
+    }
 }
