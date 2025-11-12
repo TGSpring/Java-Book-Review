@@ -190,4 +190,26 @@ public class MyArrayList<E> {
             }
         }
     }
+
+    // retainAll implementation
+    // Here I learned that for my remove method to work it needed to be passed E not index based i.
+    // Print statements were for debugging. Use if you want.
+    public void retainAll(MyArrayList<E> list) {
+        for (int i = size - 1; i >= 0; i--) {
+            E elementToRetain = get(i);
+            boolean flag = false;
+            for (int j = 0; j < list.size(); j++) {
+                //System.out.println("Comparing " + elementToRetain + " with " + list.get(j));
+                if (elementToRetain.equals(list.get(j))) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                //System.out.println("Removing " + elementToRetain);
+                remove(elementToRetain);
+            }
+
+        }
+    }
 }

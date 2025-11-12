@@ -11,7 +11,7 @@
  * public int lastIndexOf(Object o)
  * public boolean remove(Object o)
  * public void removeAll(ArrayList<E> list)
- * public void retainAll(ArrayList<E>)
+ * public void retainAll(ArrayList<E> list)
  * public Object[] toArray()
  */
 public class Chpt15_Project1<E> {
@@ -138,6 +138,23 @@ public class Chpt15_Project1<E> {
         rAList.removeAll(rAList2);
         System.out.println("Calling removeAll " + rAList + "\n");
 
+        // Testing retainAll
+        MyArrayList<String> retainList = new MyArrayList<>();
+        retainList.add("A");
+        retainList.add("B");
+        retainList.add("C");
+        retainList.add("D");
+        retainList.add("E");
+
+        MyArrayList<String> toKeep = new MyArrayList<>();
+        toKeep.add("B");
+        toKeep.add("D");
+        toKeep.add("X"); // X isn’t in retainList
+
+        System.out.println("Original list: " + retainList);
+        retainList.retainAll(toKeep);
+        System.out.println("After retainAll(toKeep): " + retainList + "\n");
+
     }
 
 }
@@ -249,4 +266,29 @@ public class Chpt15_Project1<E> {
  * 
  * SPACE
  *      - Only few variables i, elementToRemove, = O(1).
+ * 
+ *  - retainAll
+ * TIME
+ *      - outer loop:
+ *          - iterates over each element in the main list.
+ *          - size of main list = n.
+ *          - O(n) iterations.
+ * 
+ *      - inner loop:
+ *          - iterates over list parameter to check if elementToRetain exists.
+ *          - size of param list = m.
+ *          - Worst case, compares all m elements for each outer iteration O(m).
+ * 
+ *      - Remove operation:
+ *          - remove(Object o) itself does a linear search and shifts elements left.
+ *          - In worst case, removing an element at the start requires shifting n elements O(n).
+ *          - only happens for elements not in the retain list.
+ *          - Worst case: all elements are removed, the remove call dominates O(n) per removal.
+ * 
+ *       - Best: O(n * m)
+ *       - Worst: O(n^2)
+ * 
+ * SPACE
+ *      - Only using few extra variables flag, elementToRetain, i, j.
+ *      - O(1).
  */
