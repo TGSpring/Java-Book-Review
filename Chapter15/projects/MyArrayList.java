@@ -212,4 +212,13 @@ public class MyArrayList<E> {
 
         }
     }
+
+    // toArray() implementation
+    public Object[] toArray() {
+        Object[] res = new Object[size];
+        for (int i = 0; i < size; i++) {
+            res[i] = elementData[i];
+        }
+        return res;
+    }
 }

@@ -14,6 +14,9 @@
  * public void retainAll(ArrayList<E> list)
  * public Object[] toArray()
  */
+
+import java.util.Arrays;
+
 public class Chpt15_Project1<E> {
 
     public static void main(String[] args) {
@@ -155,6 +158,15 @@ public class Chpt15_Project1<E> {
         retainList.retainAll(toKeep);
         System.out.println("After retainAll(toKeep): " + retainList + "\n");
 
+        // Testing toArray
+        MyArrayList<String> toArr = new MyArrayList<>();
+        toArr.add("A");
+        toArr.add("B");
+        toArr.add("E");
+
+        Object[] arr = toArr.toArray();
+        System.out.println("To array method: " + Arrays.toString(arr));
+
     }
 
 }
@@ -291,4 +303,10 @@ public class Chpt15_Project1<E> {
  * SPACE
  *      - Only using few extra variables flag, elementToRetain, i, j.
  *      - O(1).
+ * 
+ *  - toArray 
+ * TIME 
+ *      - O(n), only copy each element once.
+ * SPACE
+ *      - O(n), allocate new array of size n.
  */
