@@ -1,8 +1,12 @@
 
+import java.util.ConcurrentModificationException;
+
 public class MyArrayList2<E> {
 
     private E[] elementData; // underlying array.
     private int size;       // number of elements.
+
+    private int modCount = 0; // tracks structural mods. Helping to keep lists in-sync.
 
     // Default initial capacity
     private static final int DEFAULT_CAPACITY = 10;
@@ -62,6 +66,7 @@ public class MyArrayList2<E> {
     public void add(E element) {
         ensureCapacity(size + 1);
         elementData[size++] = element;
+        modCount++; // increment for structural change
     }
 
     // Adds element at specific index.
@@ -73,6 +78,7 @@ public class MyArrayList2<E> {
         }
         elementData[index] = element;
         size++;
+        modCount++; // increment for structural change
     }
 
     // INTEGER
@@ -83,6 +89,7 @@ public class MyArrayList2<E> {
         for (int i = index; i < size - 1; i++) {
             elementData[i] = elementData[i + 1];
         }
+        modCount++; // increment for structural change
         elementData[--size] = null; // Avoid memory leak. GC only works on objects with NO refs to them.
         return removed;
     }
@@ -98,6 +105,7 @@ public class MyArrayList2<E> {
                 }
 
                 elementData[--size] = null; // clear last element.
+                modCount++; // increment for structural change
                 return true;                // finished removing.
             }
         }
@@ -122,6 +130,7 @@ public class MyArrayList2<E> {
         for (int i = 0; i < size; i++) {
             elementData[i] = null; // Free references for GC.
         }
+        modCount++; // increment for structural change
         size = 0;
     }
 
@@ -170,4 +179,130 @@ public class MyArrayList2<E> {
         return sb.toString();
     }
 
+    // Needed because Java does not allow access directly to subClass given it is private.
+    public SubList subList(int fromIndex, int toIndex) {
+        return new SubList(this, fromIndex, toIndex);
+    }
+
+    //Finally implementing the subList.
+    private class SubList extends MyArrayList2<E> {
+
+        private final MyArrayList2<E> parent;
+        private final int offSet;
+        private int subSize;
+
+        private int expectedModCount;
+
+        SubList(MyArrayList2<E> parent, int fromIndex, int toIndex) {
+            if (fromIndex < 0 || toIndex > parent.size() || fromIndex > toIndex) {
+                throw new IndexOutOfBoundsException("fromIndex: " + fromIndex + ", toIndex: " + toIndex);
+            }
+            this.parent = parent;
+            this.offSet = fromIndex;
+            this.subSize = toIndex - fromIndex;
+            this.expectedModCount = parent.modCount; // snapshot of parent state
+        }
+
+        @Override
+        public E get(int index) {
+            checkForComod();
+            checkSubIndex(index);
+            return parent.get(offSet + index);
+        }
+
+        @Override
+        public E set(int index, E element) {
+            checkForComod();
+            checkSubIndex(index);
+            return parent.set(offSet + index, element);
+        }
+
+        @Override
+        public void add(int index, E element) {
+            checkForComod();
+            checkSubAddIndex(index);
+            parent.add(offSet + index, element);
+            subSize++;
+            expectedModCount = parent.modCount; // update snapshot
+        }
+
+        @Override
+        public E remove(int index) {
+            checkForComod();
+            checkSubIndex(index);
+            E removed = parent.removeAtIndex(offSet + index);
+            subSize--;
+            expectedModCount = parent.modCount; // update snapshot
+            return removed;
+        }
+
+        @Override
+        public int size() {
+            return subSize;
+        }
+
+        @Override
+        public void clear() {
+            checkForComod();
+            for (int i = subSize - 1; i >= 0; i--) {
+                parent.removeAtIndex(offSet + i);
+            }
+            subSize = 0;
+            expectedModCount = parent.modCount; // update snapshot
+        }
+
+        private void checkSubIndex(int index) {
+            if (index < 0 || index >= subSize) {
+                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + subSize);
+            }
+        }
+
+        private void checkSubAddIndex(int index) {
+            if (index < 0 || index > subSize) {
+                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + subSize);
+            }
+        }
+
+        // Optionally adding these three in.
+        @Override
+        public int indexOf(Object o) {
+            checkForComod();
+            for (int i = 0; i < subSize; i++) {
+                if (o == null ? parent.get(offSet + i) == null : o.equals(parent.get(offSet + i))) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        @Override
+        public boolean contains(Object o) {
+            checkForComod();
+            return indexOf(o) >= 0;
+        }
+
+        private void checkForComod() {
+            if (parent.modCount != expectedModCount) {
+                throw new ConcurrentModificationException("Parent list modified outside of sublist.");
+            }
+        }
+
+        @Override
+        public String toString() {
+            if (size == 0) {
+                return "[]";
+            }
+
+            StringBuilder sb = new StringBuilder("[");
+            for (int i = 0; i < subSize; i++) {
+                sb.append(parent.get(offSet + i));
+                if (i < subSize - 1) {
+                    sb.append(", ");
+                }
+            }
+            sb.append("]");
+            return sb.toString();
+        }
+
+    }
 }
