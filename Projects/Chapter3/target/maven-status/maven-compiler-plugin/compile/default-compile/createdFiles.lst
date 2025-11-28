@@ -1,5 +1,13 @@
+DateFormatter.class
+PWMGUI.class
+ReportGen.class
 Expense.class
+PasswordManager.class
 Loan.class
 SmartFin.class
 LoanCalculator.class
+nbTrainer.class
+DataPrep.class
+predictCat.class
 ExpenseTracker.class
+SavingsGoalEst.class
