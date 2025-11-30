@@ -1,8 +1,10 @@
+
+import java.util.NoSuchElementException;
+
 /*
 Source code provided from text.
 All programming questions will be methods added to this file.
  */
-
 //Class LinkedIntList can be used to store a list of integers.
 public class linkedIntList {
 
@@ -107,6 +109,47 @@ public class linkedIntList {
     //Book did not provide ListNode code so this is my implementation.
     //Was declared static due to not needing a ref to outer LinkedIntList instance.
     private ListNode front; // first value in the list.
+
+    /**
+     * Replaces the value stored at the given index with the provided value.
+     *
+     * Precondition: 0 <= index < size() This method does NOT create new nodes
+     * or modify links. It simply finds the existing node at the given index and
+     * updates its data field. @param index @param value
+     */
+    void set(int index, int value) {
+        ListNode current = nodeAt(index); // locate the node (reference to existing object).
+        current.data = value;             // mutate the node's data.
+    }
+
+    /**
+     * Returns the smallest integer stored in the list. Precondition: The list
+     * is non-empty.
+     *
+     * This method traverses the list node by node using a reference to each
+     * node. It does not modify the list or its nodes, only reads the data
+     * values.
+     *
+     * @return the minimum integer in the list.
+     * @throws NoSuchElementException if the list is empty.
+     */
+    public int min() {
+        if (front == null) {
+            throw new NoSuchElementException("List is empty.");
+        }
+
+        int min = front.data;
+        ListNode current = front.next; // Already used in front.data for min.
+
+        while (current != null) {
+            if (current.data < min) {
+                min = current.data; // update if smaller.
+            }
+            current = current.next; // move to next node.
+
+        }
+        return min;
+    }
 
     private static class ListNode {
 
