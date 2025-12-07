@@ -151,6 +151,29 @@ public class linkedIntList {
         return min;
     }
 
+    /**
+     * Returns true if the list contains any pair of adjacent nodes whose data
+     * values differ by exactly 1. (consecutive).
+     *
+     * The list must have at least two nodes to contain a consecutive pair.
+     * Traverses from the front toward the end, comparing each node with its
+     * next node.
+     *
+     * @return true if any adjacent pair is consecutive; false otherwise.
+     */
+    public boolean hasTwoConsecutive() {
+        // A list with 0 or 1 element cannot contain a consecutive pair.
+        ListNode current = front;
+        // Stop at second-to-last node so current.next is always valid.
+        while (current != null && current.next != null) {
+            if (Math.abs(current.data - current.next.data) == 1) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
     private static class ListNode {
 
         private int data;
