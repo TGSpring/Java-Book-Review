@@ -174,6 +174,77 @@ public class linkedIntList {
         return false;
     }
 
+    /**
+     * stretch method
+     *
+     * Replaces each node in the list with n copies of itself.
+     *
+     * If n <= 0, the list becomes empty. Traverses the list using a current
+     * pointer. For each node, inserts n-1 copies immediately after it. Uses a
+     * temp pointer to remember the original next node. so traversal continues
+     * correctly after inserting duplicates.
+     *
+     * 1. Only the data values are duplicated; no other node links are modded.
+     * 2. Insert happens "in-place" without using add() to maintain order. 3.
+     * Handles all nodes and respects the factor n correctly.
+     *
+     * @param n The factor by which to duplicate each element.
+     */
+    public void stretch(int n) {
+        if (n <= 0) {
+            front = null;
+            return;
+        }
+        ListNode current = front;
+        while (current.next != null) {
+            ListNode temp = current.next;
+
+            // Insertion loop.
+            for (int i = n - 1; i > 0; i--) {
+                // Creates a new node with the same data and links it to the old current.next.
+                current.next = new ListNode(current.data, current.next);
+
+                // Moves pointer into newly created copy so the next iteration adds after it.
+                current = current.next;
+            }
+            // temp holds the original next node so we don't get stuck in duplicates.
+            current = temp;
+        }
+    }
+
+    /**
+     * transferFrom method.
+     *
+     * Attaches all nodes form the given other list to the end of this list.
+     *
+     * Does not create any new nodes; only mods the next pointers. After the
+     * operation, the other list is emptied (front set to null). Handles all
+     * edge cases: 1. This list is empty -> simply points front to the other
+     * list's front. 2. Other list is empty -> no changes to this list.
+     * Traverses this list to find the last node before linking. Preserves the
+     * original order of both lists.
+     *
+     * @param other The linked list whose elements are transferred to the end of
+     * this list.
+     */
+    public void transferFrom(linkedIntList other) {
+        if (this.front == null) {
+            this.front = other.front;
+            return;
+        }
+
+        if (other.front == null) {
+            return;
+        }
+
+        ListNode current = this.front;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = other.front;
+        other.front = null;
+    }
+
     private static class ListNode {
 
         private int data;

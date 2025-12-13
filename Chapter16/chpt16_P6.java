@@ -18,7 +18,7 @@ public class chpt16_P6 {
         list.add(18);
         list.add(2);
         list.add(7);
-        list.add(8);      // <-- consecutive pair (7, 8)
+        list.add(8);      // consecutive pair (7, 8)
         list.add(39);
         list.add(18);
         list.add(40);
