@@ -245,6 +245,39 @@ public class linkedIntList {
         other.front = null;
     }
 
+    /**
+     * Removes all occurrences of the given value from the list.
+     *
+     * This method mods the list in place by updating node links. No new nodes
+     * are created.
+     *
+     * First, any matching values at the front of the list are removed by
+     * advancing the front reference. Then the rest of the list is traversed,
+     * and whenever a node's next value matches teh target, that node is skipped
+     * by relinking current.next to current.next.next.
+     *
+     * If the list is empty of no values match, the list remains unchanged.
+     *
+     * @param value the value to remove from the list.
+     */
+    void removeAll(int value) {
+        // Edge case testing. 
+        while (front != null && front.data == value) {
+            front = front.next;
+        }
+
+        ListNode current = front;
+        while (current.next != null) {
+            if (current.next.data == value) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+
+        }
+
+    }
+
     private static class ListNode {
 
         private int data;
