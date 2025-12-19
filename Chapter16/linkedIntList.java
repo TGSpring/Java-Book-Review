@@ -278,6 +278,62 @@ public class linkedIntList {
 
     }
 
+    /**
+     * Removes all nodes at even-number indexes from this list and returns them
+     * in a new list. The original list is modified to contain only the nodes at
+     * odd-number indexes. The relative order of nodes is preserved in both
+     * lists.
+     *
+     * For example: given list1 storing [8, 13, 17, 4, 9, 12]: - After calling
+     * linkedIntList list2 = list1.removeEvens(); - list1 stores [13, 4, 9]
+     * (odd-indexed nodes). - list2 stores [8, 17, 12] (even-indexed nodes).
+     *
+     * No new nodes are created; the method rearranges the existing links.
+     *
+     * @return a new linkedIntList containing the even-indexed nodes.
+     */
+    linkedIntList removeEvens() {
+        linkedIntList result = new linkedIntList();
+
+        // Empty list and 1 index check.
+        if (front == null || front.next == null) {
+            result.front = front; // Safer even if the front is null.
+            front = null;         // Original list becomes empty.
+            return result;
+        }
+
+        // First node is always even-indexed so it is pre-set.
+        result.front = this.front;
+
+        ListNode tail = result.front;
+
+        // Original list skips the first node.
+        ListNode current = this.front.next;
+        this.front = current;
+
+        while (current != null && current.next != null) {
+
+            // Save next even-indexed node.
+            ListNode nextEven = current.next.next;
+
+            // Move the even-indexed node to result.
+            tail.next = current.next;
+            tail = tail.next;
+
+            // Skip the moved node in the original list.
+            current.next = nextEven;
+
+            // Advance current in original list.
+            current = nextEven;
+        }
+
+        // Nullify current from original.
+        tail.next = null;
+
+        return result;
+
+    }
+
     private static class ListNode {
 
         private int data;
