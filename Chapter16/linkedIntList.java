@@ -334,6 +334,43 @@ public class linkedIntList {
 
     }
 
+    /**
+     * Removes range of nodes from the list, from index 'Start' to 'end'
+     * (inclusive)
+     *
+     * @param start the starting index of the range to remove.
+     * @param end the ending index of the range to remove.
+     * @throws IllegalArgumentException if start or end is negative.
+     *
+     * The method works by keeping two pointers: - pre: the node immediately
+     * before the start of the range. - endNode: the node immediately after the
+     * end of the range. After locating these nodes, the method unlinks the
+     * range from the list.
+     */
+    void removeRange(int start, int end) {
+        if (start < 0 || end < 0) {
+            throw new IllegalArgumentException("invalid range.");
+        }
+
+        ListNode prev = null;   // Node before start.
+        ListNode endNode = front; // Node after end, will advance.
+
+        // Advance prev and endNode to correct positions.
+        for (int i = 0; i <= end; i++) {
+            if (i < start) {
+                prev = endNode; // Last node before start.
+            }
+            endNode = endNode.next; // Move towards node after end.
+        }
+
+        // If removing from the front, update front.
+        if (start == 0) {
+            front = endNode;    // Remove from front.
+        } else {
+            prev.next = endNode;    // Unlink range.
+        }
+    }
+
     private static class ListNode {
 
         private int data;
