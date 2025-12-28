@@ -371,6 +371,63 @@ public class linkedIntList {
         }
     }
 
+    void rotate() {
+        // Edge validation first.
+        if (front == null || front.next == null) {
+            return;
+        }
+
+        // Node being rotated.
+        ListNode oldFront = front;
+
+        // Node to walk to tail.
+        ListNode current = front;
+
+        // Traverse the list until end.
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        // Updating new front to second node in list.
+        front = front.next;
+
+        // Link current tail node to the old front node.
+        current.next = oldFront;
+
+        // Sever link from old front node to the rest of the list.
+        // Prevents a cycle forming after appending.
+        oldFront.next = null;
+
+    }
+
+    void reverse() {
+        // Pointer to the previous node (starts as null.)
+        ListNode prev = null;
+
+        // Pointer used to traverse the list.
+        ListNode current = front;
+
+        // Traverse the list, reversing links as we go.
+        // IMPORTANT, normally it is current.next != null, not the case when reversing.
+        while (current != null) {
+            // Save the next node before breaking the link.
+            ListNode next = current.next;
+
+            // Reverse the current node's next reference. First run is null, picturing this helps.
+            current.next = prev;
+
+            // Advance prev to the current node. 
+            prev = current;
+
+            // Advance current to the saved next node;
+            current = next;
+        }
+
+        // Update front to the new head of the reversed list.
+        front = prev;
+
+    }
+
     private static class ListNode {
 
         private int data;
