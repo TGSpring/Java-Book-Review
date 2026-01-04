@@ -164,7 +164,7 @@ public class linkedIntList {
     public boolean hasTwoConsecutive() {
         // A list with 0 or 1 element cannot contain a consecutive pair.
         ListNode current = front;
-        // Stop at second-to-last node so current.next is always valid.
+        // Stop at second-to-node so current.next is always valid.
         while (current != null && current.next != null) {
             if (Math.abs(current.data - current.next.data) == 1) {
                 return true;
