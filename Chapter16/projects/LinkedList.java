@@ -1,4 +1,7 @@
 
+import java.util.List;
+import java.util.Objects;
+
 public class LinkedList<E> {
 
     private Node front; // reference to the first node.
@@ -241,4 +244,104 @@ public class LinkedList<E> {
         }
 
     }
+
+    /**
+     * Equals method. Compares the specified object with this list for equality.
+     * Returns true if and only if the specified object is also a list, both
+     * lists have the same size, and all corresponding pairs of elements in the
+     * two lists are equal and in the same order.
+     *
+     * @param o the object to be compared for equality with this list.
+     * @return true if the specified object is equal to this list.
+     *
+     * @implNote If o is not an instance of List, return false. if the sizes of
+     * the two lists differ, return false. Traverse both lists simultaneously,
+     * comparing each pair of elements using equals(). If any pair of elements
+     * is not equal, return false immediately. If all elements match and
+     * traversal completes, return true. Runs in O(n) time were n is the size of
+     * the list.
+     */
+    public boolean equals(Object o) {
+
+        if (!(o instanceof List)) {
+            return false;
+        }
+        // Casting to usable type.
+        List<?> other = (List<?>) o;
+
+        if (this.size != other.size()) {
+            return false;
+        }
+
+        Node current = front;
+        int index = 0;
+
+        while (current != null) {
+            if (!Objects.equals(current.data, other.get(index))) {
+                return false;
+
+            }
+            current = current.next;
+            index++;
+        }
+
+        return true;
+    }
+
+    /**
+     * Appends all elements from the given list to the end of this list.
+     *
+     * @param other the LinkedList whose elements are added to the end of this
+     * list.
+     *
+     * @implNote - If this list is empty, simply set 'front' to point to the
+     * first node of 'other'. - Otherwise, traverse to the last node of this
+     * list and link its 'next' reference to the first node of 'other'. - The
+     * 'size' of this list is incremented by the number of elements in 'other'.
+     * - This operation runs in O(n + m) time, where n is this.size() and m is
+     * other.size(). - No new nodes are created; the method reuses the existing
+     * nodes from 'other'.
+     */
+    public void addAll(int index, List<E> list) {
+
+        if (list.isEmpty()) {
+            return;
+        }
+        if (index == 0) {
+            Node newFront = new Node(list.get(0));
+            Node lastNew = newFront;
+
+            for (int i = 1; i < list.size(); i++) {
+                lastNew.next = new Node(list.get(i));
+                lastNew = lastNew.next;
+            }
+
+            lastNew.next = front;
+            front = newFront;
+            size += list.size();
+            return;
+
+        }
+
+        Node current = front;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.next;
+        }
+
+        Node after = current.next;
+        Node firstNew = new Node(list.get(0));
+        Node lastNew = firstNew;
+
+        for (int i = 1; i < list.size(); i++) {
+            lastNew.next = new Node(list.get(i));
+            lastNew = lastNew.next;
+        }
+
+        current.next = firstNew;
+        lastNew.next = after;
+
+        size += list.size();
+
+    }
+
 }

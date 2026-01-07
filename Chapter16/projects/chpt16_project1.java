@@ -1,7 +1,4 @@
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Tyler Spring 12/28/2025 Chapter 16 Project 1 The actual List interface in
  * java.util package has several methods beyond the ones implemented in this
@@ -101,5 +98,78 @@ public class chpt16_project1 {
         System.out.println("After retainAll:  " + list6);
         System.out.println("Size: " + list6.size() + "\n");
 
+        System.out.println("\nEquals Test.");
+        LinkedList<Integer> list7 = new LinkedList<>();
+        list7.add(7);
+        list7.add(8);
+        list7.add(9);
+
+        LinkedList<Integer> list8 = new LinkedList<>();
+        list8.add(7);
+        list8.add(8);
+        list8.add(9);
+
+        LinkedList<Integer> list9 = new LinkedList<>();
+        list9.add(7);
+        list9.add(8);
+        list9.add(10);
+
+        LinkedList<Integer> listEmpty = new LinkedList<>();
+
+        System.out.println("list7 equals list8: " + list7.equals(list8)); // true
+        System.out.println("list7 equals list9: " + list7.equals(list9)); // false
+        System.out.println("list7 equals listEmpty: " + list7.equals(listEmpty)); // false
+        System.out.println("listEmpty equals new empty: " + listEmpty.equals(new LinkedList<>())); // true
+
+        System.out.println("list7 equals java.util.List: " + list7.equals(java.util.List.of(7, 8, 9))); // true
+        System.out.println("list7 equals null: " + list7.equals(null) + "\n"); // false
+
+        System.out.println("\naddAll Test.");
+        LinkedList<Integer> list10 = new LinkedList<>();
+        list10.add(1);
+        list10.add(2);
+        list10.add(5);
+        list10.add(6);
+
+        java.util.List<Integer> toAdd = java.util.List.of(3, 4);
+
+        System.out.println("Before addAll: " + list10);
+        list10.addAll(2, toAdd); // insert at index 2
+        System.out.println("After addAll:  " + list10);
+        System.out.println("Expected:     [1, 2, 3, 4, 5, 6]");
+        System.out.println("Size: " + list10.size());
+
+        LinkedList<Integer> list11 = new LinkedList<>();
+        list11.add(5);
+        list11.add(6);
+        java.util.List<Integer> toAdd2 = java.util.List.of(1, 2, 3, 4);
+
+        System.out.println("Before addAll (prepend): " + list11);
+        list11.addAll(0, toAdd2); // insert at front
+        System.out.println("After addAll (prepend):  " + list11);
+        System.out.println("Expected:                [1, 2, 3, 4, 5, 6]");
+        System.out.println("Size: " + list11.size() + "\n");
+
+        LinkedList<Integer> list12 = new LinkedList<>();
+        list12.add(1);
+        list12.add(2);
+        java.util.List<Integer> toAdd3 = java.util.List.of(3, 4);
+
+        System.out.println("Before addAll (append): " + list12);
+        list12.addAll(list12.size(), toAdd3); // insert at end
+        System.out.println("After addAll (append):  " + list12);
+        System.out.println("Expected:              [1, 2, 3, 4]");
+        System.out.println("Size: " + list12.size() + "\n");
+
+        LinkedList<Integer> list13 = new LinkedList<>();
+        list13.add(1);
+        list13.add(2);
+        java.util.List<Integer> empty = java.util.List.of();
+
+        System.out.println("Before addAll (empty list): " + list13);
+        list13.addAll(1, empty); // nothing to insert
+        System.out.println("After addAll (empty list):  " + list13);
+        System.out.println("Expected:                   [1, 2]");
+        System.out.println("Size: " + list13.size() + "\n");
     }
 }
