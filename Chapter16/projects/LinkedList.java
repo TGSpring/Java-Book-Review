@@ -263,29 +263,29 @@ public class LinkedList<E> {
      */
     public boolean equals(Object o) {
 
-        if (!(o instanceof List)) {
-            return false;
+        if (o == this) {
+            return true;
         }
-        // Casting to usable type.
-        List<?> other = (List<?>) o;
-
-        if (this.size != other.size()) {
+        if (o == null) {
             return false;
         }
 
-        Node current = front;
-        int index = 0;
-
-        while (current != null) {
-            if (!Objects.equals(current.data, other.get(index))) {
+        if (o instanceof LinkedList<?> otherList) {
+            if (this.size != otherList.size()) {
                 return false;
-
             }
-            current = current.next;
-            index++;
-        }
 
-        return true;
+            Node current = this.front;
+            for (int i = 0; i < size; i++) {
+                if (!Objects.equals(current.data, otherList.get(i))) {
+                    return false;
+                }
+                current = current.next;
+            }
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -342,6 +342,31 @@ public class LinkedList<E> {
 
         size += list.size();
 
+    }
+
+    /**
+     * Returns an array containing all of the elements in this list in proper
+     * sequence (from first to last).
+     *
+     * @return an Object[] containing all elements of the list.
+     *
+     * @implNote Allocate a new object array of size equal to this.size().
+     * Traverse the linked list from front to end. Copy each node's data into
+     * the array sequentially. Runs in O(n) time where n is the size of the
+     * list.
+     */
+    public Object[] toArray() {
+        Object[] arr = new Object[size];
+
+        Node current = front;
+        int i = 0;
+        while (current != null) {
+            arr[i] = current.data;
+            current = current.next;
+            i++;
+        }
+
+        return arr;
     }
 
 }

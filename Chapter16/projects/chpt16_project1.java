@@ -1,6 +1,9 @@
 
 /**
- * Tyler Spring 12/28/2025 Chapter 16 Project 1 The actual List interface in
+ * Tyler Spring
+ * 12/28/2025
+ * Chapter 16 Project 1
+ * The actual List interface in
  * java.util package has several methods beyond the ones implemented in this
  * chapter. Write a version of LinkedList<E> that adds some or all of these
  * methods. The methods to add are the following (some headers are slightly
@@ -171,5 +174,25 @@ public class chpt16_project1 {
         System.out.println("After addAll (empty list):  " + list13);
         System.out.println("Expected:                   [1, 2]");
         System.out.println("Size: " + list13.size() + "\n");
+
+        System.out.println("\nObject[] toArray Test.");
+
+        LinkedList<Integer> list14 = new LinkedList<>();
+        list10.add(1);
+        list10.add(2);
+        list10.add(3);
+
+        Object[] array1 = list10.toArray();
+        System.out.println("Array from list10: " + java.util.Arrays.toString(array1));
+
+        LinkedList<Integer> listEmpty2 = new LinkedList<>();
+        Object[] array2 = listEmpty2.toArray();
+        System.out.println("Array from empty list: " + java.util.Arrays.toString(array2));
+
+        LinkedList<Integer> listSingle = new LinkedList<>();
+        listSingle.add(99);
+        Object[] array3 = listSingle.toArray();
+        System.out.println("Array from single-element list: " + java.util.Arrays.toString(array3));
+
     }
 }
