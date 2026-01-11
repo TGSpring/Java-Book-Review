@@ -51,8 +51,7 @@ public class chpt16_project2 {
         // Reinitialize iterator with head
         list1 = new LinkedListIterator2<>(a);
 
-        System.out.println("=== NORMAL ITERATION ===");
-        // Normal iteration loop: moves through all nodes
+        System.out.println("=== FORWARD ITERATION ===");
         while (true) {
             try {
                 String value = list1.next();
@@ -63,6 +62,20 @@ public class chpt16_project2 {
                 System.out.println("-----");
             } catch (NoSuchElementException e) {
                 System.out.println("Reached the end of the list.");
+                break;
+            }
+        }
+        System.out.println("\n=== BACKWARD ITERATION ===");
+        while (true) {
+            try {
+                String value = list1.previous();
+                System.out.println("previous() returned: " + value);
+                System.out.println("nextIndex() = " + list1.nextIndex());
+                System.out.println("previousIndex() = " + list1.previousIndex());
+                System.out.println("hasPrevious() = " + list1.hasPrevious());
+                System.out.println("-----");
+            } catch (NoSuchElementException e) {
+                System.out.println("Reached the start of the list.");
                 break;
             }
         }

@@ -100,4 +100,50 @@ public class LinkedListIterator2<E> {
         return index - 1;
     }
 
+    /**
+     * Moves the iterator backward and returns the element to the left of the
+     * cursor.
+     *
+     * - The iterator sits *between nodes*, not on a node. - If the cursor is at
+     * the start (index = 0), there is no previous element. - Throw
+     * NoSuchElementException.
+     *
+     * - Past-the-end-check: - If current == null (cursor past the last element)
+     * and the last move was next(): - lastReturned points to the tail (last
+     * node visited). - Move the cursor back to the tail. - Decrement index so
+     * nextIndex()/previousIndex() remain correct. - Set lastMoveWasNext = false
+     * to record direction. - Return the tail node's data.
+     *
+     * - Normal middle-of-list case: - The node to the left of the cursor is
+     * current.prev. - Update lastReturned to current. - Move current to
+     * current.prev. - Decrement index to reflect cursor moving left. - Set
+     * lastMoveWasNext = false. - Return lastReturned.data.
+     *
+     * Important Notes: - This method does not move nodes themselves, it only
+     * adjusts the cursor. - lastReturned always holds the node returned by the
+     * last next() or previous() call. - Edge cases like start-of-list and
+     * past-the-end are handled explicitly to avoid NullPointerException.
+     *
+     * @return The data of the node immediately to the left of the cursor.
+     */
+    public E previous() {
+        if (index == 0) {
+            throw new NoSuchElementException();
+        }
+        if (current == null) {
+            Node tail = lastReturned;
+            current = tail;
+            index--;
+            lastMoveWasNext = false;
+            lastReturned = tail;
+            return lastReturned.data;
+        }
+        lastReturned = current;
+        current = current.prev;
+        index--;
+        lastMoveWasNext = false;
+        return lastReturned.data;
+
+    }
+
 }
