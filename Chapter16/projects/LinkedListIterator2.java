@@ -14,11 +14,23 @@ public class LinkedListIterator2<E> {
     private Node lastReturned;
     private int index;
     private boolean lastMoveWasNext;
+    private Node head;
+    private Node tail;
+    private int size;
 
     public LinkedListIterator2(Node head) {
+        this.head = head;
         current = head;
         index = 0;
         lastReturned = null;
+
+        // Set tail to the last node in the list
+        tail = head;
+        if (tail != null) {
+            while (tail.next != null) {
+                tail = tail.next;
+            }
+        }
     }
 
     /**
@@ -131,19 +143,98 @@ public class LinkedListIterator2<E> {
             throw new NoSuchElementException();
         }
         if (current == null) {
-            Node tail = lastReturned;
             current = tail;
-            index--;
-            lastMoveWasNext = false;
-            lastReturned = tail;
-            return lastReturned.data;
+            lastReturned = current;
+        } else {
+            lastReturned = current.prev; // the node to the left.
+            current = current.prev; // move cursor left.
         }
-        lastReturned = current;
-        current = current.prev;
+
         index--;
         lastMoveWasNext = false;
         return lastReturned.data;
 
     }
 
+    /**
+     * Inserts a new element immediately to the left of the iterator's cursor.
+     *
+     * Mental model reminder: - The iterator sits *between nodes*, not on a
+     * node. - `current` always points to the node that would be returned by
+     * next(). - add() inserts BEFORE `current`.
+     *
+     * High-level rules from the ListIterator contract: - The cursor does NOT
+     * move to the new node. - The index increases by 1. - lastReturned becomes
+     * invalid (set/remove not allowed immediately after).
+     *
+     * There are exactly three structural cases to consider:
+     *
+     * 1) Insert at the head: - Happens when the cursor is before the first
+     * element. - This is detected by `current == head`. - The new node becomes
+     * the new head.
+     *
+     * 2) Insert in the middle: - Happens when the cursor is between two
+     * existing nodes. - `current != null` and `current != head`. - The new node
+     * is inserted between `current.prev` and `current`.
+     *
+     * 3) Insert at the tail: - Happens when the cursor is past the end of the
+     * list. - `current == null`. - The new node is appended after the existing
+     * tail.
+     *
+     * In all cases: - Only pointers are rewired; no traversal occurs. - head
+     * and tail references are updated when necessary. - index is incremented. -
+     * lastReturned is reset to null.
+     */
+    public void add(E value) {
+        Node newNode = new Node();
+        newNode.data = value;
+
+        if (current == null) { // past the end -> append
+            newNode.prev = tail;
+            newNode.next = null;
+            if (tail != null) {
+                tail.next = newNode;
+            }
+            tail = newNode;
+            if (head == null) {
+                head = newNode;
+            }
+        } else if (current.prev == null) { // insert at head
+            newNode.prev = null;
+            newNode.next = current;
+            current.prev = newNode;
+            head = newNode;
+        } else { // normal middle insert
+            newNode.prev = current.prev;
+            newNode.next = current;
+            current.prev.next = newNode;
+            current.prev = newNode;
+        }
+
+        index++;
+        lastReturned = null;
+
+    }
+
+    /**
+     * Replaces the value of the last element returned by next() or previous().
+     *
+     * Rules enforced by the iterator contract: - set() is only legal if a node
+     * was returned by the most recent next() or previous() call. - add()
+     * invalidates lastReturned. - Calling set() without a valid lastReturned is
+     * an error.
+     *
+     * Behavior: - Does NOT move the cursor. - Does NOT change the structure of
+     * the list. - Simply updates the data field of the lastReturned node.
+     *
+     * @throws IllegalStateException if next() or previous() has not been
+     * called, or if add() was called after the last traversal.
+     */
+    public void set(E value) {
+        if (lastReturned == null) {
+            throw new IllegalStateException();
+        }
+        lastReturned.data = value;
+
+    }
 }

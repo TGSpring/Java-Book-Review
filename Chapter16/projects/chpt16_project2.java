@@ -26,10 +26,7 @@ public class chpt16_project2 {
 
     //Trust me when I say I tried to make a helper method to make the testing easier. 
     public static void main(String[] args) {
-
-        // -------------------------
-        // Set up the list
-        // -------------------------
+        System.out.println("=== SETUP LIST ===");
         LinkedListIterator2<String> list1 = new LinkedListIterator2<>(null);
 
         // Node creation
@@ -37,25 +34,28 @@ public class chpt16_project2 {
         LinkedListIterator2<String>.Node b = list1.new Node();
         LinkedListIterator2<String>.Node c = list1.new Node();
 
-        // Adding data
+        // Add data
         a.data = "A";
         b.data = "B";
         c.data = "C";
 
-        // Linking nodes
+        // Link nodes
         a.next = b;
         b.prev = a;
         b.next = c;
         c.prev = b;
 
-        // Reinitialize iterator with head
+        // Initialize iterator at head
         list1 = new LinkedListIterator2<>(a);
 
-        System.out.println("=== FORWARD ITERATION ===");
+        // -------------------------
+        // Forward iteration
+        // -------------------------
+        System.out.println("\n=== FORWARD ITERATION ===");
         while (true) {
             try {
                 String value = list1.next();
-                System.out.println("next() returned: " + value);
+                System.out.println("next() = " + value);
                 System.out.println("nextIndex() = " + list1.nextIndex());
                 System.out.println("previousIndex() = " + list1.previousIndex());
                 System.out.println("hasPrevious() = " + list1.hasPrevious());
@@ -65,11 +65,15 @@ public class chpt16_project2 {
                 break;
             }
         }
+
+        // -------------------------
+        // Backward iteration
+        // -------------------------
         System.out.println("\n=== BACKWARD ITERATION ===");
         while (true) {
             try {
                 String value = list1.previous();
-                System.out.println("previous() returned: " + value);
+                System.out.println("previous() = " + value);
                 System.out.println("nextIndex() = " + list1.nextIndex());
                 System.out.println("previousIndex() = " + list1.previousIndex());
                 System.out.println("hasPrevious() = " + list1.hasPrevious());
@@ -80,17 +84,73 @@ public class chpt16_project2 {
             }
         }
 
+        System.out.println("\n=== ADD TESTS ===");
+
+        // Reinitialize iterator
+        list1 = new LinkedListIterator2<>(a);
+
+        // --- Add at head ---
+        list1.add("X");
+        System.out.println("Added 'X' at head");
+        System.out.println("next() after add = " + list1.next()); // should return X
+        System.out.println("previous() after next = " + list1.previous()); // now safe, returns X
+
+        // --- Add in middle ---
+        list1.next(); // move past X
+        list1.next(); // move past A
+        list1.add("Y"); // add before B
+        System.out.println("Inserted 'Y' before B");
+        System.out.println("previous() = " + list1.previous()); // should return Y
+        System.out.println("next() = " + list1.next()); // should return Y
+
+        // --- Add at tail ---
+        while (list1.nextIndex() < 3) { // move to C
+            list1.next();
+        }
+        list1.add("Z"); // add after C
+        System.out.println("Inserted 'Z' at tail");
+        System.out.println("previous() = " + list1.previous()); // should return Z
+        System.out.println("next() = " + list1.next()); // should return Z
+
+        // -------------------------
+        // SET TESTS
+        // -------------------------
+        System.out.println("\n=== SET TESTS ===");
+
+        // Reset iterator
+        list1 = new LinkedListIterator2<>(a);
+
+        // Move to B and update
+        list1.next(); // A
+        list1.next(); // B
+        list1.set("B-updated");
+        System.out.println("Updated B to: " + list1.previous()); // should return B-updated
+
+        // Move to C and update
+        list1.next(); // B-updated
+        list1.next(); // C
+        list1.set("C-updated");
+        System.out.println("Updated C to: " + list1.previous()); // should return C-updated
+
+        // -------------------------
+        // EDGE CASES
+        // -------------------------
         System.out.println("\n=== EDGE CASE / FAIL TEST ===");
-        // Reinitialize iterator with head for fail test
         list1 = new LinkedListIterator2<>(a);
 
         try {
-            // Call next() more times than there are elements to force exception
-            for (int i = 0; i < 5; i++) { // list has 3 elements
-                System.out.println("next() returned: " + list1.next());
+            for (int i = 0; i < 10; i++) { // more than list size
+                System.out.println("next() = " + list1.next());
             }
         } catch (NoSuchElementException e) {
             System.out.println("Caught NoSuchElementException as expected when moving past the end!");
+        }
+
+        try {
+            list1 = new LinkedListIterator2<>(a);
+            list1.previous(); // immediately, should fail
+        } catch (NoSuchElementException e) {
+            System.out.println("Caught NoSuchElementException as expected when moving before start!");
         }
 
     }
