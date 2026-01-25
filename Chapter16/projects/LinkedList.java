@@ -2,7 +2,7 @@
 import java.util.List;
 import java.util.Objects;
 
-public class LinkedList<E> {
+public class LinkedList<E> extends AbstractList<E> {
 
     private Node front; // reference to the first node.
     private int size;   // tracks number of elements.
@@ -52,6 +52,151 @@ public class LinkedList<E> {
         size++;
     }
 
+    // Abstract method for AbstractList(Project 3)
+    @Override
+    public void add(int index, E value) {
+        // Bounds check.
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index " + index + "  out of bounds.");
+        }
+
+        // Special case: add at the end, delegate to add(E).
+        if (index == size) {
+            add(value); // your existing append.
+            return;
+        }
+
+        // Special case: add at front.
+        if (index == 0) {
+            Node newNode = new Node(value);
+            newNode.next = front;
+            front = newNode;
+            size++;
+            return;
+        }
+
+        // General Case: insert in the middle.
+        Node current = front;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.next;
+        }
+        Node newNode = new Node(value);
+        newNode.next = current.next;
+        current.next = newNode;
+        size++;
+    }
+
+    /**
+     *
+     * @param list2
+     * @return an iterator over the elements of this LinkedList.
+     *
+     * @impNote The iterator supports hasNext(), next(), and remove(). -
+     * hasNext() checks if there are more elements. - next() returns the next
+     * element and advances the cursor. - remove() removes the last element
+     * returned by next().
+     */
+    @Override
+    public java.util.Iterator<E> iterator() {
+        return new java.util.Iterator<E>() {
+            private Node current = front; // The node to return on next call.
+            private Node previous = null; // The last node returned.
+            private Node beforePrevious = null; // Node before 'previous' (needed for remove).
+            private boolean canRemove = false; // Tracks if remove() is valid.
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public E next() {
+                if (current == null) {
+                    throw new java.util.NoSuchElementException();
+                }
+
+                //Advance the pointers.
+                beforePrevious = previous;
+                previous = current;
+                current = current.next;
+                canRemove = true;
+                return previous.data;
+            }
+
+            @Override
+            public void remove() {
+                if (!canRemove) {
+                    throw new IllegalStateException("next() has not been called or remove() already called");
+                }
+
+                // Case: Remove the front node.
+                if (previous == front) {
+                    front = current;
+                } else {
+                    // bypass 'previous' node.
+                    beforePrevious.next = current;
+                }
+
+                previous = beforePrevious;
+                size--;
+                canRemove = false;
+            }
+        };
+    }
+
+    /**
+     * Removes and returns the element at the specified index in this list.
+     *
+     * @implNote - Checks if index is valid, throws IndexOutOfBoundsException. -
+     * Handles removal of first node as a special case. - Stores front.data in
+     * temp variable. - Advances front to front.next. - Decrements size and
+     * returns the stored value.
+     *
+     * - For other indices: - Traverses the list to the node immediately before
+     * the one to remove. - Stores current.next.data in a temp variable. -
+     * Bypasses the target node by updating current.next = current.next.next. -
+     * Decrements size and returns the stored value. - Runs in O(n) time, where
+     * n is the size of the list.
+     *
+     * @param index the position of the element to remove.
+     * @return the element previously at the specified index.
+     * @throws IndexOutOfBoundsException if index < 0 || index >= size.
+     */
+    @Override
+    public E remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds.");
+        }
+        if (index == 0) {
+            E temp = front.data;
+            front = front.next;
+            size--;
+            return temp;
+        }
+        Node current = front;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.next;
+        }
+        E temp = current.next.data;
+        current.next = current.next.next;
+        size--;
+        return temp;
+    }
+
+    /**
+     * Returns the number of elements in this list.
+     *
+     * @return the size of the list.
+     *
+     * @implNote Simply returns the value of the 'size' field. Runs in O(1)
+     * time.
+     */
+    @Override
+    public int size() {
+        return size;
+    }
+
+    /* 
     public boolean contains(E value) {
         Node current = front;
         while (current != null) {
@@ -82,7 +227,7 @@ public class LinkedList<E> {
         sb.append("]");
         return sb.toString();
     }
-
+     */
     // Project asked methods.
     /**
      * Checks if this list contains all elements from another list.
@@ -342,6 +487,17 @@ public class LinkedList<E> {
 
         size += list.size();
 
+    }
+
+    /**
+     * Removes all elements from this list.
+     *
+     * @implNote Sets the 'front' reference to null and 'size' to 0. This
+     * effectively clears the list. Runs in O(1) time.
+     */
+    public void clear() {
+        front = null;
+        size = 0;
     }
 
     /**
