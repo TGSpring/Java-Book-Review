@@ -10,7 +10,7 @@ public class chpt1_3 {
 
        for (int i = 1; i <= 12; i++) {
         //Print the product of the number and i
-        System.out.println(num + " * " + i + " = " + (num * 1));
+        System.out.println(num + " * " + i + " = " + (num * i));
        }
     }
 }
