@@ -1,2 +1,2 @@
 
- * Chapter 3 Exercise 9
+            System.out.print(prompt);
