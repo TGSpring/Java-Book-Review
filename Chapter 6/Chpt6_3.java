@@ -2,7 +2,7 @@
  * Tyler Spring
  * 4/25/2025
  * Chapter 6 Question 3
- * Writer a method called negativeSum that accepts a Scanner reading input from a file containing
+ * Write a method called negativeSum that accepts a Scanner reading input from a file containing
  * a series of integers, and print a message to the console indicating whether the sum starting from the first number
  * is ever negative. You should also return true if a negative sum can be reached and false if not.
  * For example, suppose the file contains:
