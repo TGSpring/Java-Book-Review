@@ -24,6 +24,7 @@
 - Suggested refactors & improvements
 - Practice exercises
 - Quick reference (Scanner and String methods)
+- Code examples
 - Mini-quiz
 - Master checklist
 
@@ -181,7 +182,7 @@ Example formatting: "12 numbers, sum = 214" and "8 evens (66.67%)" for sample in
 - Mixing nextInt() and nextLine() on the same Scanner: after nextInt() a newline remains; prefer line-level scanners or consume the leftover newline.
 - Division by zero when computing percentages: check denominator == 0 before dividing.
 - String concatenation in loops: for large files prefer StringBuilder instead of repeated `+` concatenation.
-- stripComments false positives with string literals: add an "inString" state and honor escape characters (`\")` to avoid removing comment markers inside string/char literals.
+- stripComments false positives with string literals: add an "inString" state and honor escape characters (`\\`) to avoid removing comment markers inside string/char literals.
 
 ---
 
@@ -217,6 +218,140 @@ try (Scanner in = new Scanner(new File("input.txt"));
   - length(), charAt(i), indexOf(sub), substring(start, end), replace(old, new), trim(), equals(), equalsIgnoreCase()
 - I/O:
   - new Scanner(new File("path")), new PrintStream(new File("path"))
+
+---
+
+## Code examples
+Below are compact, copy-paste-ready Java examples that illustrate the common patterns used across Chapter 6.
+
+1) Line-level tokenization using a mini-Scanner (safe mixing of line and token parsing)
+```java
+try (Scanner file = new Scanner(new File("input.txt"))) {
+    while (file.hasNextLine()) {
+        String line = file.nextLine();
+        try (Scanner tokens = new Scanner(line)) {
+            if (tokens.hasNext()) {
+                String name = tokens.next();
+            }
+            if (tokens.hasNextInt()) {
+                int value = tokens.nextInt();
+                // process value
+            }
+        }
+    }
+}
+```
+
+2) Input validation with hasNextInt()
+```java
+Scanner sc = new Scanner(System.in);
+int n;
+while (true) {
+    System.out.print("Enter an integer: ");
+    if (sc.hasNextInt()) {
+        n = sc.nextInt();
+        break;
+    } else {
+        System.out.println("Not an integer, try again.");
+        sc.next(); // clear bad token
+    }
+}
+```
+
+3) Fencepost pattern (print comma-separated values without trailing comma)
+```java
+String[] items = {"apple","banana","cherry"};
+if (items.length > 0) {
+    System.out.print(items[0]);
+    for (int i = 1; i < items.length; i++) {
+        System.out.print(", " + items[i]);
+    }
+}
+```
+
+4) Efficient readEntireFile with StringBuilder
+```java
+public static String readEntireFile(File f) throws FileNotFoundException {
+    StringBuilder sb = new StringBuilder();
+    try (Scanner in = new Scanner(f)) {
+        while (in.hasNextLine()) {
+            sb.append(in.nextLine()).append('\n');
+        }
+    }
+    return sb.toString();
+}
+```
+
+5) Simple stripComments state machine (handles /* */ and //; does NOT handle strings)
+```java
+public static String stripComments(Scanner input) {
+    StringBuilder out = new StringBuilder();
+    boolean inBlock = false;
+    while (input.hasNextLine()) {
+        String line = input.nextLine();
+        if (inBlock) {
+            int end = line.indexOf("*/");
+            if (end != -1) {
+                line = line.substring(end + 2);
+                inBlock = false;
+            } else {
+                continue; // skip entire line
+            }
+        }
+        while (true) {
+            int blockStart = line.indexOf("/*");
+            int lineStart = line.indexOf("//");
+            if (blockStart != -1 && (lineStart == -1 || blockStart < lineStart)) {
+                int blockEnd = line.indexOf("*/", blockStart + 2);
+                String before = line.substring(0, blockStart);
+                if (blockEnd != -1) {
+                    line = before + line.substring(blockEnd + 2);
+                    continue; // look for more comments
+                } else {
+                    out.append(before).append('\n');
+                    inBlock = true;
+                    break;
+                }
+            } else if (lineStart != -1) {
+                out.append(line.substring(0, lineStart)).append('\n');
+                break;
+            } else {
+                out.append(line).append('\n');
+                break;
+            }
+        }
+    }
+    return out.toString();
+}
+```
+
+6) Improved leetSpeak example with StringBuilder and case handling
+```java
+public static String leetWord(String w) {
+    StringBuilder sb = new StringBuilder(w.length());
+    for (int i = 0; i < w.length(); i++) {
+        char c = w.charAt(i);
+        boolean upper = Character.isUpperCase(c);
+        char lc = Character.toLowerCase(c);
+        char mapped;
+        switch (lc) {
+            case 'o': mapped = '0'; break;
+            case 'e': mapped = '3'; break;
+            case 'a': mapped = '4'; break;
+            case 't': mapped = '7'; break;
+            default: mapped = lc; break;
+        }
+        if (i == w.length() - 1 && mapped == 's') mapped = 'z';
+        if (upper) mapped = Character.toUpperCase(mapped);
+        sb.append(mapped);
+    }
+    return sb.toString();
+}
+
+// usage per token:
+// String leeted = leetWord(token);
+// output.println("(" + leeted + ")");
+```
 
 ---
 
