@@ -1,0 +1,8 @@
+FILE REPORT
+------------------------
+Filename: normal.txt
+Total Lines: 4
+Total Words: 11
+Total Characters: 57
+Longest Line: 21
+Average Words Per Line: 2.75
