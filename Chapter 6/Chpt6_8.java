@@ -5,7 +5,7 @@
  * Write a method called printDuplicates that takes as a parameter a Scanner containing a series of lines. Your method should
  * examine each line looking for consecutive occurrences of the same token on the same line and print each duplicated token, 
  * along with the number of times that it appears consecutively. Nonrepeated tokens are not printed. You may ignore the case of repetition
- * across multiple lines (such as if a line ends with a given token and the next lines tarts with the same token). 
+ * across multiple lines (such as if a line ends with a given token and the next lines starts with the same token). 
  * You may assume that each line of the file contains at least 1 token of input.
  * For example:
  * 
