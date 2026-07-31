@@ -135,6 +135,20 @@ Possible extensions:
 - Packet size tracking
 - More advanced SDN behavior
 
+## Relation to SDNSim
+
+This project is a smaller Java implementation of networking concepts
+that are expanded upon in the larger C++ SDNSim project.
+
+MiniSDNSim focuses on:
+- Object design
+- Encapsulation
+- Device communication
+- Controller responsibility
+
+The concepts here provide the foundation for larger network simulation
+systems.
+
 ## How to Run
 
 From the Chapter8 directory:
