@@ -1,0 +1,481 @@
+# Chapter 9 Project — Starship Fleet Simulator
+
+## Purpose
+
+Build a Java program that demonstrates the core concepts from Chapter 9:
+
+* Inheritance
+* Abstract classes
+* Interfaces
+* Method overriding
+* Polymorphism
+* The `super` keyword
+* Code reuse
+* Runtime method dispatch
+
+The goal is not to build a large game. The goal is to practice designing relationships between objects where a parent type can represent many different child behaviors.
+
+This project should serve as the next step after Chapter 8 object-oriented design and prepare for larger system designs like SDNSim.
+
+---
+
+# Project Rules
+
+The project must stay within Chapter 9 concepts only.
+
+Allowed:
+
+* Classes
+* Objects
+* Fields
+* Constructors
+* Methods
+* Inheritance (`extends`)
+* Interfaces (`implements`)
+* Abstract classes
+* Method overriding
+* Polymorphic arrays
+* Loops
+* Conditionals
+* Basic calculations
+* `toString()`
+* `super()`
+* `super.method()`
+
+Do not introduce:
+
+* ArrayList
+* HashMap
+* Collections
+* Streams
+* Files
+* Exceptions beyond basic validation
+* Advanced Java features not covered yet
+* Frameworks
+* GUIs
+
+The focus is object relationships, not extra features.
+
+---
+
+# Project: Starship Fleet Simulator
+
+Create a simulation that manages a fleet of different spacecraft.
+
+Every ship shares common characteristics, but each type of ship behaves differently.
+
+The program should demonstrate that:
+
+A `Ship` reference can point to different ship types, and Java will execute the correct overridden behavior at runtime.
+
+---
+
+# Part 1 — Ship Inheritance Hierarchy
+
+Create an abstract class:
+
+## Ship
+
+Purpose:
+
+Represents the common features all ships share.
+
+Fields:
+
+* name
+* health
+* speed
+
+Fields should use proper encapsulation.
+
+Include:
+
+Constructor:
+
+```
+Ship(String name, int health, int speed)
+```
+
+Methods:
+
+Concrete:
+
+```
+getName()
+getHealth()
+getSpeed()
+toString()
+```
+
+Abstract:
+
+```
+getType()
+performMission()
+```
+
+A generic Ship should not be created directly.
+
+---
+
+# Ship Subclasses
+
+Create three subclasses.
+
+---
+
+## Fighter
+
+Represents a combat ship.
+
+Additional field:
+
+* missiles
+
+Override:
+
+```
+getType()
+```
+
+Returns:
+
+```
+Fighter
+```
+
+Override:
+
+```
+performMission()
+```
+
+Example behavior:
+
+```
+Engaging enemy targets.
+```
+
+Add:
+
+```
+attack()
+```
+
+Example behavior:
+
+```
+Firing weapons!
+```
+
+---
+
+## CargoShip
+
+Represents a supply ship.
+
+Additional field:
+
+* cargoCapacity
+
+Override:
+
+```
+getType()
+```
+
+Returns:
+
+```
+Cargo Ship
+```
+
+Override:
+
+```
+performMission()
+```
+
+Example behavior:
+
+```
+Delivering supplies.
+```
+
+Add:
+
+```
+loadCargo()
+```
+
+---
+
+## ExplorationShip
+
+Represents a discovery vessel.
+
+Additional field:
+
+* scannerLevel
+
+Override:
+
+```
+getType()
+```
+
+Returns:
+
+```
+Exploration Ship
+```
+
+Override:
+
+```
+performMission()
+```
+
+Example behavior:
+
+```
+Scanning unknown planets.
+```
+
+Add:
+
+```
+scanPlanet()
+```
+
+---
+
+# Part 2 — Polymorphic Fleet
+
+In the main program create:
+
+```
+Ship[] fleet
+```
+
+Store:
+
+* Fighter
+* CargoShip
+* ExplorationShip
+
+Loop through the array.
+
+For each ship:
+
+* Print information
+* Display type
+* Perform its mission
+
+The reference type should be:
+
+```
+Ship
+```
+
+but the executed methods should come from the actual object type.
+
+This demonstrates runtime polymorphism.
+
+---
+
+# Part 3 — Weapon Interface
+
+Create an interface:
+
+## Weapon
+
+Methods:
+
+```
+getDamage()
+fire()
+```
+
+The interface represents a contract.
+
+Different weapons should provide their own implementation.
+
+---
+
+# Weapon Implementations
+
+## LaserWeapon
+
+Damage:
+
+```
+25
+```
+
+Fire message:
+
+```
+Laser fired!
+```
+
+---
+
+## MissileWeapon
+
+Damage:
+
+```
+50
+```
+
+Fire message:
+
+```
+Missile launched!
+```
+
+---
+
+# Fighter Weapon Integration
+
+The Fighter class should contain a Weapon reference.
+
+The Fighter should not care whether it has:
+
+* LaserWeapon
+* MissileWeapon
+
+It only interacts with the Weapon interface.
+
+This demonstrates interface polymorphism.
+
+---
+
+# Part 4 — Mission Hierarchy
+
+Create another abstract class.
+
+## Mission
+
+Fields:
+
+* title
+* difficulty
+
+Methods:
+
+Concrete:
+
+```
+toString()
+```
+
+Abstract:
+
+```
+execute()
+```
+
+---
+
+# Mission Types
+
+Create:
+
+## CombatMission
+
+execute:
+
+```
+Engaging hostile forces.
+```
+
+---
+
+## RescueMission
+
+execute:
+
+```
+Searching for survivors.
+```
+
+---
+
+# Mission Polymorphism
+
+Create:
+
+```
+Mission[] missions
+```
+
+Store:
+
+* CombatMission
+* RescueMission
+
+Loop through the array and execute each mission.
+
+---
+
+# Final Program Requirements
+
+The final simulator should:
+
+1. Create a fleet of different ships.
+2. Display ship information.
+3. Demonstrate polymorphic behavior.
+4. Assign weapons using an interface.
+5. Execute different mission types.
+6. Show how inheritance reduces duplicate code.
+
+---
+
+# Completion Checklist
+
+Before considering the project complete:
+
+## Inheritance
+
+* [ ] Ship is an abstract parent class
+* [ ] Fighter extends Ship
+* [ ] CargoShip extends Ship
+* [ ] ExplorationShip extends Ship
+
+## Constructors
+
+* [ ] Every subclass uses `super()`
+* [ ] Parent fields initialize correctly
+
+## Overriding
+
+* [ ] Every subclass overrides required methods
+* [ ] `@Override` is used
+
+## Polymorphism
+
+* [ ] Ship array contains multiple subclasses
+* [ ] Methods execute based on runtime object type
+
+## Interfaces
+
+* [ ] Weapon is an interface
+* [ ] Multiple classes implement Weapon
+* [ ] Fighter uses Weapon reference
+
+## Design
+
+* [ ] No duplicated inherited behavior
+* [ ] Fields remain encapsulated
+* [ ] Parent classes define shared behavior
+* [ ] Child classes define specialized behavior
+
+---
+
+# Main Learning Goal
+
+By the end of this project, the goal is to understand:
+
+A well-designed object-oriented program does not need to know every specific object it works with. It only needs to understand the common contract those objects share.
