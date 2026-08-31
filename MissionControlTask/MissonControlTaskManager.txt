@@ -1,0 +1,368 @@
+===============================================================================
+                    JAVA BOOK REVIEW - CHAPTER 10 PROJECT
+                       Mission Control Task Manager
+===============================================================================
+
+OBJECTIVE
+-------------------------------------------------------------------------------
+The goal of this project is to reinforce the concepts introduced in Chapter 10.
+
+This project must ONLY use concepts from Chapter 10.
+
+You are expected to design the program yourself rather than following a
+step-by-step tutorial. The purpose is to practice problem solving, software
+design, and object-oriented programming using ArrayLists.
+
+If you ask ChatGPT for help, treat it as a professor during office hours.
+
+ChatGPT should:
+    • Explain concepts
+    • Answer questions
+    • Review code
+    • Point out mistakes
+    • Give hints
+    • Ask guiding questions
+
+ChatGPT should NOT:
+    • Write entire methods
+    • Design classes for you
+    • Solve the assignment unless specifically requested after a genuine
+      attempt
+
+The objective is learning, not simply finishing the project.
+
+===============================================================================
+                            CHAPTER 10 CONCEPTS
+===============================================================================
+
+Your project should provide practice with the following:
+
+    ✓ ArrayLists
+    ✓ Generics
+    ✓ Custom classes
+    ✓ Comparable
+    ✓ Collections.sort()
+    ✓ Object collections
+    ✓ Iteration
+    ✓ Searching
+    ✓ Removing elements
+    ✓ Inserting elements
+    ✓ Computing statistics
+
+Do NOT introduce concepts from later chapters.
+
+===============================================================================
+                                PROJECT
+===============================================================================
+
+Mission Control manages maintenance tasks aboard a space station.
+
+Astronauts submit work requests throughout the day. Mission Control stores,
+tracks, organizes, and updates these tasks.
+
+Your program should allow a user to manage this task list from a console menu.
+
+Every task will be stored inside an ArrayList.
+
+===============================================================================
+                            PROGRAM REQUIREMENTS
+===============================================================================
+
+Your program should be capable of:
+
+    • Adding new tasks
+    • Displaying every task
+    • Searching for a task
+    • Marking a task as complete
+    • Removing tasks
+    • Sorting tasks
+    • Displaying useful statistics
+    • Running continuously until the user chooses Exit
+
+===============================================================================
+                              CLASS DESIGN
+===============================================================================
+
+You are responsible for designing your own classes.
+
+Think carefully about:
+
+    • What classes are needed?
+    • What data belongs in each class?
+    • Which fields should be private?
+    • Which methods belong in each class?
+    • Which class should own the ArrayList?
+
+Do not immediately begin coding.
+
+Spend time designing first.
+
+===============================================================================
+                               TASK OBJECT
+===============================================================================
+
+Create a class representing a single mission task.
+
+Decide what information each task should store.
+
+Possible ideas include:
+
+    • Task name
+    • Assigned astronaut
+    • Priority
+    • Estimated completion time
+    • Completion status
+
+These are suggestions.
+
+If you wish to add another field that still fits Chapter 10,
+you may do so.
+
+Your task class should also provide behavior appropriate for a task.
+
+Examples might include:
+
+    • Mark complete
+    • Display task information
+    • Update priority
+
+Decide which behaviors make sense.
+
+===============================================================================
+                           MISSION CONTROL
+===============================================================================
+
+Create another class responsible for managing every task.
+
+This class should own an ArrayList of your task objects.
+
+It should provide functionality for:
+
+    • Adding tasks
+    • Removing tasks
+    • Finding tasks
+    • Displaying tasks
+    • Displaying completed tasks
+    • Sorting tasks
+    • Computing statistics
+
+Think about:
+
+    Should each method print information?
+
+or
+
+    Should it return information?
+
+Choose whichever design makes the most sense.
+
+===============================================================================
+                             DRIVER PROGRAM
+===============================================================================
+
+Create a menu-driven console application.
+
+The menu should repeatedly prompt the user until Exit is selected.
+
+Example layout:
+
+    ===============================
+       MISSION CONTROL
+    ===============================
+
+    1. Add Task
+    2. Display Tasks
+    3. Search Task
+    4. Complete Task
+    5. Remove Task
+    6. Sort Tasks
+    7. Statistics
+    8. Exit
+
+Your exact menu design is up to you.
+
+===============================================================================
+                               COMPARABLE
+===============================================================================
+
+MissionTask must implement Comparable.
+
+You must decide:
+
+    What makes one task come before another?
+
+Examples might include:
+
+    • Priority
+    • Estimated completion time
+    • Task name
+
+If two tasks are equal according to your primary comparison,
+decide how ties should be broken.
+
+Be prepared to explain your design choice.
+
+===============================================================================
+                        ARRAYLIST OPERATIONS
+===============================================================================
+
+Your project should naturally make use of most of the following:
+
+    add()
+
+    add(index, element)
+
+    remove()
+
+    get()
+
+    set()
+
+    contains()
+
+    indexOf()
+
+    size()
+
+    isEmpty()
+
+Do not force every method into the project.
+
+Only use operations where they make sense.
+
+===============================================================================
+                         DEVELOPMENT ORDER
+===============================================================================
+
+Complete one milestone before moving to the next.
+
+Milestone 1
+------------
+Design your classes.
+
+Milestone 2
+------------
+Implement the Task class.
+
+Milestone 3
+------------
+Test creating individual task objects.
+
+Milestone 4
+------------
+Create Mission Control.
+
+Milestone 5
+------------
+Add tasks to the ArrayList.
+
+Milestone 6
+------------
+Display every task.
+
+Milestone 7
+------------
+Search for tasks.
+
+Milestone 8
+------------
+Complete tasks.
+
+Milestone 9
+------------
+Remove tasks.
+
+Milestone 10
+-------------
+Sort tasks.
+
+Milestone 11
+-------------
+Display statistics.
+
+Milestone 12
+-------------
+Build the menu.
+
+Milestone 13
+-------------
+Perform final testing.
+
+===============================================================================
+                              TESTING
+===============================================================================
+
+Before considering the project complete, verify the following:
+
+    □ Empty task list
+
+    □ One task
+
+    □ Multiple tasks
+
+    □ Duplicate task names
+
+    □ Search for missing task
+
+    □ Remove first task
+
+    □ Remove last task
+
+    □ Sort correctly
+
+    □ Statistics are correct
+
+    □ Menu continues until Exit
+
+Do not assume your program works because it compiles.
+
+===============================================================================
+                               CONSTRAINTS
+===============================================================================
+
+Stay strictly within Chapter 10.
+
+Do NOT use:
+
+    • Files
+    • LinkedList
+    • HashMap
+    • Queue
+    • Stack
+    • GUI libraries
+    • Databases
+    • Networking
+    • Streams
+    • Lambdas
+    • Advanced generics
+    • Any concepts introduced after Chapter 10
+
+===============================================================================
+                          WHEN YOU NEED HELP
+===============================================================================
+
+Before asking for help, ask yourself:
+
+    • What is this method supposed to accomplish?
+
+    • What information does it need?
+
+    • What should it return?
+
+    • Which Chapter 10 concept applies here?
+
+    • Can I solve this with an ArrayList operation?
+
+When asking ChatGPT:
+
+    1. Explain your approach first.
+
+    2. Show your code.
+
+    3. Explain where you are stuck.
+
+    4. Ask for hints before asking for solutions.
+
+The goal is to become capable of designing and implementing programs
+independently.
+===============================================================================
